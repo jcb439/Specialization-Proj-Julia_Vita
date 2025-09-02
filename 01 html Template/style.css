@@ -1,0 +1,120 @@
+/* Using Helvetica Neue - widely available on most systems */
+/* Alternative: You can also use "Neue Haas Grotesk" if you have it installed */
+
+body {
+  font-family: "Helvetica Neue", "Helvetica", sans-serif;
+  background-color: #000000;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 auto;
+  padding: 24px 40px;
+  border-bottom: 1px solid #333;
+  font-size: 14px;
+}
+
+header .left {
+  color: #888;
+  width: 100px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+header .center {
+  font-weight: 400;
+  text-align: left;
+  margin-left: 100px;
+  flex-grow: 1;
+  color: #ffffff;
+}
+
+header .center span {
+  font-size: 12px;
+  color: #aaa;
+}
+
+header .right {
+  width: 100px;
+  text-align: right;
+}
+
+header .right a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 400;
+}
+
+header .right a:hover {
+  color: #ccc;
+}
+
+main {
+  max-width: 800px;
+  margin: 60px 0;
+  padding: 0 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.project-meta {
+  font-size: 14px;
+  color: #aaa;
+  margin-bottom: 8px;
+}
+
+.project-title {
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 4px;
+  color: #ffffff;
+}
+
+.course-info {
+  font-size: 14px;
+  color: #aaa;
+  margin-bottom: 8px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+.project-subtitle {
+  font-size: 16px;
+  color: #aaa;
+  margin-bottom: 24px;
+}
+
+.advisor {
+  font-size: 14px;
+  margin-bottom: 40px;
+  color: #ccc;
+}
+
+.section-title {
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 40px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: #ffffff;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  color: #ffffff;
+}
+
+img.content-image {
+  width: 100%;
+  height: auto;
+  margin: 40px 0;
+  display: block;
+  border-radius: 4px;
+}
