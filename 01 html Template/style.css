@@ -3,7 +3,7 @@
 
 body {
   font-family: "Helvetica Neue", "Helvetica", sans-serif;
-  background-color: #000000;
+  background-color: #6C244C;
   color: #ffffff;
   margin: 0;
   padding: 0;
@@ -16,6 +16,7 @@ header {
   margin: 0 auto;
   padding: 24px 40px;
   border-bottom: 1px solid #333;
+  background-color: #121214;
   font-size: 14px;
 }
 
@@ -77,7 +78,7 @@ main {
 
 .course-info {
   font-size: 14px;
-  color: #aaa;
+  color: #ffffff;
   margin-bottom: 8px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -85,7 +86,7 @@ main {
 
 .project-subtitle {
   font-size: 16px;
-  color: #aaa;
+  color: #ffffff;
   margin-bottom: 24px;
 }
 
