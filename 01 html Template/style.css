@@ -147,3 +147,11 @@ a {
   font-weight: normal; /* Override any inherited bold styling */
 }
 
+/* Stack sections vertically on state of knowledge page */
+.sections-container.vertical {
+  display: block;
+}
+
+.sections-container.vertical .section-box {
+  margin-bottom: 24px;
+}
