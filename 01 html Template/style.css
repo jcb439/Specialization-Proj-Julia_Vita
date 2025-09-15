@@ -1,6 +1,6 @@
 body {
   font-family: "Helvetica Neue", "Helvetica", sans-serif;
-  background-color: #405e1e;
+  background-color: #ffffff;
   color: #ffffff;
   margin: 0;
   padding: 0;
@@ -68,7 +68,7 @@ main {
   font-size: 24px;
   font-weight: 400;
   margin-bottom: 4px;
-  color: #ffffff;
+  color: #405e1e;
 }
 
 .course-info {
@@ -81,7 +81,7 @@ main {
 
 .project-subtitle {
   font-size: 16px;
-  color: #ffffff;
+  color: #405e1e;
   margin-bottom: 24px;
 }
 
@@ -147,11 +147,3 @@ a {
   font-weight: normal; /* Override any inherited bold styling */
 }
 
-/* Stack sections vertically on state of knowledge page */
-.sections-container.vertical {
-  display: block;
-}
-
-.sections-container.vertical .section-box {
-  margin-bottom: 24px;
-}
