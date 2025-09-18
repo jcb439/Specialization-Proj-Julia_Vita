@@ -1,0 +1,82 @@
+id,label,category,subcategory,type,size,color,description,x,y,z
+1,Consumer-Players,Human Actors,Individual Level,entity,8,#FF6B6B,"Individual consumers who participate in gamified fashion choices",0,0,0
+2,Fashion Industry Actors,Human Actors,Individual Level,entity,7,#4ECDC4,"Designers, manufacturers, executives in fashion industry",20,0,10
+3,Technology Mediators,Human Actors,Individual Level,entity,6,#45B7D1,"App developers, UX designers, data scientists",10,15,5
+4,Consumer Communities,Human Actors,Collective Level,entity,8,#96CEB4,"Fashion gaming communities and peer networks",-15,5,0
+5,Institutional Actors,Human Actors,Collective Level,entity,7,#FFEAA7,"Corporations, NGOs, regulatory bodies",25,10,-5
+6,Garments & Textiles,Non-Human Entities,Material,entity,6,#DDA0DD,"Physical clothing items and materials",5,-10,15
+7,Environmental Systems,Non-Human Entities,Material,entity,10,#98D8C8,"Ecosystems, climate, biodiversity networks",-20,-15,10
+8,Production Infrastructure,Non-Human Entities,Material,entity,7,#F7DC6F,"Manufacturing, transportation, waste systems",15,-20,0
+9,Gaming Platform Components,Non-Human Entities,Digital,entity,6,#BB8FCE,"UI, databases, algorithms, servers",0,20,-10
+10,Data Streams,Non-Human Entities,Digital,entity,5,#85C1E9,"User behavior, environmental metrics, trends",-10,25,5
+11,Attentiveness,Ethics of Care,Core Principles,concept,4,#FF9FF3,"Noticing environmental needs and impacts",-5,0,20
+12,Responsibility,Ethics of Care,Core Principles,concept,5,#FF9FF3,"Taking ownership of environmental impact",5,0,25
+13,Competence,Ethics of Care,Core Principles,concept,4,#FF9FF3,"Developing environmental care skills",0,5,22
+14,Responsiveness,Ethics of Care,Core Principles,concept,4,#FF9FF3,"Contextual environmental action",-5,5,18
+15,Trust,Ethics of Care,Core Principles,concept,4,#FF9FF3,"Building relationships for care",2,8,20
+16,Direct Care,Ethics of Care,Care Relationships,concept,5,#F8C471,"Immediate environmental stewardship",-15,0,25
+17,Mediated Care,Ethics of Care,Care Relationships,concept,6,#F8C471,"Care through consumption choices",0,0,30
+18,Collective Care,Ethics of Care,Care Relationships,concept,6,#F8C471,"Community environmental action",-10,10,28
+19,Intergenerational Care,Ethics of Care,Care Relationships,concept,5,#F8C471,"Future-oriented responsibility",10,5,32
+20,Interspecies Care,Ethics of Care,Care Relationships,concept,5,#F8C471,"Non-human consideration",-20,0,30
+21,Situated Knowledge,Ethics of Care,Epistemology,concept,4,#AED6F1,"Context-dependent understanding",-8,0,35
+22,Embodied Experience,Ethics of Care,Epistemology,concept,4,#AED6F1,"Bodily ways of knowing",8,0,35
+23,Relational Knowing,Ethics of Care,Epistemology,concept,4,#AED6F1,"Knowledge through relationships",0,8,38
+24,Emotional Intelligence,Ethics of Care,Epistemology,concept,4,#AED6F1,"Affective dimensions of ethics",0,-8,35
+25,Points Systems,Gamification,Game Elements,concept,5,#A9DFBF,"Environmental impact scores, achievements",30,0,0
+26,Progression Mechanisms,Gamification,Game Elements,concept,5,#A9DFBF,"Level advancement, skill trees, unlocks",35,5,5
+27,Social Features,Gamification,Game Elements,concept,6,#A9DFBF,"Leaderboards, collaboration, mentoring",30,10,0
+28,Feedback Loops,Gamification,Game Elements,concept,7,#A9DFBF,"Real-time impact visualization",25,0,10
+29,Personal Journey Arc,Gamification,Narratives,concept,4,#D5A6BD,"Individual transformation story",30,-10,-5
+30,Collective Story,Gamification,Narratives,concept,5,#D5A6BD,"Community building narrative",35,-5,0
+31,Environmental Saga,Gamification,Narratives,concept,5,#D5A6BD,"Planetary health narrative",25,-15,5
+32,Care Web Stories,Gamification,Narratives,concept,4,#D5A6BD,"Relationship development stories",32,-8,-8
+33,Immediate Effects,Environmental Impact,Temporal,concept,4,#FAD7A0,"Purchase decision impacts",0,-5,-20
+34,Short-term Impacts,Environmental Impact,Temporal,concept,4,#FAD7A0,"Seasonal consumption effects",5,-5,-25
+35,Medium-term Consequences,Environmental Impact,Temporal,concept,5,#FAD7A0,"Lifestyle change implications",0,-10,-30
+36,Long-term Implications,Environmental Impact,Temporal,concept,6,#FAD7A0,"Climate change effects",-5,-10,-35
+37,Intergenerational Effects,Environmental Impact,Temporal,concept,6,#FAD7A0,"Future sustainability impacts",0,-15,-40
+38,Personal Sphere,Environmental Impact,Spatial,concept,4,#E8DAEF,"Individual wardrobe impacts",15,0,-20
+39,Local Community,Environmental Impact,Spatial,concept,5,#E8DAEF,"Regional fashion culture effects",20,5,-25
+40,National Context,Environmental Impact,Spatial,concept,5,#E8DAEF,"Policy and regulation level",25,0,-30
+41,Global Systems,Environmental Impact,Spatial,concept,7,#E8DAEF,"International supply chains",30,-5,-25
+42,Planetary Boundaries,Environmental Impact,Spatial,concept,8,#E8DAEF,"Earth system limits",35,0,-20
+43,Resource Depletion,Environmental Impact,Categories,concept,6,#D7BDE2,"Water, energy, materials consumption",-25,-10,-15
+44,Pollution Streams,Environmental Impact,Categories,concept,6,#D7BDE2,"Chemical, carbon, waste pollution",-30,-5,-10
+45,Biodiversity Effects,Environmental Impact,Categories,concept,6,#D7BDE2,"Habitat destruction, species impact",-35,0,-15
+46,Recognition Process,Relational Dynamics,Care Formation,process,4,#F9E79F,"Becoming aware of environmental needs",-10,0,10
+47,Concern Development,Relational Dynamics,Care Formation,process,4,#F9E79F,"Emotional engagement with issues",-8,3,12
+48,Action Taking,Relational Dynamics,Care Formation,process,5,#F9E79F,"Implementing care practices",-5,5,15
+49,Reflection Cycle,Relational Dynamics,Care Formation,process,4,#F9E79F,"Learning from care actions",-12,2,8
+50,Peer Influence Networks,Relational Dynamics,Consumer Relations,process,6,#ABEBC6,"Social comparison and influence",-15,15,0
+51,Collaborative Challenges,Relational Dynamics,Consumer Relations,process,5,#ABEBC6,"Group environmental projects",-20,20,5
+52,Knowledge Sharing,Relational Dynamics,Consumer Relations,process,5,#ABEBC6,"Information exchange systems",-10,20,10
+53,Mutual Accountability,Relational Dynamics,Consumer Relations,process,5,#ABEBC6,"Peer responsibility structures",-5,18,8
+54,Motivation Alignment,Relational Dynamics,Game-Care Integration,process,6,#F8D7DA,"Intrinsic + extrinsic motivation",15,15,15
+55,Skill Development,Relational Dynamics,Game-Care Integration,process,5,#F8D7DA,"Care competencies through games",18,18,18
+56,Community Building,Relational Dynamics,Game-Care Integration,process,6,#F8D7DA,"Social features supporting care",10,20,20
+57,Visibility Creation,Relational Dynamics,Game-Care Integration,process,5,#F8D7DA,"Making environmental care tangible",20,15,12
+58,Social Proof Cascades,Relational Dynamics,Critical Mass,process,6,#D6EAF8,"Increasing participation visibility",-25,20,15
+59,Network Effects,Relational Dynamics,Critical Mass,process,6,#D6EAF8,"Value increases with participation",-30,25,20
+60,Tipping Point Dynamics,Relational Dynamics,Critical Mass,process,7,#D6EAF8,"Threshold behavior change effects",-35,20,25
+61,Cultural Shift Indicators,Relational Dynamics,Critical Mass,process,6,#D6EAF8,"Norm transformation markers",-28,28,22
+62,Consumer Choice Paradigm,Tensions,Systemic,tension,5,#FADBD8,"Individual vs structural solutions",40,0,15
+63,Individual Responsibility,Tensions,Systemic,tension,5,#FADBD8,"Personal vs corporate accountability",42,5,18
+64,Market Solutions,Tensions,Systemic,tension,5,#FADBD8,"Capitalist vs anti-capitalist approaches",38,8,20
+65,Technological Optimism,Tensions,Systemic,tension,5,#FADBD8,"Tech solutions vs digital divide",45,3,15
+66,Scale Mismatches,Tensions,Care Ethics,tension,5,#E8F8F5,"Personal care vs global problems",40,-10,25
+67,Cultural Specificity,Tensions,Care Ethics,tension,4,#E8F8F5,"Western-centric care concepts",42,-8,28
+68,Privilege Dependencies,Tensions,Care Ethics,tension,5,#E8F8F5,"Variable care capacity access",38,-5,30
+69,Burnout Risks,Tensions,Care Ethics,tension,5,#E8F8F5,"Unsustainable care demands",45,-12,25
+70,Engagement Decay,Tensions,Gamification,tension,5,#FEF9E7,"Novelty wearing off over time",40,15,-10
+71,Metric Fixation,Tensions,Gamification,tension,5,#FEF9E7,"Gaming the system behaviors",45,18,-8
+72,Exclusion Mechanisms,Tensions,Gamification,tension,5,#FEF9E7,"Digital divide effects",38,20,-5
+73,Shallow Participation,Tensions,Gamification,tension,5,#FEF9E7,"Surface-level engagement only",42,22,-12
+74,Collective Care Capacity,Emergent Properties,System Outcomes,emergent,7,#E74C3C,"Community resilience development",-40,15,35
+75,Environmental Literacy,Emergent Properties,System Outcomes,emergent,6,#E74C3C,"Widespread understanding growth",-35,18,38
+76,Fashion Culture Transformation,Emergent Properties,System Outcomes,emergent,8,#E74C3C,"Norm shifts in fashion industry",-45,20,32
+77,Political Mobilization,Emergent Properties,System Outcomes,emergent,6,#E74C3C,"Activism emergence from platform",-38,25,40
+78,Green Consumerism Reinforcement,Emergent Properties,Unintended,emergent,6,#3498DB,"More buying, even if sustainable",-40,-15,35
+79,Care Inequality,Emergent Properties,Unintended,emergent,5,#3498DB,"Differential participation ability",-35,-18,38
+80,Technological Dependency,Emergent Properties,Unintended,emergent,5,#3498DB,"Platform reliance development",-45,-10,32
+81,Greenwashing Amplification,Emergent Properties,Unintended,emergent,6,#3498DB,"Corporate co-optation risks",-42,-20,40
