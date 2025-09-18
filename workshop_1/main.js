@@ -7,8 +7,17 @@ let edgeData = [];
 let animationSpeed = 1;
 let isPaused = false;
 let selectedNode = null;
+let nodeConnections = new Map(); // Track which edges connect to which nodes
 
-// Color mapping for categories
+// Color mapping for node types and categories
+const typeColors = {
+    'entity': '#3498db',      // Blue
+    'concept': '#e74c3c',     // Red
+    'process': '#2ecc71',     // Green
+    'tension': '#f39c12',     // Orange
+    'emergent': '#9b59b6'     // Purple
+};
+
 const categoryColors = {
     'Human Actors': '#FF6B6B',
     'Non-Human Entities': '#4ECDC4', 
@@ -34,7 +43,8 @@ function setupScene() {
     
     // Scene
     scene = new THREE.Scene();
-    scene.fog = new THREE.Fog(0x000000, 100, 1000);
+    scene.background = new THREE.Color(0xffffff); // White background
+    scene.fog = new THREE.Fog(0xffffff, 200, 800); // White fog
     
     // Camera
     camera = new THREE.PerspectiveCamera(
@@ -55,23 +65,23 @@ function setupScene() {
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     
-    // Lighting
-    const ambientLight = new THREE.AmbientLight(0x404040, 0.6);
+    // Lighting adjusted for white background
+    const ambientLight = new THREE.AmbientLight(0x404040, 0.4);
     scene.add(ambientLight);
     
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1.0);
     directionalLight.position.set(100, 100, 50);
     directionalLight.castShadow = true;
     directionalLight.shadow.mapSize.width = 2048;
     directionalLight.shadow.mapSize.height = 2048;
     scene.add(directionalLight);
     
-    // Point lights for atmosphere
-    const pointLight1 = new THREE.PointLight(0x3498db, 0.5, 200);
+    // Point lights for atmosphere (darker for white background)
+    const pointLight1 = new THREE.PointLight(0x3498db, 0.3, 200);
     pointLight1.position.set(50, 50, 50);
     scene.add(pointLight1);
     
-    const pointLight2 = new THREE.PointLight(0xe74c3c, 0.5, 200);
+    const pointLight2 = new THREE.PointLight(0xe74c3c, 0.3, 200);
     pointLight2.position.set(-50, -50, -50);
     scene.add(pointLight2);
     
@@ -128,10 +138,7 @@ function setupMouseControls() {
     
     // Update camera rotation in animation loop
     window.updateCameraRotation = () => {
-        if (!isPaused) {
-            // Auto rotation
-            targetRotationY += 0.005 * animationSpeed;
-        }
+        // Remove automatic rotation - only manual controls now
         
         rotationX += (targetRotationX - rotationX) * 0.05;
         rotationY += (targetRotationY - rotationY) * 0.05;
@@ -168,6 +175,7 @@ function checkNodeIntersection(event) {
         canvas.style.cursor = 'grab';
         if (selectedNode) {
             resetNodeHighlight(selectedNode);
+            resetEdgeHighlights();
             selectedNode = null;
             updateNodeDetails(null);
         }
@@ -194,7 +202,7 @@ async function loadCSVData() {
     }
 }
 
-// Parse CSV data
+// Parse CSV data with more spread out positioning
 function parseCSV(csvText) {
     const lines = csvText.split('\n');
     const headers = lines[0].split(',');
@@ -207,11 +215,11 @@ function parseCSV(csvText) {
                 nodeObj[header.trim()] = values[index].trim();
             });
             
-            // Convert numeric values
+            // Convert numeric values and spread them out more
             nodeObj.size = parseFloat(nodeObj.size) || 5;
-            nodeObj.x = parseFloat(nodeObj.x) || 0;
-            nodeObj.y = parseFloat(nodeObj.y) || 0;
-            nodeObj.z = parseFloat(nodeObj.z) || 0;
+            nodeObj.x = (parseFloat(nodeObj.x) || 0) * 3; // Spread factor of 3
+            nodeObj.y = (parseFloat(nodeObj.y) || 0) * 3;
+            nodeObj.z = (parseFloat(nodeObj.z) || 0) * 3;
             
             nodeData.push(nodeObj);
         }
@@ -250,8 +258,11 @@ function createNodes() {
     nodeData.forEach(nodeInfo => {
         const geometry = new THREE.SphereGeometry(nodeInfo.size / 2, 16, 16);
         
+        // Use type color with category as fallback
+        const nodeColor = typeColors[nodeInfo.type] || categoryColors[nodeInfo.category] || '#888888';
+        
         const material = new THREE.MeshPhongMaterial({
-            color: nodeInfo.color,
+            color: nodeColor,
             transparent: true,
             opacity: 0.8,
             shininess: 100
@@ -266,19 +277,19 @@ function createNodes() {
             nodeInfo: nodeInfo
         };
         
-        // Create text label
-        const labelGeometry = new THREE.PlaneGeometry(20, 4);
+        // Create smaller text label
+        const labelGeometry = new THREE.PlaneGeometry(12, 3); // Smaller dimensions
         const canvas = document.createElement('canvas');
         const context = canvas.getContext('2d');
-        canvas.width = 512;
-        canvas.height = 128;
+        canvas.width = 256; // Smaller canvas
+        canvas.height = 64;
         
         context.fillStyle = 'rgba(255, 255, 255, 0.9)';
         context.fillRect(0, 0, canvas.width, canvas.height);
         context.fillStyle = '#333';
-        context.font = '24px Arial';
+        context.font = '16px Arial'; // Smaller font
         context.textAlign = 'center';
-        context.fillText(nodeInfo.label, canvas.width / 2, canvas.height / 2 + 8);
+        context.fillText(nodeInfo.label, canvas.width / 2, canvas.height / 2 + 6);
         
         const labelTexture = new THREE.CanvasTexture(canvas);
         const labelMaterial = new THREE.MeshBasicMaterial({
@@ -289,7 +300,7 @@ function createNodes() {
         
         const labelMesh = new THREE.Mesh(labelGeometry, labelMaterial);
         labelMesh.position.copy(mesh.position);
-        labelMesh.position.y += nodeInfo.size + 5;
+        labelMesh.position.y += nodeInfo.size + 3; // Closer to node
         labelMesh.lookAt(camera.position);
         
         const nodeGroup = new THREE.Group();
@@ -309,6 +320,9 @@ function createNodes() {
 
 // Create connections between nodes (simplified for demo)
 function createConnections() {
+    // Initialize connections tracking
+    nodeConnections.clear();
+    
     // Create some sample connections based on categories
     const nodeArray = Array.from(nodes.values());
     
@@ -327,12 +341,34 @@ function createConnections() {
                 const material = new THREE.LineBasicMaterial({
                     color: 0x666666,
                     transparent: true,
-                    opacity: 0.3
+                    opacity: 0.3,
+                    linewidth: 1
                 });
                 
                 const line = new THREE.Line(geometry, material);
+                line.userData = {
+                    nodeId1: node1.info.id,
+                    nodeId2: node2.info.id,
+                    originalOpacity: 0.3,
+                    originalLinewidth: 1
+                };
+                
                 edges.push(line);
                 scene.add(line);
+                
+                // Track connections for each node
+                const node1Id = node1.info.id;
+                const node2Id = node2.info.id;
+                
+                if (!nodeConnections.has(node1Id)) {
+                    nodeConnections.set(node1Id, []);
+                }
+                if (!nodeConnections.has(node2Id)) {
+                    nodeConnections.set(node2Id, []);
+                }
+                
+                nodeConnections.get(node1Id).push(line);
+                nodeConnections.get(node2Id).push(line);
             }
         }
     }
@@ -342,6 +378,7 @@ function createConnections() {
 function selectNode(nodeId) {
     if (selectedNode && selectedNode !== nodeId) {
         resetNodeHighlight(selectedNode);
+        resetEdgeHighlights();
     }
     
     selectedNode = nodeId;
@@ -352,9 +389,62 @@ function selectNode(nodeId) {
         node.mesh.material.emissive = new THREE.Color(0x444444);
         node.mesh.scale.setScalar(1.5);
         
+        // Highlight connected edges
+        highlightConnectedEdges(nodeId);
+        
         // Update UI
         updateNodeDetails(node.info);
     }
+}
+
+// Highlight edges connected to the selected node
+function highlightConnectedEdges(nodeId) {
+    const connectedEdges = nodeConnections.get(nodeId);
+    
+    if (connectedEdges) {
+        connectedEdges.forEach(edge => {
+            // Make connected edges thicker and more opaque
+            edge.material.opacity = 0.8;
+            edge.material.color.setHex(0x3498db); // Blue highlight color
+            
+            // Create a thicker line by adding a second line with larger geometry
+            const points = edge.geometry.attributes.position.array;
+            const thickPoints = [];
+            for (let i = 0; i < points.length; i += 3) {
+                thickPoints.push(new THREE.Vector3(points[i], points[i + 1], points[i + 2]));
+            }
+            
+            const thickGeometry = new THREE.BufferGeometry().setFromPoints(thickPoints);
+            const thickMaterial = new THREE.LineBasicMaterial({
+                color: 0x3498db,
+                transparent: true,
+                opacity: 0.6,
+                linewidth: 3
+            });
+            
+            const thickLine = new THREE.Line(thickGeometry, thickMaterial);
+            thickLine.userData.isThickLine = true;
+            thickLine.userData.parentEdge = edge;
+            
+            scene.add(thickLine);
+            edge.userData.thickLine = thickLine;
+        });
+    }
+}
+
+// Reset edge highlights
+function resetEdgeHighlights() {
+    edges.forEach(edge => {
+        // Reset edge appearance
+        edge.material.opacity = edge.userData.originalOpacity || 0.3;
+        edge.material.color.setHex(0x666666);
+        
+        // Remove thick line if it exists
+        if (edge.userData.thickLine) {
+            scene.remove(edge.userData.thickLine);
+            edge.userData.thickLine = null;
+        }
+    });
 }
 
 // Reset node highlight
@@ -363,6 +453,19 @@ function resetNodeHighlight(nodeId) {
     if (node) {
         node.mesh.material.emissive = new THREE.Color(0x000000);
         node.mesh.scale.setScalar(1);
+    }
+}
+
+// Reset camera view
+function resetView() {
+    camera.position.set(100, 100, 100);
+    camera.lookAt(0, 0, 0);
+    
+    if (selectedNode) {
+        resetNodeHighlight(selectedNode);
+        resetEdgeHighlights();
+        selectedNode = null;
+        updateNodeDetails(null);
     }
 }
 
@@ -392,20 +495,6 @@ function setupEventListeners() {
     // Type filter
     document.getElementById('typeFilter').addEventListener('change', (e) => {
         filterNodes('type', e.target.value);
-    });
-    
-    // Speed slider
-    const speedSlider = document.getElementById('speedSlider');
-    const speedValue = document.getElementById('speedValue');
-    speedSlider.addEventListener('input', (e) => {
-        animationSpeed = parseFloat(e.target.value);
-        speedValue.textContent = animationSpeed.toFixed(1);
-    });
-    
-    // Pause button
-    document.getElementById('pauseBtn').addEventListener('click', () => {
-        isPaused = !isPaused;
-        document.getElementById('pauseBtn').textContent = isPaused ? 'Resume Rotation' : 'Pause Rotation';
     });
     
     // Reset button
@@ -458,17 +547,11 @@ function animate() {
     }
     
     // Animate nodes
-    if (!isPaused) {
-        nodes.forEach((node, nodeId) => {
-            // Gentle floating animation
-            const time = Date.now() * 0.001 * animationSpeed;
-            const floatOffset = Math.sin(time + parseInt(nodeId) * 0.1) * 2;
-            node.mesh.position.y = node.info.y + floatOffset;
-            
-            // Rotate labels to face camera
-            node.label.lookAt(camera.position);
-        });
-    }
+    nodes.forEach((node, nodeId) => {
+        // Remove automatic floating animation - keep nodes stationary
+        // Labels still rotate to face camera
+        node.label.lookAt(camera.position);
+    });
     
     renderer.render(scene, camera);
 }

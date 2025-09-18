@@ -204,7 +204,7 @@ button:active {
 #visualization-container {
     flex: 1;
     position: relative;
-    background: radial-gradient(ellipse at center, #232526 0%, #414345 100%);
+    background: white;
 }
 
 #three-canvas {
