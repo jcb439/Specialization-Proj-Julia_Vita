@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Literature Review • PAUSE</title>
+  <link rel="stylesheet" href="assets/css/styles.css"/>
+</head>
+<body>
+  
+    <nav class="nav-sidebar" id="navSidebar">
+      <div class="nav-logo">PAUSE</div>
+      <div class="nav-subtitle">Fall 2025 • Design 8131</div>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="index.html" class="nav-link ">Home</a></li>
+        <li class="nav-item"><a href="knowledge.html" class="nav-link ">State of Knowledge</a></li>
+        <li class="nav-item"><a href="community.html" class="nav-link ">Community Practice</a></li>
+        <li class="nav-item"><a href="prototype.html" class="nav-link ">Radical Prototype</a></li>
+        <li class="nav-item"><a href="ontology.html" class="nav-link ">Ontology Diagram</a></li>
+        <li class="nav-item"><a href="forking.html" class="nav-link ">Forking Paths</a></li>
+        <li class="nav-item"><a href="barriers.html" class="nav-link ">Barriers to Entry</a></li>
+        <li class="nav-item"><a href="literature.html" class="nav-link active">Literature Review</a></li>
+      </ul>
+    </nav>
+    
+  <button class="menu-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  <main class="main-content">
+    <div class="header">
+      <div class="header-meta">Academic Foundation</div>
+      <h1 class="page-title">Literature Review</h1>
+      <p class="page-subtitle">Key Texts Shaping Our Understanding</p>
+    </div>
+    <div class="content">
+      
+<div class="section">
+  <h2 class="section-header">Core Research</h2>
+  <p style="color:#333;line-height:1.8;margin-bottom:40px">
+    Our research spans behavioral psychology, sustainable fashion studies, and consumer behavior to understand impulse drivers and interventions.
+  </p>
+</div>
+<div class="book-grid">
+  <!-- Book 1 - Fast Fashion -->
+  <div class="book-card">
+    <div class="book-hero fast-fashion" onclick="toggleBookDetails('book1')">
+      <div class="overlay"></div>
+      <div style="position:relative;z-index:1">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:2px;margin-bottom:20px;opacity:.9">Textile Science and Clothing Technology</div>
+        <div style="font-size:22px;font-weight:700;margin-bottom:15px;line-height:1.2">Fast Fashion, Fashion Brands and Sustainable Consumption</div>
+        <div style="width:60px;height:2px;background:#fff;margin:20px auto"></div>
+        <div style="font-size:14px;opacity:.9;margin-top:20px">Editor:<br/>Subramanian Senthilkannan Muthu</div>
+        <div style="font-size:12px;margin-top:30px;opacity:.8">Springer</div>
+      </div>
+    </div>
+    <div id="book1-details" class="book-details">
+      <h4 style="margin-bottom:15px">Key Insights</h4>
+      <ul style="line-height:1.8;color:#333">
+        <li><strong>52 micro-collections/year</strong> → constant obsolescence</li>
+        <li><strong>1 in 10 women</strong> wear garments only 3 times</li>
+        <li>Hedonistic motivations: shopping as entertainment</li>
+        <li>Social media amplifies non‑repetition pressures</li>
+      </ul>
+      <div style="margin-top:20px;padding:15px;background:#fff;border-left:3px solid #8B1538">
+        <em>"Fast fashion makes latest styles accessible at cheaper prices, pushing novelty over durability."</em>
+      </div>
+    </div>
+  </div>
+
+  <!-- Book 2 - Eco‑Friendly and Fair -->
+  <div class="book-card">
+    <div class="book-hero eco-fair" onclick="toggleBookDetails('book2')">
+      <div style="position:absolute;top:0;left:0;right:0;height:40%;background:linear-gradient(180deg,rgba(255,255,255,.3) 0%,transparent 100%)"></div>
+      <div style="position:relative;z-index:1">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:2px;margin-bottom:20px;opacity:.9">Sustainability in Textiles</div>
+        <div style="font-size:26px;font-weight:700;margin-bottom:10px">ECO‑FRIENDLY AND FAIR</div>
+        <div style="font-size:16px;font-weight:300;margin-bottom:20px">Fast Fashion and Consumer Behaviour</div>
+        <div style="width:60px;height:2px;background:#fff;margin:20px auto"></div>
+        <div style="font-size:14px;opacity:.9;margin-top:20px">Edited by<br/>Carolin Becker‑Leifhold &amp; Mark Heuer</div>
+        <div style="font-size:20px;margin-top:30px;font-weight:700">R</div>
+      </div>
+    </div>
+    <div id="book2-details" class="book-details">
+      <h4 style="margin-bottom:15px">Historical & Systemic Analysis</h4>
+      <ul style="line-height:1.8;color:#333">
+        <li><strong>Pre‑1980s:</strong> 2–4 collections; product‑driven</li>
+        <li>Fast fashion exploits <strong>identity fluidity & FOMO</strong></li>
+        <li>Flexible supply chains enable disposability</li>
+        <li>Reforms: circularity, eco‑materials, policy</li>
+      </ul>
+      <div style="margin-top:20px;padding:15px;background:#fff;border-left:3px solid #4CAF50">
+        <em>"Unsustainable across the lifecycle; externalizes costs."</em>
+      </div>
+    </div>
+  </div>
+
+  <!-- Book 3 - Sustainable Fashion Quest -->
+  <div class="book-card">
+    <div class="book-hero quest" onclick="toggleBookDetails('book3')">
+      <div style="position:absolute;top:20%;left:-20%;width:140%;height:60%;background:linear-gradient(45deg,transparent,rgba(255,215,0,.1),transparent);transform:rotate(-10deg)"></div>
+      <div style="position:relative;z-index:1">
+        <div style="font-size:24px;font-weight:300;margin-bottom:10px;letter-spacing:1px">The Sustainable Fashion Quest</div>
+        <div style="font-size:16px;font-weight:300;margin-bottom:30px;opacity:.8">Innovations in Business and Policy</div>
+        <div style="width:80px;height:1px;background:#fff;margin:30px auto;opacity:.5"></div>
+        <div style="font-size:18px;font-weight:500;letter-spacing:3px;margin-top:40px">NIKOLAY ANGUELOV</div>
+        <div style="font-size:11px;margin-top:30px;opacity:.6;letter-spacing:1px">Routledge<br/>Taylor &amp; Francis Group</div>
+      </div>
+    </div>
+    <div id="book3-details" class="book-details">
+      <h4 style="margin-bottom:15px">Consumer Behavior Reality</h4>
+      <ul style="line-height:1.8;color:#333">
+        <li><strong>Style & price</strong> trump ecological factors</li>
+        <li>"Buy fewer, better" fails when cheap exists</li>
+        <li>Consumers rarely choose pricier alternatives</li>
+        <li>Industry must seed new sustainable trends</li>
+      </ul>
+      <div style="margin-top:20px;padding:15px;background:#fff;border-left:3px solid #000">
+        <em>"Style and price, not ecology, drive purchases."</em>
+      </div>
+    </div>
+  </div>
+
+  <!-- Book 4 - Break Up with Fast Fashion -->
+  <div class="book-card">
+    <div class="book-hero breakup" onclick="toggleBookDetails('book4')">
+      <div class="overlay" style="background:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(255,255,255,.05) 10px,rgba(255,255,255,.05) 20px)"></div>
+      <div style="position:relative;z-index:1">
+        <div style="font-size:18px;font-weight:700;margin-bottom:10px">How to Break Up with Fast Fashion</div>
+        <div style="font-size:14px;opacity:.9">Lauren Bravo</div>
+      </div>
+    </div>
+    <div id="book4-details" class="book-details">
+      <h4 style="margin-bottom:15px">Psychological Interventions</h4>
+      <ul style="line-height:1.8;color:#333">
+        <li><strong>Retail therapy</strong> exploits stress coping</li>
+        <li>Paradox of choice → fatigue</li>
+        <li><strong>Wardrobe auditing</strong> first</li>
+        <li><strong>Waiting periods</strong> curb impulses</li>
+        <li>Ask: "Do I need this? How often will I wear it?"</li>
+      </ul>
+      <div style="margin-top:20px;padding:15px;background:#fff;border-left:3px solid #000">
+        <em>"Mind the triggers to make mindful choices."</em>
+      </div>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </main>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
