@@ -83,3 +83,69 @@ body{
 .table th{padding:15px;text-align:left;background:#000;color:#fff}
 .table td{padding:15px;color:#333;border-bottom:1px solid #ddd}
 .table tr:nth-child(even){background:#f9f9f9}
+
+/* Book cover images */
+.book-hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.book-hero img.book-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* fills nicely without distortion */
+  display: block;
+}
+
+/* Optional: keep a subtle overlay & caption */
+.book-hero .overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.15); }
+.book-hero .caption {
+  position: absolute; left: 16px; bottom: 16px; right: 16px;
+  color: #fff; font-size: 14px; line-height: 1.4; opacity: 0.9;
+}
+
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+/* Card container */
+.book-card {
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.book-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Uniform image container */
+.book-hero {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4; /* keeps consistent proportions */
+  overflow: hidden;
+  border-radius: 8px;
+  background: #f4f4f4; /* fallback background if image missing */
+}
+
+/* Cover image scaling */
+.book-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* crops edges but preserves aspect ratio */
+  object-position: center;
+  display: block;
+}
+
+/* Hidden details */
+.book-details {
+  display: none;
+  margin-top: 20px;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
