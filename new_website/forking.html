@@ -3,8 +3,114 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Forking Paths Diagram</title>
+  <title>Forking Paths Diagram • </title>
   <link rel="stylesheet" href="assets/css/styles.css"/>
+  <style>
+    .forking-system {
+      max-width: 1400px;
+      margin: 40px auto;
+      padding: 60px 40px;
+      background: #fafafa;
+      border-radius: 12px;
+      position: relative;
+    }
+    
+    .system-row {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      margin-bottom: 60px;
+      position: relative;
+    }
+    
+    .row-label {
+      min-width: 140px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #666;
+      text-align: left;
+      padding-right: 20px;
+      flex-shrink: 0;
+    }
+    
+    .system-nodes {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .system-node {
+      background: #e0e0e0;
+      border: 2px solid #999;
+      border-radius: 8px;
+      padding: 20px 25px;
+      min-width: 140px;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+    }
+    
+    .system-node:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    
+    .system-node.primary {
+      background: #000;
+      color: #fff;
+      border-color: #000;
+    }
+    
+    .system-node.focus {
+      background: #d0d0d0;
+      border-color: #666;
+      font-weight: 600;
+    }
+    
+    .node-label {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+    
+    svg.path-connections {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    .path-line {
+      stroke: #666;
+      stroke-width: 3;
+      fill: none;
+      marker-end: url(#arrowhead);
+    }
+    
+    @media (max-width: 1024px) {
+      .system-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .row-label {
+        width: 100%;
+        margin-bottom: 15px;
+      }
+      
+      .system-nodes {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
   
@@ -28,49 +134,200 @@
     <div class="header">
       <div class="header-meta">Divergent Futures</div>
       <h1 class="page-title">Forking Paths Diagram</h1>
-      <p class="page-subtitle">Alternative Trajectories & Outcomes</p>
+      <p class="page-subtitle">System Structure & Intervention Points</p>
     </div>
     <div class="content">
       
 <div class="section">
   <p style="color:#333;line-height:1.8;margin-bottom:40px">
-    Every design decision creates divergent possibilities. Our forking paths diagram maps the various trajectories our intervention could take, exploring both optimistic and cautionary futures. Each path reveals potential outcomes based on different adoption patterns, user responses, and market conditions.
+    This diagram maps the fashion industry ecosystem and identifies where our intervention sits within everyday practices. The highlighted path shows our focus: conscious purchasing through reflection and recognition, driven by intrinsic motivation and social pressure.
   </p>
 </div>
 
+<div class="forking-system" id="forkingSystem">
+  
+  <!-- SVG for path connections -->
+  <svg class="path-connections" id="pathSvg">
+    <defs>
+      <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+        <polygon points="0 0, 10 3, 0 6" fill="#666"/>
+      </marker>
+    </defs>
+  </svg>
+  
+  <!-- DOMAINS -->
+  <div class="system-row">
+    <div class="row-label">DOMAINS</div>
+    <div class="system-nodes">
+      <div class="system-node focus" data-path="industry">
+        <div class="node-label">FASHION<br>INDUSTRY</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUB DOMAIN 1 -->
+  <div class="system-row">
+    <div class="row-label">SUB DOMAIN</div>
+    <div class="system-nodes">
+      <div class="system-node primary">
+        <div class="node-label">TEXTILE<br>PRODUCTION</div>
+      </div>
+      <div class="system-node focus" data-path="manufacturing">
+        <div class="node-label">MANUFACTURING</div>
+      </div>
+      <div class="system-node primary">
+        <div class="node-label">DISTRIBUTION</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUB DOMAIN 2 -->
+  <div class="system-row">
+    <div class="row-label">SUB DOMAIN</div>
+    <div class="system-nodes">
+      <div class="system-node primary">
+        <div class="node-label">LABOR</div>
+      </div>
+      <div class="system-node focus" data-path="overproduction">
+        <div class="node-label">OVERPRODUCTION</div>
+      </div>
+      <div class="system-node primary">
+        <div class="node-label">SUPPLY CHAIN</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EVERYDAY PRACTICES -->
+  <div class="system-row">
+    <div class="row-label">EVERYDAY<br>PRACTICES</div>
+    <div class="system-nodes">
+      <div class="system-node primary">
+        <div class="node-label">REPAIR/<br>MEND</div>
+      </div>
+      <div class="system-node focus" data-path="purchasing">
+        <div class="node-label">CONSCIOUS<br>PURCHASING</div>
+      </div>
+      <div class="system-node primary">
+        <div class="node-label">CARE/<br>WASHING</div>
+      </div>
+      <div class="system-node primary">
+        <div class="node-label">RESELLING</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LENSES -->
+  <div class="system-row">
+    <div class="row-label">LENSES</div>
+    <div class="system-nodes">
+      <div class="system-node primary">
+        <div class="node-label">GAMIFICATION</div>
+      </div>
+      <div class="system-node focus" data-path="reflection">
+        <div class="node-label">REFLECTION</div>
+      </div>
+      <div class="system-node primary" data-path="recognition">
+        <div class="node-label">RECOGNITION</div>
+      </div>
+      <div class="system-node primary">
+        <div class="node-label">BRIDGING</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INCENTIVES -->
+  <div class="system-row">
+    <div class="row-label">INCENTIVES</div>
+    <div class="system-nodes">
+      <div class="system-node primary">
+        <div class="node-label">TANGIBLE<br>REWARDS</div>
+      </div>
+      <div class="system-node focus" data-path="social">
+        <div class="node-label">SOCIAL<br>PRESSURE</div>
+      </div>
+      <div class="system-node focus" data-path="intrinsic">
+        <div class="node-label">INTRINSIC<br>MOTIVATION</div>
+      </div>
+      <div class="system-node primary">
+        <div class="node-label">CITY-WIDE<br>GRANTS</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
 <div class="section">
-  <div class="forking-diagram-container">
-    <img src="assets/img/forking-path.png" alt="Forking Paths Diagram showing alternative future scenarios for the shopping speed bump intervention" class="forking-diagram-image">
+  <h2 class="section-header">Understanding the System</h2>
+  <div style="background:#f9f9f9;padding:30px;border-radius:12px;margin:30px 0">
+    <p style="color:#333;line-height:1.8;margin-bottom:15px">
+      <strong>The highlighted path (grey nodes)</strong> traces from the fashion industry through manufacturing and overproduction to conscious purchasing as the key everyday practice. This is where our "speed bump" intervention operates.
+    </p>
+    <p style="color:#333;line-height:1.8;margin-bottom:15px">
+      <strong>Our intervention lenses</strong> are reflection and recognition—asking users to reflect on what they own and recognize their existing wardrobe value.
+    </p>
+    <p style="color:#333;line-height:1.8;">
+      <strong>The behavioral incentives</strong> we activate are intrinsic motivation (satisfaction with what you have) and social pressure (reducing overconsumption), rather than external rewards.
+    </p>
   </div>
 </div>
 
 <div class="section">
-  <h2 class="section-header">Understanding the Paths</h2>
-  <p style="color:#333;line-height:1.8;margin-bottom:30px">
-    This diagram illustrates the critical decision points and potential outcomes for our intervention. Each fork represents a moment where design choices, user behavior, or external factors could push the project in different directions—from widespread adoption and meaningful behavior change to user fatigue and abandonment.
-  </p>
-  
-  <div style="background:#f9f9f9;padding:30px;border-radius:12px;margin:30px 0">
-    <h3 style="font-size:18px;margin-bottom:20px">Key Considerations</h3>
-    <div style="display:grid;gap:20px">
-      <div style="border-left:3px solid #000;padding-left:20px">
-        <h4 style="margin-bottom:8px">Critical Success Factors</h4>
-        <p style="color:#666;font-size:14px;line-height:1.6">What conditions must be met for the intervention to achieve its goals?</p>
-      </div>
-      <div style="border-left:3px solid #000;padding-left:20px">
-        <h4 style="margin-bottom:8px">Failure Modes</h4>
-        <p style="color:#666;font-size:14px;line-height:1.6">What could cause users to disengage or the system to break down?</p>
-      </div>
-      <div style="border-left:3px solid #000;padding-left:20px">
-        <h4 style="margin-bottom:8px">Unintended Consequences</h4>
-        <p style="color:#666;font-size:14px;line-height:1.6">What unexpected outcomes might emerge from widespread adoption?</p>
-      </div>
-    </div>
+  <h2 class="section-header">Key Insight</h2>
+  <div style="background:#000;color:#fff;padding:30px;border-radius:12px;">
+    <p style="line-height:1.8;opacity:.95">
+      While the fashion industry creates overproduction at the supply level, our intervention addresses it at the demand level—the moment of conscious purchasing. By introducing reflection at this critical point, we activate intrinsic motivation rather than relying on external incentives that may not scale or sustain behavior change.
+    </p>
   </div>
 </div>
 
     </div>
   </main>
   <script src="assets/js/app.js"></script>
+  <script>
+    function drawPaths() {
+      const svg = document.getElementById('pathSvg');
+      const container = document.getElementById('forkingSystem');
+      svg.innerHTML = '<defs><marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><polygon points="0 0, 10 3, 0 6" fill="#666"/></marker></defs>';
+      
+      function getNodeCenter(pathId) {
+        const node = document.querySelector(`[data-path="${pathId}"]`);
+        if (!node) return null;
+        const rect = node.getBoundingClientRect();
+        const containerRect = container.getBoundingClientRect();
+        return {
+          x: rect.left + rect.width / 2 - containerRect.left,
+          y: rect.top + rect.height / 2 - containerRect.top,
+          bottom: rect.bottom - containerRect.top,
+          top: rect.top - containerRect.top
+        };
+      }
+      
+      function drawLine(from, to) {
+        const start = getNodeCenter(from);
+        const end = getNodeCenter(to);
+        if (!start || !end) return;
+        
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', start.x);
+        line.setAttribute('y1', start.bottom);
+        line.setAttribute('x2', end.x);
+        line.setAttribute('y2', end.top - 5);
+        line.setAttribute('class', 'path-line');
+        svg.appendChild(line);
+      }
+      
+      // Draw the main path - one arrow between each row
+      drawLine('industry', 'manufacturing');
+      drawLine('manufacturing', 'overproduction');
+      drawLine('overproduction', 'purchasing');
+      drawLine('purchasing', 'reflection');
+      drawLine('reflection', 'social');
+      drawLine('reflection', 'intrinsic');
+    }
+    
+    window.addEventListener('load', drawPaths);
+    window.addEventListener('resize', drawPaths);
+    setTimeout(drawPaths, 100);
+  </script>
 </body>
 </html>

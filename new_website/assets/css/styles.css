@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
   --black:#000;--white:#fff;--gray:#888;--light-gray:#f5f5f5;
   --nav-width:280px;--transition:all .3s cubic-bezier(.4,0,.2,1);
 }
 body{
-  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  font-family:'Space Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
   background:var(--white);color:var(--black);line-height:1.6;overflow-x:hidden
 }
 /* NAV */
@@ -383,43 +385,6 @@ body{
   margin:0 0 0 170px;
 }
 
-@media (max-width:768px){
-  .barriers-grid{
-    grid-template-columns:1fr;
-  }
-  
-  .ontology-row{
-    flex-direction:column;
-    align-items:flex-start;
-    gap:20px;
-  }
-  
-  .ontology-label{
-    border-right:none;
-    border-bottom:2px solid #ddd;
-    padding-bottom:10px;
-    text-align:left;
-    width:100%;
-  }
-  
-  .ontology-nodes{
-    width:100%;
-  }
-  
-  .ontology-connector{
-    margin:0;
-    height:40px;
-  }
-  
-  .ontology-connector svg{
-    height:40px;
-  }
-  
-  .forking-diagram-container{
-    padding:20px;
-  }
-}
-
 /* COMMUNITY PRACTICE / COMPETITOR STYLES */
 .competitor-grid{
   display:grid;
@@ -442,276 +407,6 @@ body{
 .competitor-card:nth-child(3){animation-delay:.2s}
 .competitor-card:nth-child(4){animation-delay:.25s}
 .competitor-card:nth-child(5){animation-delay:.3s}
-.competitor-card:nth-child(6){animation-delay:.35s}
-
-.competitor-card:hover{
-  border-color:#999;
-  box-shadow:0 8px 25px rgba(0,0,0,.12);
-  transform:translateY(-4px);
-}
-
-.competitor-image-container{
-  position:relative;
-  width:100%;
-  height:220px;
-  background:#f5f5f5;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-}
-
-.competitor-image{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.competitor-badge{
-  position:absolute;
-  top:12px;
-  right:12px;
-  background:#000;
-  color:#fff;
-  padding:6px 12px;
-  border-radius:20px;
-  font-size:12px;
-  font-weight:600;
-  letter-spacing:.3px;
-}
-
-.competitor-content{
-  padding:25px;
-}
-
-.competitor-title{
-  font-size:20px;
-  font-weight:600;
-  margin-bottom:12px;
-}
-
-.competitor-title a{
-  color:#000;
-  text-decoration:none;
-  display:inline-flex;
-  align-items:center;
-  transition:color .2s ease;
-}
-
-.competitor-title a:hover{
-  color:#666;
-}
-
-.competitor-title svg{
-  opacity:.6;
-  transition:opacity .2s ease,transform .2s ease;
-}
-
-.competitor-title a:hover svg{
-  opacity:1;
-  transform:translate(2px,-2px);
-}
-
-.competitor-description{
-  color:#555;
-  font-size:15px;
-  line-height:1.6;
-  margin-bottom:15px;
-}
-
-.competitor-gap{
-  background:#f9f9f9;
-  padding:12px 15px;
-  border-radius:8px;
-  border-left:3px solid #333;
-  font-size:14px;
-  line-height:1.5;
-  color:#666;
-}
-
-.competitor-gap strong{
-  color:#333;
-  display:block;
-  margin-bottom:3px;
-}
-
-/* Insight Cards */
-.insight-card{
-  background:#f9f9f9;
-  padding:25px;
-  border-radius:8px;
-  border-left:3px solid #000;
-  transition:all .3s ease;
-}
-
-.insight-card:hover{
-  background:#f5f5f5;
-  transform:translateX(5px);
-}
-
-@media (max-width:768px){
-  .competitor-grid{
-    grid-template-columns:1fr;
-  }
-}
-
-/* COMMUNITY PRACTICE / COMPETITOR STYLES */
-.competitor-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
-  gap:30px;
-  margin-bottom:50px;
-}
-
-.competitor-card{
-  background:#fff;
-  border:1px solid #e0e0e0;
-  border-radius:12px;
-  overflow:hidden;
-  transition:all .3s ease;
-  animation:fadeInUp .8s backwards;
-}
-
-.competitor-card:nth-child(1){animation-delay:.1s}
-.competitor-card:nth-child(2){animation-delay:.15s}
-.competitor-card:nth-child(3){animation-delay:.2s}
-.competitor-card:nth-child(4){animation-delay:.25s}
-.competitor-card:nth-child(5){animation-delay:.3s}
-.competitor-card:nth-child(6){animation-delay:.35s}
-
-.competitor-card:hover{
-  border-color:#999;
-  box-shadow:0 8px 25px rgba(0,0,0,.12);
-  transform:translateY(-4px);
-}
-
-.competitor-image-container{
-  position:relative;
-  width:100%;
-  height:220px;
-  background:#f5f5f5;
-  overflow:hidden;
-}
-
-.competitor-image{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:center;
-  display:block;
-}
-
-.competitor-badge{
-  position:absolute;
-  top:12px;
-  right:12px;
-  background:#000;
-  color:#fff;
-  padding:6px 12px;
-  border-radius:20px;
-  font-size:12px;
-  font-weight:600;
-  letter-spacing:.3px;
-}
-
-.competitor-content{
-  padding:25px;
-}
-
-.competitor-title{
-  font-size:20px;
-  font-weight:600;
-  margin-bottom:12px;
-}
-
-.competitor-title a{
-  color:#000;
-  text-decoration:none;
-  display:inline-flex;
-  align-items:center;
-  transition:color .2s ease;
-}
-
-.competitor-title a:hover{
-  color:#666;
-}
-
-.competitor-title svg{
-  opacity:.6;
-  transition:opacity .2s ease,transform .2s ease;
-}
-
-.competitor-title a:hover svg{
-  opacity:1;
-  transform:translate(2px,-2px);
-}
-
-.competitor-description{
-  color:#555;
-  font-size:15px;
-  line-height:1.6;
-  margin-bottom:15px;
-}
-
-.competitor-gap{
-  background:#f9f9f9;
-  padding:12px 15px;
-  border-radius:8px;
-  border-left:3px solid #333;
-  font-size:14px;
-  line-height:1.5;
-  color:#666;
-}
-
-.competitor-gap strong{
-  color:#333;
-  display:block;
-  margin-bottom:3px;
-}
-
-/* Insight Cards */
-.insight-card{
-  background:#f9f9f9;
-  padding:25px;
-  border-radius:8px;
-  border-left:3px solid #000;
-  transition:all .3s ease;
-}
-
-.insight-card:hover{
-  background:#f5f5f5;
-  transform:translateX(5px);
-}
-
-@media (max-width:768px){
-  .competitor-grid{
-    grid-template-columns:1fr;
-  }
-}
-
-/* COMMUNITY PRACTICE / COMPETITOR STYLES */
-.competitor-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
-  gap:30px;
-  margin-bottom:50px;
-}
-
-.competitor-card{
-  background:#fff;
-  border:1px solid #e0e0e0;
-  border-radius:12px;
-  overflow:hidden;
-  transition:all .3s ease;
-  animation:fadeInUp .8s backwards;
-}
-
-.competitor-card:nth-child(1){animation-delay:.1s}
-.competitor-card:nth-child(2){animation-delay:.15s}
-.competitor-card:nth-child(3){animation-delay:.2s}
-.competitor-card:nth-child(4){animation-delay:.25s}
-.competitor-card:nth-child(5){animation-delay:.3s}
-.competitor-card:nth-child(6){animation-delay:.35s}
 
 .competitor-card:hover{
   border-color:#999;
@@ -820,5 +515,38 @@ body{
 @media (max-width:768px){
   .competitor-grid{
     grid-template-columns:1fr;
+  }
+}
+
+  
+  .ontology-row{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:20px;
+  }
+  
+  .ontology-label{
+    border-right:none;
+    border-bottom:2px solid #ddd;
+    padding-bottom:10px;
+    text-align:left;
+    width:100%;
+  }
+  
+  .ontology-nodes{
+    width:100%;
+  }
+  
+  .ontology-connector{
+    margin:0;
+    height:40px;
+  }
+  
+  .ontology-connector svg{
+    height:40px;
+  }
+  
+  .forking-diagram-container{
+    padding:20px;
   }
 }
