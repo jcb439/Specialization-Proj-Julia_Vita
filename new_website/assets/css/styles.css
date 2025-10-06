@@ -1,7 +1,7 @@
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
   --black:#000;--white:#fff;--gray:#888;--light-gray:#f5f5f5;
-  --nav-width:280px;--transition:all .3s cubic-bezier(.4,0,.2,1)
+  --nav-width:280px;--transition:all .3s cubic-bezier(.4,0,.2,1);
 }
 body{
   font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
@@ -94,11 +94,10 @@ body{
 .book-hero img.book-cover {
   width: 100%;
   height: 100%;
-  object-fit: cover;   /* fills nicely without distortion */
+  object-fit: cover;
   display: block;
 }
 
-/* Optional: keep a subtle overlay & caption */
 .book-hero .overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.15); }
 .book-hero .caption {
   position: absolute; left: 16px; bottom: 16px; right: 16px;
@@ -112,7 +111,6 @@ body{
   margin-bottom: 60px;
 }
 
-/* Card container */
 .book-card {
   cursor: pointer;
   transition: transform 0.3s;
@@ -122,30 +120,302 @@ body{
   transform: translateY(-4px);
 }
 
-/* Uniform image container */
 .book-hero {
   position: relative;
   width: 100%;
-  aspect-ratio: 3 / 4; /* keeps consistent proportions */
+  aspect-ratio: 3 / 4;
   overflow: hidden;
   border-radius: 8px;
-  background: #f4f4f4; /* fallback background if image missing */
+  background: #f4f4f4;
 }
 
-/* Cover image scaling */
 .book-cover {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* crops edges but preserves aspect ratio */
+  object-fit: cover;
   object-position: center;
   display: block;
 }
 
-/* Hidden details */
 .book-details {
   display: none;
   margin-top: 20px;
   padding: 20px;
   background: #f9f9f9;
   border-radius: 8px;
+}
+
+/* BARRIERS TO ENTRY STYLES - GREYSCALE/INTERACTIVE */
+.barriers-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:25px;
+  margin-bottom:40px;
+}
+
+.barrier-card{
+  background:#fff;
+  border:2px solid #e0e0e0;
+  border-radius:12px;
+  padding:0;
+  cursor:pointer;
+  transition:all .3s ease;
+  animation:fadeInUp .8s backwards;
+  overflow:hidden;
+}
+
+.barrier-card:nth-child(1){animation-delay:.1s}
+.barrier-card:nth-child(2){animation-delay:.15s}
+.barrier-card:nth-child(3){animation-delay:.2s}
+.barrier-card:nth-child(4){animation-delay:.25s}
+.barrier-card:nth-child(5){animation-delay:.3s}
+.barrier-card:nth-child(6){animation-delay:.35s}
+.barrier-card:nth-child(7){animation-delay:.4s}
+
+.barrier-card:hover{
+  border-color:#666;
+  box-shadow:0 5px 20px rgba(0,0,0,.1);
+  transform:translateY(-2px);
+}
+
+.barrier-card.expanded{
+  border-color:#000;
+  box-shadow:0 8px 25px rgba(0,0,0,.15);
+}
+
+.barrier-header{
+  padding:25px;
+  display:flex;
+  align-items:center;
+  gap:15px;
+  position:relative;
+}
+
+.barrier-icon{
+  flex-shrink:0;
+  color:#333;
+  opacity:.8;
+}
+
+.barrier-card.expanded .barrier-icon{
+  color:#000;
+  opacity:1;
+}
+
+.barrier-title{
+  flex:1;
+  font-size:20px;
+  font-weight:600;
+  color:#333;
+  margin:0;
+}
+
+.barrier-card.expanded .barrier-title{
+  color:#000;
+}
+
+.barrier-toggle{
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  background:#f5f5f5;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+  font-weight:300;
+  color:#666;
+  transition:all .3s ease;
+  flex-shrink:0;
+}
+
+.barrier-card:hover .barrier-toggle{
+  background:#e0e0e0;
+  color:#333;
+}
+
+.barrier-card.expanded .barrier-toggle{
+  background:#000;
+  color:#fff;
+  transform:rotate(180deg);
+}
+
+.barrier-content{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .4s ease,padding .4s ease;
+  padding:0 25px;
+}
+
+.barrier-content.active{
+  max-height:500px;
+  padding:0 25px 25px 25px;
+}
+
+.barrier-description{
+  font-size:15px;
+  line-height:1.7;
+  color:#555;
+  margin-bottom:20px;
+}
+
+.barrier-impact{
+  background:#f9f9f9;
+  padding:15px;
+  border-radius:8px;
+  border-left:3px solid #333;
+  font-size:14px;
+  line-height:1.6;
+  color:#666;
+}
+
+.barrier-impact strong{
+  display:block;
+  margin-bottom:5px;
+  color:#333;
+  font-weight:600;
+}
+
+/* FORKING PATHS STYLES */
+.forking-diagram-container{
+  background:#f9f9f9;
+  border-radius:12px;
+  padding:40px;
+  margin:40px 0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:400px;
+}
+
+.forking-diagram-image{
+  max-width:100%;
+  height:auto;
+  border-radius:8px;
+  box-shadow:0 10px 30px rgba(0,0,0,.1);
+}
+
+/* ONTOLOGY DIAGRAM STYLES */
+.ontology-container{
+  background:#fff;
+  padding:40px 20px;
+  border-radius:12px;
+  margin:40px 0;
+  border:1px solid rgba(0,0,0,.1);
+}
+
+.ontology-row{
+  display:flex;
+  align-items:center;
+  gap:30px;
+  margin-bottom:0;
+}
+
+.ontology-label{
+  min-width:140px;
+  font-size:12px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  color:#666;
+  text-align:right;
+  padding-right:20px;
+  border-right:2px solid #ddd;
+}
+
+.ontology-nodes{
+  flex:1;
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.ontology-three-col{justify-content:space-around}
+.ontology-four-col{justify-content:space-around}
+.ontology-five-col{justify-content:space-around}
+
+.ontology-node{
+  background:#f5f5f5;
+  border-radius:8px;
+  padding:20px 25px;
+  min-width:140px;
+  text-align:center;
+  transition:all .3s ease;
+  position:relative;
+  border:2px solid transparent;
+}
+
+.node-primary{
+  background:#6B9BD1;
+  color:#fff;
+  font-weight:500;
+  border-color:#5B8BC1;
+}
+
+.node-secondary{
+  background:#879850;
+  color:#fff;
+  font-weight:500;
+  border-color:#6B7A3D;
+}
+
+.node-focus{
+  box-shadow:0 4px 15px rgba(107,155,209,.3);
+  transform:scale(1.05);
+}
+
+.ontology-node:hover{
+  transform:translateY(-3px) scale(1.05);
+  box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+
+.node-content{
+  font-size:13px;
+  font-weight:600;
+  letter-spacing:.5px;
+  line-height:1.4;
+}
+
+.ontology-connector{
+  display:flex;
+  justify-content:center;
+  margin:0 0 0 170px;
+}
+
+@media (max-width:768px){
+  .barriers-grid{
+    grid-template-columns:1fr;
+  }
+  
+  .ontology-row{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:20px;
+  }
+  
+  .ontology-label{
+    border-right:none;
+    border-bottom:2px solid #ddd;
+    padding-bottom:10px;
+    text-align:left;
+    width:100%;
+  }
+  
+  .ontology-nodes{
+    width:100%;
+  }
+  
+  .ontology-connector{
+    margin:0;
+    height:40px;
+  }
+  
+  .ontology-connector svg{
+    height:40px;
+  }
+  
+  .forking-diagram-container{
+    padding:20px;
+  }
 }
