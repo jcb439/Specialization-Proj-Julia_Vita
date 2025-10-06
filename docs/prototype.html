@@ -8,26 +8,26 @@
 </head>
 <body>
   
-  <nav class="nav-sidebar" id="navSidebar">
-    <div class="nav-logo"></div>
-    <div class="nav-subtitle">Fall 2025 • Design 8131</div>
-    <ul class="nav-menu">
-      <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-      <li class="nav-item"><a href="knowledge.html" class="nav-link ">State of Knowledge</a></li>
-      <li class="nav-item"><a href="community.html" class="nav-link ">Community Practice</a></li>
-      <li class="nav-item"><a href="literature.html" class="nav-link ">Literature Review</a></li>
-      <li class="nav-item"><a href="ontology.html" class="nav-link ">Ontology Diagram</a></li>
-      <li class="nav-item"><a href="prototype.html" class="nav-link active">Radical Prototype</a></li>
-      <li class="nav-item"><a href="forking.html" class="nav-link ">Forking Paths</a></li>
-      <li class="nav-item"><a href="barriers.html" class="nav-link ">Barriers to Entry</a></li>
-    </ul>
-  </nav>
+    <nav class="nav-sidebar" id="navSidebar">
+      <div class="nav-logo"></div>
+      <div class="nav-subtitle">Fall 2025 • Design 8131</div>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="index.html" class="nav-link ">Home</a></li>
+        <li class="nav-item"><a href="knowledge.html" class="nav-link ">State of Knowledge</a></li>
+        <li class="nav-item"><a href="community.html" class="nav-link ">Community Practice</a></li>
+        <li class="nav-item"><a href="literature.html" class="nav-link ">Literature Review</a></li>
+        <li class="nav-item"><a href="ontology.html" class="nav-link ">Ontology Diagram</a></li>
+        <li class="nav-item"><a href="prototype.html" class="nav-link active">Radical Prototype</a></li>
+        <li class="nav-item"><a href="forking.html" class="nav-link ">Forking Paths</a></li>
+        <li class="nav-item"><a href="barriers.html" class="nav-link ">Barriers to Entry</a></li>
+      </ul>
+    </nav>
     
   <button class="menu-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></button>
   <main class="main-content">
     <div class="header">
       <div class="header-meta">Design Innovation</div>
-      <h1 class="page-title">Intent of Radical Prototype</h1>
+      <h1 class="page-title">Radical Prototype</h1>
       <p class="page-subtitle">A Gentle Intervention in Digital Commerce</p>
     </div>
     <div class="content">
@@ -35,10 +35,125 @@
 <div class="section">
   <h2 class="section-header">The Intervention</h2>
   <p style="color:#333;line-height:1.8;margin-bottom:30px">
-    A browser-based overlay triggers on add‑to‑cart/checkout and asks: <strong>"Do you have something similar?"</strong> A gentle, judgment‑free pause that enables conscious choice.
+    A browser-based overlay triggers on add-to-cart/checkout and asks: <strong>"Do you have something similar?"</strong> A gentle, judgment-free pause that enables conscious choice.
   </p>
-  <div class="placeholder">
-    <div class="placeholder-text">Work in Progress</div>
+</div>
+
+<div class="section">
+  <h2 class="section-header">Key Features</h2>
+  
+  <div style="display:flex;gap:30px;align-items:center;background:#fff;border:1px solid #e0e0e0;border-radius:12px;padding:30px;margin-bottom:30px;flex-wrap:wrap">
+    <div style="flex:1;min-width:300px">
+      <h3 style="font-size:20px;font-weight:600;margin-bottom:15px">Reflection Prompts</h3>
+      <p style="color:#333;line-height:1.8;margin-bottom:20px">
+        Before checkout (or when user hovers over the add to cart or checkout button), a <strong>pop-up card</strong> appears with simple, evidence-based reflection questions:
+      </p>
+      <ul style="color:#555;line-height:1.8;margin-left:25px;margin-bottom:20px">
+        <li><em>How many similar items do you already own?</em></li>
+        <li><em>How many times do you think you'll wear this in the next year?</em></li>
+        <li><em>What would happen if you waited 24 hours before buying?</em></li>
+      </ul>
+      <p style="color:#666;font-size:14px;line-height:1.6">
+        Users can set their own "reflection intensity" (light prompts vs. deeper nudges).
+      </p>
+    </div>
+    <div style="flex:1;min-width:300px;background:#f5f5f5;border-radius:8px;height:350px;display:flex;align-items:center;justify-content:center">
+      <img src="assets/img/prototype-reflection.png" alt="Reflection prompts prototype" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:8px">
+    </div>
+  </div>
+
+  <div style="display:flex;gap:30px;align-items:center;background:#fff;border:1px solid #e0e0e0;border-radius:12px;padding:30px;margin-bottom:30px;flex-wrap:wrap">
+    <div style="flex:1;min-width:300px">
+      <h3 style="font-size:20px;font-weight:600;margin-bottom:15px">Closet AI Comparison</h3>
+      <p style="color:#333;line-height:1.8;margin-bottom:20px">
+        AI scans past purchase history, saved receipts, or user-uploaded closet photos. When they hover over an item (e.g., a Zara blouse), the extension:
+      </p>
+      <ul style="color:#555;line-height:1.8;margin-left:25px;margin-bottom:0">
+        <li>Shows side-by-side images of <strong>similar items they already own</strong></li>
+        <li>Highlights overlap in color, style, and usage occasion</li>
+        <li>Provides a <strong>"cost per wear" projection</strong> based on their closet data</li>
+      </ul>
+    </div>
+    <div style="flex:1;min-width:300px;background:#f5f5f5;border-radius:8px;height:350px;display:flex;align-items:center;justify-content:center">
+      <img src="assets/img/prototype-closet.png" alt="Closet AI comparison prototype" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:8px">
+    </div>
+  </div>
+
+  <div style="display:flex;gap:30px;align-items:center;background:#fff;border:1px solid #e0e0e0;border-radius:12px;padding:30px;margin-bottom:30px;flex-wrap:wrap">
+    <div style="flex:1;min-width:300px">
+      <h3 style="font-size:20px;font-weight:600;margin-bottom:15px">Impact Awareness</h3>
+      <p style="color:#333;line-height:1.8;margin-bottom:20px">
+        A small tag overlays the item page with environmental and ethical cues:
+      </p>
+      <ul style="color:#555;line-height:1.8;margin-left:25px;margin-bottom:20px">
+        <li>Estimated <strong>water usage</strong> of item</li>
+        <li><strong>Carbon footprint equivalence</strong> (e.g., "= 50 miles of driving")</li>
+        <li>Quick fact like: <em>"Most fast fashion items are worn fewer than 10 times"</em></li>
+      </ul>
+      <p style="color:#666;font-size:14px;line-height:1.6">
+        Not judgmental, but <strong>framed as informational</strong>.
+      </p>
+    </div>
+    <div style="flex:1;min-width:300px;background:#f5f5f5;border-radius:8px;height:350px;display:flex;align-items:center;justify-content:center">
+      <img src="assets/img/prototype-impact.png" alt="Impact awareness prototype" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:8px">
+    </div>
+  </div>
+
+  <div style="display:flex;gap:30px;align-items:center;background:#fff;border:1px solid #e0e0e0;border-radius:12px;padding:30px;margin-bottom:30px;flex-wrap:wrap">
+    <div style="flex:1;min-width:300px">
+      <h3 style="font-size:20px;font-weight:600;margin-bottom:15px">Time Buffer</h3>
+      <p style="color:#333;line-height:1.8;margin-bottom:20px">
+        Option to add a <strong>"cool-down timer"</strong> (e.g., 24-hour waitlist) for certain websites.
+      </p>
+      <p style="color:#555;line-height:1.8">
+        Items can be added to a "Reflection Wishlist," where the user can revisit with fresh perspective.
+      </p>
+    </div>
+    <div style="flex:1;min-width:300px;background:#f5f5f5;border-radius:8px;height:350px;display:flex;align-items:center;justify-content:center">
+      <img src="assets/img/prototype-timer.png" alt="Time buffer prototype" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:8px">
+    </div>
+  </div>
+
+  <div style="display:flex;gap:30px;align-items:center;background:#fff;border:1px solid #e0e0e0;border-radius:12px;padding:30px">
+    <div style="flex:1;min-width:300px">
+      <h3 style="font-size:20px;font-weight:600;margin-bottom:15px">Gamified Goals</h3>
+      <p style="color:#333;line-height:1.8;margin-bottom:20px">
+        Users set <strong>personal sustainability or spending goals</strong> (e.g., "Limit 2 new pairs of shoes per season").
+      </p>
+      <p style="color:#333;line-height:1.8;margin-bottom:15px">Dashboard shows:</p>
+      <ul style="color:#555;line-height:1.8;margin-left:25px">
+        <li>Items purchased vs. avoided</li>
+        <li>Money saved</li>
+        <li>Impact reduced (water, emissions, waste)</li>
+      </ul>
+    </div>
+    <div style="flex:1;min-width:300px;background:#f5f5f5;border-radius:8px;height:350px;display:flex;align-items:center;justify-content:center">
+      <img src="assets/img/prototype-goals.png" alt="Gamified goals prototype" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:8px">
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-header">Design Principles</h2>
+  <div style="background:#000;color:#fff;padding:30px;border-radius:12px;">
+    <div style="display:grid;gap:25px">
+      <div>
+        <h4 style="margin-bottom:10px;font-size:16px">Non-Judgmental</h4>
+        <p style="opacity:.9;font-size:14px;line-height:1.6">Questions rather than commands. Empowers choice without guilt or shame.</p>
+      </div>
+      <div>
+        <h4 style="margin-bottom:10px;font-size:16px">Contextual</h4>
+        <p style="opacity:.9;font-size:14px;line-height:1.6">Connects new purchases to existing wardrobe, making personal inventory psychologically present.</p>
+      </div>
+      <div>
+        <h4 style="margin-bottom:10px;font-size:16px">Timely</h4>
+        <p style="opacity:.9;font-size:14px;line-height:1.6">Intervenes at the exact moment of decision when behavior can still change.</p>
+      </div>
+      <div>
+        <h4 style="margin-bottom:10px;font-size:16px">Brief</h4>
+        <p style="opacity:.9;font-size:14px;line-height:1.6">A speed bump, not a roadblock. Seconds of reflection, not minutes of friction.</p>
+      </div>
+    </div>
   </div>
 </div>
 
