@@ -5,6 +5,280 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The Shopping Speed Bump</title>
   <link rel="stylesheet" href="assets/css/styles.css"/>
+  <style>
+/* Compact Interactive Intervention Visualization */
+.intervention-container {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  margin: 30px 0;
+}
+
+.intervention-visual {
+  flex: 0 0 280px;
+  background: #f9f9f9;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 25px;
+  transition: all 0.3s ease;
+}
+
+.intervention-visual:hover {
+  border-color: #000;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.intervention-text {
+  flex: 1;
+}
+
+.intervention-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.flow-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: #fff;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.flow-step:hover {
+  transform: translateX(5px);
+  border-color: #e0e0e0;
+}
+
+.flow-step.active {
+  background: #000;
+  color: #fff;
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.flow-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.flow-step:hover .flow-icon {
+  transform: scale(1.2);
+}
+
+.flow-label {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.flow-step.middle-space {
+  border: 2px solid #000;
+  background: #000;
+  color: #fff;
+  position: relative;
+}
+
+.flow-step.middle-space::before {
+  content: 'OUR INTERVENTION';
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  background: #000;
+  color: #fff;
+  font-size: 9px;
+  padding: 3px 8px;
+  border-radius: 10px;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+}
+
+.flow-connector {
+  width: 0;
+  height: 0;
+  margin-left: 30px;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 10px solid #ccc;
+  transition: border-top-color 0.3s ease;
+}
+
+/* Stat Card Hover Effects */
+.stat-card {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  background: #000 !important;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.stat-card:hover .stat-big,
+.stat-card:hover .stat-sub {
+  color: #fff;
+}
+
+/* Speed Bump Demo Styles */
+.speed-bump-demo {
+  margin: 50px 0 30px 0;
+  padding: 40px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  border: 2px solid #e0e0e0;
+}
+
+.demo-instruction {
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 30px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.road-container {
+  position: relative;
+  height: 90px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.road {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: linear-gradient(to right, #fff 0%, #fff 35%, #000 50%, #fff 65%, #fff 100%);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.road-line {
+  position: absolute;
+  bottom: 18px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: repeating-linear-gradient(
+    to right,
+    transparent 0px,
+    transparent 20px,
+    #ddd 20px,
+    #ddd 40px
+  );
+}
+
+.speed-bump {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 30px;
+}
+
+.bump {
+  width: 80px;
+  height: 20px;
+  background: #333;
+  border-radius: 40px 40px 0 0;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
+}
+
+.car {
+  position: absolute;
+  left: -50px;
+  bottom: 35px;
+  font-size: 32px;
+  transition: none;
+  filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+  transform: scaleX(-1);
+}
+
+.car.animating {
+  animation: driveOverBump 6s ease-in-out forwards;
+}
+
+.demo-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 0 20px;
+}
+
+.demo-labels > div {
+  font-size: 12px;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.label-center {
+  color: #000;
+  font-size: 13px;
+}
+
+@keyframes driveOverBump {
+  0% {
+    left: -50px;
+    bottom: 35px;
+  }
+  35% {
+    left: 40%;
+    bottom: 35px;
+  }
+  45% {
+    left: 47%;
+    bottom: 45px;
+  }
+  50% {
+    left: 50%;
+    bottom: 50px;
+  }
+  55% {
+    left: 53%;
+    bottom: 45px;
+  }
+  65% {
+    left: 60%;
+    bottom: 35px;
+  }
+  100% {
+    left: calc(100% + 50px);
+    bottom: 35px;
+  }
+}
+
+@media (max-width: 768px) {
+  .intervention-container {
+    flex-direction: column;
+  }
+  
+  .intervention-visual {
+    flex: 1;
+    width: 100%;
+  }
+  
+  .speed-bump-demo {
+    padding: 30px 20px;
+  }
+}
+  </style>
 </head>
 <body>
   
@@ -37,24 +311,54 @@
   <div style="font-size:20px;line-height:1.8;margin-bottom:40px;font-weight:300">
     In the split second between desire and purchase, what if we could insert a moment of reflection?
   </div>
-  <p style="color:#333;line-height:1.8;margin-bottom:20px">
-    The fashion industry's environmental crisis is fueled by impulsive consumption patterns and the frictionless nature of online shopping. With a single click, desire transforms into ownership, bypassing any opportunity for consideration or reflection.
-  </p>
-  <p style="color:#333;line-height:1.8;margin-bottom:30px">
-    Our project targets the <strong>critical middle space</strong> — that brief moment between seeing an item and clicking "purchase." We're designing a shopping "speed bump" that gently prompts users to pause and reflect: <em>"Do you already have something similar?"</em>
-  </p>
+  
+  <div class="intervention-container">
+    <div class="intervention-text">
+      <p style="color:#333;line-height:1.8;margin-bottom:20px">
+        The fashion industry's environmental crisis is fueled by impulsive consumption patterns and the frictionless nature of online shopping. With a single click, desire transforms into ownership, bypassing any opportunity for consideration or reflection.
+      </p>
+      <p style="color:#333;line-height:1.8;margin-bottom:30px">
+        Our project targets the <strong>critical middle space</strong> — that brief moment between seeing an item and clicking "purchase." We're designing a shopping "speed bump" that gently prompts users to pause and reflect: <em>"Do you already have something similar?"</em>
+      </p>
+    </div>
+    
+    <div class="intervention-visual">
+      <div class="intervention-flow">
+        <div class="flow-step" data-step="1">
+          <div class="flow-icon">👀</div>
+          <div class="flow-label">See desirable item</div>
+        </div>
+        
+        <div class="flow-connector"></div>
+        
+        <div class="flow-step middle-space" data-step="2">
+          <div class="flow-icon">⏸️</div>
+          <div class="flow-label">Speed Bump</div>
+        </div>
+        
+        <div class="flow-connector"></div>
+        
+        <div class="flow-step" data-step="3">
+          <div class="flow-icon">🛒</div>
+          <div class="flow-label">Purchase decision</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
 <div class="section">
   <h2 class="section-header">The Problem Space</h2>
   <div class="stat-cards">
     <div class="stat-card"><div class="stat-big" style="font-size:48px;font-weight:700;">2.5 seconds</div><div class="stat-sub">Avg. time between seeing & buying online</div></div>
     <div class="stat-card"><div class="stat-big" style="font-size:48px;font-weight:700;">73%</div><div class="stat-sub">Consumers report impulse fashion purchases</div></div>
     <div class="stat-card"><div class="stat-big" style="font-size:48px;font-weight:700;">30%</div><div class="stat-sub">Of clothes never worn after purchase</div></div>
-    <div class="stat-card"><div class="stat-big" style="font-size:48px;font-weight:700;">40%</div><div class="stat-sub">Of new clothes are never sold</div></div>
+    <div class="stat-card"><div class="stat-big" style="font-size:48px;font-weight:700;">50%</div><div class="stat-sub">Of clothing ends up in a landfill within a year of being made</div></div>
     <div class="stat-card"><div class="stat-big" style="font-size:48px;font-weight:700;">60%</div><div class="stat-sub">Expected rise in fashion carbon emissions by 2030</div></div>
     <div class="stat-card"><div class="stat-big" style="font-size:48px;font-weight:700;">200 years</div><div class="stat-sub">For polyester clothing to decompose</div></div>
   </div>
 </div>
+
 <div class="section">
   <h2 class="section-header">Our Approach</h2>
   <p style="color:#333;line-height:1.8;margin-bottom:30px">
@@ -64,10 +368,68 @@
     <div style="font-size:18px;font-weight:600;margin-bottom:15px">Design Philosophy</div>
     <div style="opacity:.9;line-height:1.8">"A speed bump doesn't stop you from driving — it just asks you to slow down and pay attention."</div>
   </div>
+  
+  <!-- Interactive Speed Bump Visualization -->
+  <div class="speed-bump-demo">
+    <div class="demo-instruction">Click anywhere to watch the demonstration</div>
+    <div class="road-container" onclick="startCarAnimation()">
+      <div class="road">
+        <div class="road-line"></div>
+        <div class="speed-bump">
+          <div class="bump"></div>
+        </div>
+      </div>
+      <div class="car" id="demoCar">🚗</div>
+    </div>
+    <div class="demo-labels">
+      <div class="label-left">Impulse to Buy</div>
+      <div class="label-center">Slow Down & Reflect</div>
+      <div class="label-right">Proceed Online</div>
+    </div>
+  </div>
 </div>
 
     </div>
   </main>
   <script src="assets/js/app.js"></script>
+  <script>
+// Add hover animation to flow steps
+document.querySelectorAll('.flow-step').forEach((step, index) => {
+  step.addEventListener('mouseenter', function() {
+    this.style.animation = 'pulse 0.4s ease';
+  });
+  
+  step.addEventListener('animationend', function() {
+    this.style.animation = '';
+  });
+});
+
+// Speed bump car animation
+function startCarAnimation() {
+  const car = document.getElementById('demoCar');
+  
+  // Reset animation
+  car.classList.remove('animating');
+  void car.offsetWidth; // Trigger reflow
+  
+  // Start animation
+  car.classList.add('animating');
+  
+  // Remove class after animation completes
+  setTimeout(() => {
+    car.classList.remove('animating');
+  }, 6000);
+}
+
+// Add keyframe animation
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+`;
+document.head.appendChild(style);
+  </script>
 </body>
 </html>
