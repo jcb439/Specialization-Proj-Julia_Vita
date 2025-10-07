@@ -5,6 +5,104 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>State of Knowledge • </title>
   <link rel="stylesheet" href="assets/css/styles.css"/>
+  <style>
+    /* Hover effect for black stat cards */
+    .black-stat {
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .black-stat:hover {
+      background: #f5f5f5 !important;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    
+    .black-stat:hover,
+    .black-stat:hover .num,
+    .black-stat:hover div {
+      color: #000 !important;
+    }
+    
+    /* Research Insight Cards with Image/Text Toggle */
+    .insight-card {
+      position: relative;
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      min-height: 200px;
+      height: 100%;
+    }
+    
+    .insight-card:hover {
+      border-color: #000;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    .insight-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.3s ease;
+    }
+    
+    .insight-card:hover .insight-image {
+      opacity: 0;
+    }
+    
+    .insight-placeholder-icon {
+      font-size: 48px;
+      opacity: 0.3;
+    }
+    
+    .insight-text {
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .insight-card:hover .insight-text {
+      opacity: 1;
+    }
+    
+    .insight-text h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      border-left: 3px solid #000;
+      padding-left: 15px;
+    }
+    
+    .insight-text p {
+      color: #666;
+      font-size: 14px;
+      line-height: 1.6;
+      padding-left: 18px;
+    }
+    
+    @media (max-width: 900px) {
+      .section > div[style*="grid-template-columns"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+    }
+    @media (max-width: 600px) {
+      .section > div[style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+      }
+    }
+  </style>
 </head>
 <body>
   
@@ -41,38 +139,67 @@
 <div class="section">
   <h2 class="section-header">Key Research Insights</h2>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px;margin-bottom:40px">
-    <div style="border-left:3px solid #000;padding-left:20px">
-      <h3 style="font-size:18px;margin-bottom:10px">Retail Therapy as Coping</h3>
-      <p style="color:#666;font-size:14px;line-height:1.6">Temporary dopamine hits create addiction-like patterns.</p>
+    
+    <div class="insight-card">
+      <div class="insight-image">
+        <img src="assets/img/retail-therapy.jpg" alt="Retail Therapy as Coping" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="insight-text">
+        <h3>Retail Therapy as Coping</h3>
+        <p>Temporary dopamine hits create addiction-like patterns.</p>
+      </div>
     </div>
-    <div style="border-left:3px solid #000;padding-left:20px">
-      <h3 style="font-size:18px;margin-bottom:10px">Paradox of Choice</h3>
-      <p style="color:#666;font-size:14px;line-height:1.6">Abundance of options overwhelms → impulsive choices.</p>
+    
+    <div class="insight-card">
+      <div class="insight-image">
+        <img src="assets/img/social-media-amplification.jpg" alt="Social Media Amplification" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="insight-text">
+        <h3>Social Media Amplification</h3>
+        <p>Pressure to avoid outfit repetition drives novelty.</p>
+      </div>
     </div>
-    <div style="border-left:3px solid #000;padding-left:20px">
-      <h3 style="font-size:18px;margin-bottom:10px">Social Media Amplification</h3>
-      <p style="color:#666;font-size:14px;line-height:1.6">Pressure to avoid outfit repetition drives novelty.</p>
+    
+    <div class="insight-card">
+      <div class="insight-image">
+        <img src="assets/img/micro-collections-fomo.jpg" alt="Micro-Collections & FOMO" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="insight-text">
+        <h3>Micro-Collections & FOMO</h3>
+        <p>52 drops/year create artificial scarcity.</p>
+      </div>
     </div>
-    <div style="border-left:3px solid #000;padding-left:20px">
-      <h3 style="font-size:18px;margin-bottom:10px">Micro-Collections & FOMO</h3>
-      <p style="color:#666;font-size:14px;line-height:1.6">52 drops/year create artificial scarcity.</p>
+    
+    <div class="insight-card">
+      <div class="insight-image">
+        <img src="assets/img/conspicuous-consumption.jpg" alt="Conspicuous Consumption" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="insight-text">
+        <h3>Conspicuous Consumption</h3>
+        <p>Fashion displays wealth and status, driven by need for social validation amplified through likes and shares.</p>
+      </div>
     </div>
-    <div style="border-left:3px solid #000;padding-left:20px">
-      <h3 style="font-size:18px;margin-bottom:10px">Conspicuous Consumption</h3>
-      <p style="color:#666;font-size:14px;line-height:1.6">Fashion displays wealth and status, driven by need for social validation amplified through likes and shares.</p>
+    
+    <div class="insight-card">
+      <div class="insight-image">
+        <img src="assets/img/commercial-bombardment.jpg" alt="Commercial Bombardment" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="insight-text">
+        <h3>Commercial Bombardment</h3>
+        <p>1,000+ daily messages create chronic cognitive load, making consumers susceptible to heuristic processing.</p>
+      </div>
     </div>
-    <div style="border-left:3px solid #000;padding-left:20px">
-      <h3 style="font-size:18px;margin-bottom:10px">Commercial Bombardment</h3>
-      <p style="color:#666;font-size:14px;line-height:1.6">1,000+ daily messages create chronic cognitive load, making consumers susceptible to heuristic processing.</p>
+    
+    <div class="insight-card">
+      <div class="insight-image">
+        <img src="assets/img/breakdown-self-control.jpg" alt="Breakdown of Self-Control" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="insight-text">
+        <h3>Breakdown of Self-Control</h3>
+        <p>Impulse buying involves desire to buy vs. ability to control urges—retailers exploit low cognitive control periods.</p>
+      </div>
     </div>
-    <div style="border-left:3px solid #000;padding-left:20px">
-      <h3 style="font-size:18px;margin-bottom:10px">Breakdown of Self-Control</h3>
-      <p style="color:#666;font-size:14px;line-height:1.6">Impulse buying involves desire to buy vs. ability to control urges—retailers exploit low cognitive control periods.</p>
-    </div>
-    <div style="border-left:3px solid #000;padding-left:20px">
-      <h3 style="font-size:18px;margin-bottom:10px">Chronic Online Exposure</h3>
-      <p style="color:#666;font-size:14px;line-height:1.6">Continuous commercial stimuli online induce cognitive overload, increasing impulsive decision-making.</p>
-    </div>
+    
   </div>
 </div>
 <div class="section">
@@ -105,18 +232,6 @@
     <div class="black-stat"><div class="num" style="font-size:52px;font-weight:700;">1,000+</div><div>Daily commercial messages</div></div>
     <div class="black-stat"><div class="num" style="font-size:52px;font-weight:700;">50%</div><div>Clothing in landfill within a year</div></div>
   </div>
-  <style>
-    @media (max-width: 900px) {
-      .section > div[style*="grid-template-columns"] {
-        grid-template-columns: repeat(2, 1fr) !important;
-      }
-    }
-    @media (max-width: 600px) {
-      .section > div[style*="grid-template-columns"] {
-        grid-template-columns: 1fr !important;
-      }
-    }
-  </style>
 </div>
 
     </div>
