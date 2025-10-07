@@ -29,12 +29,14 @@
     .layer-label {
       position: absolute;
       top: -35px;
-      left: 20px;
+      left: 50%;
+      transform: translateX(-50%);
       font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1.5px;
       color: #999;
+      text-align: center;
     }
     
     .network-node {
@@ -143,6 +145,7 @@
       width: 100%;
       height: 100%;
       z-index: 1;
+      display: none;
     }
     
     .connection-line {
@@ -240,6 +243,13 @@
         width: 90%;
         max-width: 320px;
       }
+      
+      .layer-label {
+        position: relative;
+        left: 0;
+        transform: none;
+        margin-bottom: 20px;
+      }
     }
   </style>
 </head>
@@ -265,41 +275,37 @@
     <div class="header">
       <div class="header-meta">Conceptual Framework</div>
       <h1 class="page-title">Ontology Diagram</h1>
-      <p class="page-subtitle">Network of Themes, Problems, and Interventions</p>
+      <p class="page-subtitle">From Theory to Intervention</p>
     </div>
     <div class="content">
       
 <div class="section">
   <p style="color:#333;line-height:1.8;margin-bottom:20px">
-    This diagram maps how problem space elements connect to our intervention, which is grounded in theoretical foundations and addresses gaps in existing market solutions. Click nodes to explore relationships.
+    This funnel diagram shows how theoretical foundations inform our understanding of problems, reveal market gaps, and guide our targeted intervention. Click nodes to explore relationships.
   </p>
 </div>
 
-<div class="ontology-network" id="networkContainer">
-  
-  <!-- LEGEND -->
-  <div class="legend" style="margin-bottom: 50px; margin-top: 0; padding-top: 0; border-top: none;">
-    <div class="legend-item">
-      <div class="legend-box" style="border-color:#999;background:#fff"></div>
-      <span>Problem Space</span>
-    </div>
-    <div class="legend-item">
-      <div class="legend-box" style="border-color:#666;background:#fff"></div>
-      <span>Mechanisms</span>
-    </div>
-    <div class="legend-item">
-      <div class="legend-box" style="border-color:#aaa;background:#fff"></div>
-      <span>Literature</span>
-    </div>
-    <div class="legend-item">
-      <div class="legend-box" style="border-color:#333;background:#333"></div>
-      <span>Market Gaps</span>
-    </div>
-    <div class="legend-item">
-      <span style="color:#999;">- - -</span>
-      <span>Connections</span>
-    </div>
+<!-- LEGEND (moved outside network container) -->
+<div class="legend" style="margin-bottom: 30px; padding-top: 0; border-top: none;">
+  <div class="legend-item">
+    <div class="legend-box" style="border-color:#aaa;background:#fff"></div>
+    <span>Literature</span>
   </div>
+  <div class="legend-item">
+    <div class="legend-box" style="border-color:#999;background:#fff"></div>
+    <span>Problem Space</span>
+  </div>
+  <div class="legend-item">
+    <div class="legend-box" style="border-color:#333;background:#333"></div>
+    <span>Market Gaps</span>
+  </div>
+  <div class="legend-item">
+    <div class="legend-box" style="border-color:#666;background:#fff"></div>
+    <span>Mechanisms</span>
+  </div>
+</div>
+
+<div class="ontology-network" id="networkContainer">
   
   <!-- SVG for connection lines -->
   <svg class="connections" id="connectionSvg">
@@ -312,9 +318,50 @@
     <p id="tooltipContent"></p>
   </div>
   
-  <!-- LAYER 1: PROBLEM SPACE -->
+  <!-- LAYER 1: PSYCHOLOGICAL FOUNDATIONS -->
   <div class="network-layer" id="layer1">
-    <div class="layer-label">Problem Space</div>
+    <div class="layer-label">Psychological Foundations</div>
+    
+    <div class="network-node node-literature" data-id="retail-therapy" onclick="toggleNode(this)">
+      <div class="node-title">Retail Therapy</div>
+      <div class="node-subtitle">Coping mechanism</div>
+      <div class="node-details">
+        <h4>Emotional Regulation</h4>
+        <p>Shopping provides temporary dopamine hits. Understanding this psychological trigger is crucial for designing effective interventions.</p>
+      </div>
+    </div>
+    
+    <div class="network-node node-literature" data-id="paradox" onclick="toggleNode(this)">
+      <div class="node-title">Paradox of Choice</div>
+      <div class="node-subtitle">Decision fatigue</div>
+      <div class="node-details">
+        <h4>Overwhelm Leads to Impulse</h4>
+        <p>Too many options cause decision fatigue and impulsive choices. Our intervention simplifies by adding personal context.</p>
+      </div>
+    </div>
+    
+    <div class="network-node node-literature" data-id="conspicuous" onclick="toggleNode(this)">
+      <div class="node-title">Conspicuous Consumption</div>
+      <div class="node-subtitle">Social validation</div>
+      <div class="node-details">
+        <h4>Status Display Through Fashion</h4>
+        <p>Fashion displays wealth and status, driven by need for social validation amplified through likes and shares on social media.</p>
+      </div>
+    </div>
+    
+    <div class="network-node node-literature" data-id="fomo" onclick="toggleNode(this)">
+      <div class="node-title">FOMO & Scarcity</div>
+      <div class="node-subtitle">Artificial urgency</div>
+      <div class="node-details">
+        <h4>Creating Urgency Through Scarcity</h4>
+        <p>52 micro-collections per year create artificial scarcity and fear of missing out, driving impulsive purchases before items "sell out."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- LAYER 2: INDUSTRY PROBLEM SPACE -->
+  <div class="network-layer" id="layer2">
+    <div class="layer-label">Industry Problem Space</div>
     
     <div class="network-node node-problem" data-id="impulse" onclick="toggleNode(this)">
       <div class="node-title">Impulse Buying</div>
@@ -353,8 +400,41 @@
     </div>
   </div>
 
-  <!-- LAYER 2: CENTRAL INTERVENTION -->
-  <div class="network-layer" id="layer2">
+  <!-- LAYER 3: MARKET GAPS -->
+  <div class="network-layer" id="layer3">
+    <div class="layer-label">Market Gaps</div>
+    
+    <div class="network-node node-gap" data-id="info-tools" onclick="toggleNode(this)">
+      <div class="node-title">Information Tools</div>
+      <div class="node-subtitle">Missing reflection</div>
+      <div class="node-details">
+        <h4>Awareness Without Action</h4>
+        <p>Tools like SHADE provide alternatives but don't create reflection. Information about better options doesn't stop the impulse.</p>
+      </div>
+    </div>
+    
+    <div class="network-node node-gap" data-id="wardrobe-apps" onclick="toggleNode(this)">
+      <div class="node-title">Wardrobe Apps</div>
+      <div class="node-subtitle">Not integrated</div>
+      <div class="node-details">
+        <h4>Disconnected from Shopping</h4>
+        <p>StyleBook helps organize closets but operates separately from shopping. Users don't consult it at purchase moment.</p>
+      </div>
+    </div>
+    
+    <div class="network-node node-gap" data-id="phia-gap" onclick="toggleNode(this)">
+      <div class="node-title">Deal Focus</div>
+      <div class="node-subtitle">Price vs. need</div>
+      <div class="node-details">
+        <h4>Wrong Question</h4>
+        <p>Phia asks "Should I buy?" but focuses on deal quality, not whether you need it or already own something similar.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- LAYER 4: CENTRAL INTERVENTION -->
+  <div class="network-layer" id="layer4">
+    <div class="layer-label">Our Solution</div>
     <div class="network-node central-node" data-id="intervention" onclick="toggleNode(this)">
       <div class="node-title">The Shopping Speed Bump</div>
       <div class="node-subtitle">Point-of-purchase reflection</div>
@@ -365,8 +445,8 @@
     </div>
   </div>
 
-  <!-- LAYER 3: INTERVENTION MECHANISMS -->
-  <div class="network-layer" id="layer3">
+  <!-- LAYER 5: HOW IT WORKS -->
+  <div class="network-layer" id="layer5">
     <div class="layer-label">How It Works</div>
     
     <div class="network-node node-mechanism" data-id="reflection" onclick="toggleNode(this)">
@@ -405,87 +485,26 @@
       </div>
     </div>
   </div>
-
-  <!-- LAYER 4A: LITERATURE FOUNDATIONS -->
-  <div class="network-layer" id="layer4a">
-    <div class="layer-label">Theoretical Foundations</div>
-    
-    <div class="network-node node-literature" data-id="retail-therapy" onclick="toggleNode(this)">
-      <div class="node-title">Retail Therapy</div>
-      <div class="node-subtitle">Coping mechanism</div>
-      <div class="node-details">
-        <h4>Emotional Regulation</h4>
-        <p>Shopping provides temporary dopamine hits. Understanding this psychological trigger is crucial for designing effective interventions.</p>
-      </div>
-    </div>
-    
-    <div class="network-node node-literature" data-id="paradox" onclick="toggleNode(this)">
-      <div class="node-title">Paradox of Choice</div>
-      <div class="node-subtitle">Decision fatigue</div>
-      <div class="node-details">
-        <h4>Overwhelm Leads to Impulse</h4>
-        <p>Too many options cause decision fatigue and impulsive choices. Our intervention simplifies by adding personal context.</p>
-      </div>
-    </div>
-    
-    <div class="network-node node-literature" data-id="implementation" onclick="toggleNode(this)">
-      <div class="node-title">Implementation Intentions</div>
-      <div class="node-subtitle">Pre-commitment</div>
-      <div class="node-details">
-        <h4>If-Then Rules</h4>
-        <p>Setting up "if shopping, then pause" rules translates intentions into actions. Waiting periods reduce impulse purchases.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- LAYER 4B: MARKET GAPS -->
-  <div class="network-layer" id="layer4b">
-    <div class="layer-label">Market Gaps</div>
-    
-    <div class="network-node node-gap" data-id="info-tools" onclick="toggleNode(this)">
-      <div class="node-title">Information Tools</div>
-      <div class="node-subtitle">Missing reflection</div>
-      <div class="node-details">
-        <h4>Awareness Without Action</h4>
-        <p>Tools like SHADE provide alternatives but don't create reflection. Information about better options doesn't stop the impulse.</p>
-      </div>
-    </div>
-    
-    <div class="network-node node-gap" data-id="wardrobe-apps" onclick="toggleNode(this)">
-      <div class="node-title">Wardrobe Apps</div>
-      <div class="node-subtitle">Not integrated</div>
-      <div class="node-details">
-        <h4>Disconnected from Shopping</h4>
-        <p>StyleBook helps organize closets but operates separately from shopping. Users don't consult it at purchase moment.</p>
-      </div>
-    </div>
-    
-    <div class="network-node node-gap" data-id="phia-gap" onclick="toggleNode(this)">
-      <div class="node-title">Deal Focus</div>
-      <div class="node-subtitle">Price vs. need</div>
-      <div class="node-details">
-        <h4>Wrong Question</h4>
-        <p>Phia asks "Should I buy?" but focuses on deal quality, not whether you need it or already own something similar.</p>
-      </div>
-    </div>
-  </div>
   
 </div>
 
 <div class="section">
-  <h2 class="section-header">Reading the Network</h2>
+  <h2 class="section-header">Reading the Funnel</h2>
   <div style="background:#f9f9f9;padding:30px;border-radius:12px;">
     <p style="color:#333;line-height:1.8;margin-bottom:15px">
-      <strong>Problems flow into our intervention:</strong> Impulse buying, overproduction, frictionless commerce, and the awareness-action gap all point to why a purchase-moment reflection is needed.
+      <strong>Psychology informs understanding:</strong> Research on retail therapy, decision fatigue, conspicuous consumption, and FOMO reveals the psychological mechanisms behind impulse buying.
     </p>
     <p style="color:#333;line-height:1.8;margin-bottom:15px">
-      <strong>Our intervention deploys four mechanisms:</strong> The speed bump creates reflection through strategic friction, wardrobe context, critical timing, and non-judgmental prompting.
+      <strong>Industry problems emerge:</strong> Understanding these mechanisms helps identify the core problems—impulse buying, overproduction, frictionless commerce, and the awareness-action gap.
     </p>
     <p style="color:#333;line-height:1.8;margin-bottom:15px">
-      <strong>Mechanisms are grounded in theory:</strong> Literature on retail therapy, decision fatigue, and implementation intentions validates our approach.
+      <strong>Market gaps become visible:</strong> Existing tools provide information or organize wardrobes, but none create reflection at the critical moment of purchase.
+    </p>
+    <p style="color:#333;line-height:1.8;margin-bottom:15px">
+      <strong>Our intervention fills the gap:</strong> The Shopping Speed Bump targets the precise moment where behavior can change, bridging awareness and action.
     </p>
     <p style="color:#333;line-height:1.8;">
-      <strong>We fill critical market gaps:</strong> Existing tools provide information or organize wardrobes, but none create reflection at the moment of purchase to bridge awareness and action.
+      <strong>Mechanisms drive impact:</strong> Through reflection, wardrobe context, critical timing, and non-judgmental prompting, we transform unconscious consumption into conscious choice.
     </p>
   </div>
 </div>
@@ -496,22 +515,46 @@
   <script>
     // Connection explanations
     const connectionData = {
-      'impulse-intervention': {
-        title: 'Impulse → Speed Bump',
-        text: 'The speed bump directly counters impulse buying by inserting a reflective pause in the 2.5-second decision window, activating System 2 thinking.'
+      // Theory to Problems
+      'retail-therapy-impulse': {
+        title: 'Retail Therapy → Impulse',
+        text: 'Understanding shopping as emotional coping explains the dopamine-driven impulse buying behavior we see in the market.'
       },
-      'overproduction-intervention': {
-        title: 'Overproduction → Speed Bump',
-        text: 'By reducing unnecessary purchases through reflection, we address demand-side overproduction where consumers buy items they already own or don\'t need.'
+      'paradox-impulse': {
+        title: 'Paradox of Choice → Impulse',
+        text: 'Too many options cause decision fatigue, leading directly to impulsive rather than thoughtful purchasing decisions.'
       },
-      'frictionless-intervention': {
-        title: 'Frictionless Commerce → Speed Bump',
-        text: 'Our intervention reintroduces strategic friction—not as a barrier, but as a beneficial pause that one-click commerce deliberately removes.'
+      'paradox-awareness-gap': {
+        title: 'Paradox → Awareness Gap',
+        text: 'Even when consumers know better, overwhelming choice makes it hard to act on that knowledge, creating the awareness-action gap.'
       },
-      'awareness-gap-intervention': {
-        title: 'Awareness Gap → Speed Bump',
-        text: 'The speed bump bridges knowledge and action by creating a moment of reflection at the exact point where behavior can change, not just awareness.'
+      // Problems to Market Gaps
+      'impulse-info-tools': {
+        title: 'Impulse → Info Tools Gap',
+        text: 'Current tools provide information but don\'t address the core impulse problem with reflection mechanisms.'
       },
+      'frictionless-wardrobe-apps': {
+        title: 'Frictionless → Wardrobe Apps Gap',
+        text: 'Wardrobe apps exist separately from the frictionless shopping experience, never intervening at purchase moment.'
+      },
+      'awareness-gap-phia-gap': {
+        title: 'Awareness Gap → Deal Focus Gap',
+        text: 'Tools like Phia focus on deal quality, not bridging the awareness-action gap around actual need.'
+      },
+      // Market Gaps to Intervention
+      'info-tools-intervention': {
+        title: 'Info Tools Gap → Speed Bump',
+        text: 'We fill the reflection gap by creating a pause that information tools alone cannot provide.'
+      },
+      'wardrobe-apps-intervention': {
+        title: 'Wardrobe Apps Gap → Speed Bump',
+        text: 'We integrate wardrobe awareness directly into the shopping flow at the moment of decision.'
+      },
+      'phia-gap-intervention': {
+        title: 'Deal Focus Gap → Speed Bump',
+        text: 'Instead of asking about deal quality, we ask the right question: "Do you already have something similar?"'
+      },
+      // Intervention to Mechanisms
       'intervention-reflection': {
         title: 'Speed Bump → Reflection',
         text: 'The core mechanism: asking "Do you have something similar?" forces users to mentally access their wardrobe, creating genuine consideration.'
@@ -528,33 +571,14 @@
         title: 'Speed Bump → Non-Judgmental',
         text: 'Asking rather than telling respects user autonomy and avoids psychological reactance that occurs when people feel controlled or lectured.'
       },
-      'reflection-retail-therapy': {
-        title: 'Reflection ← Retail Therapy',
-        text: 'Understanding shopping as emotional coping explains why reflection works—it interrupts the automatic dopamine-seeking behavior.'
+      // Theory to Mechanisms
+      'implementation-timing': {
+        title: 'Implementation Intentions → Timing',
+        text: 'Research on if-then rules validates our point-of-purchase timing: intervene at the critical moment where the rule activates.'
       },
-      'reflection-paradox': {
-        title: 'Reflection ← Paradox of Choice',
-        text: 'Reflection simplifies overwhelm by adding personal context (your wardrobe) as a filter, reducing decision fatigue from infinite options.'
-      },
-      'wardrobe-implementation': {
-        title: 'Wardrobe ← Implementation Intentions',
+      'implementation-wardrobe': {
+        title: 'Implementation Intentions → Wardrobe',
         text: 'Creating "if shopping, then check wardrobe" rules builds the pre-commitment that research shows effectively translates intentions to actions.'
-      },
-      'timing-implementation': {
-        title: 'Timing ← Implementation Intentions',
-        text: 'Point-of-purchase timing aligns with implementation intention research: intervene at the critical moment where the if-then rule activates.'
-      },
-      'reflection-info-tools': {
-        title: 'Reflection fills Information Tool Gap',
-        text: 'Tools like SHADE provide sustainable alternatives but lack the reflection mechanism. We make users pause, not just present options.'
-      },
-      'wardrobe-wardrobe-apps': {
-        title: 'Wardrobe fills App Integration Gap',
-        text: 'Apps like StyleBook organize closets but aren\'t consulted during shopping. We bring wardrobe awareness into the purchase flow.'
-      },
-      'timing-phia-gap': {
-        title: 'Timing fills Deal-Focus Gap',
-        text: 'Phia asks "Should I buy?" but focuses on price and resale. We ask about need at the right moment, addressing the core question.'
       }
     };
     
@@ -629,27 +653,28 @@
         };
       }
       
-      // Define connections
+      // Define connections (funnel flow)
       const connections = [
-        // Problems to Intervention
-        ['impulse', 'intervention'],
-        ['overproduction', 'intervention'],
-        ['frictionless', 'intervention'],
-        ['awareness-gap', 'intervention'],
+        // Theory to Problems
+        ['retail-therapy', 'impulse'],
+        ['paradox', 'impulse'],
+        ['paradox', 'awareness-gap'],
+        // Problems to Market Gaps
+        ['impulse', 'info-tools'],
+        ['frictionless', 'wardrobe-apps'],
+        ['awareness-gap', 'phia-gap'],
+        // Market Gaps to Intervention
+        ['info-tools', 'intervention'],
+        ['wardrobe-apps', 'intervention'],
+        ['phia-gap', 'intervention'],
         // Intervention to Mechanisms
         ['intervention', 'reflection'],
         ['intervention', 'wardrobe'],
         ['intervention', 'timing'],
         ['intervention', 'questioning'],
-        // Mechanisms to Literature
-        ['reflection', 'retail-therapy'],
-        ['reflection', 'paradox'],
-        ['wardrobe', 'implementation'],
-        ['timing', 'implementation'],
-        // Mechanisms to Market Gaps
-        ['reflection', 'info-tools'],
-        ['wardrobe', 'wardrobe-apps'],
-        ['timing', 'phia-gap']
+        // Theory to Mechanisms (direct connections)
+        ['implementation', 'timing'],
+        ['implementation', 'wardrobe']
       ];
       
       connections.forEach(([from, to]) => {
@@ -668,9 +693,6 @@
         
         line.addEventListener('click', function(e) {
           e.stopPropagation();
-          const midX = (start.x + end.x) / 2;
-          const midY = (start.y + end.y) / 2;
-          const containerRect = container.getBoundingClientRect();
           showConnectionTooltip(connectionKey, e.clientX + 10, e.clientY + 10, line);
         });
         
