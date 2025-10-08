@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,10 +34,10 @@
       
 <div class="section">
   <p style="color:#333;line-height:1.8;margin-bottom:20px">
-    While our intervention addresses a critical gap in sustainable fashion technology, implementing a reflective shopping tool faces several key obstacles. Understanding these barriers helps us design solutions that are realistic, accessible, and sustainable.
+    While our Shopping Speed Bump addresses a critical gap in conscious consumption, implementing a reflective browser extension faces several key obstacles. Understanding these barriers helps us design solutions that are realistic, accessible, and sustainable.
   </p>
   <p style="color:#666;font-size:14px;font-style:italic;margin-bottom:40px">
-    Click on each barrier to learn more about its impact on our tool.
+    Click on each barrier to learn more about its impact on our intervention.
   </p>
 </div>
 
@@ -49,18 +48,19 @@
       <div class="barrier-icon">
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="12" cy="12" r="10"/>
-          <polyline points="12 6 12 12 16 14"/>
+          <line x1="12" y1="8" x2="12" y2="12"/>
+          <line x1="12" y1="16" x2="12.01" y2="16"/>
         </svg>
       </div>
-      <h3 class="barrier-title">Time & Effort</h3>
+      <h3 class="barrier-title">User Resistance to Friction</h3>
       <div class="barrier-toggle">+</div>
     </div>
     <div class="barrier-content" id="barrier1">
       <p class="barrier-description">
-        Climate-friendly practices are often perceived as extra work, making it harder for people to integrate them into daily routines.
+        Online shoppers expect seamless, instant experiences. Any interruption—even a brief reflection prompt—may be perceived as annoying or intrusive.
       </p>
       <div class="barrier-impact">
-        <strong>Impact on our tool:</strong> Users may resist adding steps to their shopping flow, even brief ones. The intervention must feel effortless and seamlessly integrated.
+        <strong>Impact on our tool:</strong> Users may disable or uninstall the extension if it feels like an obstacle rather than a helpful pause. The intervention must be lightweight and respectful of their time.
       </div>
     </div>
   </div>
@@ -69,21 +69,20 @@
     <div class="barrier-header">
       <div class="barrier-icon">
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="8"/>
-          <line x1="12" y1="8" x2="12" y2="12"/>
-          <line x1="12" y1="16" x2="12.01" y2="16"/>
-          <path d="M16 8c0-2.21-1.79-4-4-4S8 5.79 8 8"/>
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <line x1="9" y1="9" x2="15" y2="15"/>
+          <line x1="15" y1="9" x2="9" y2="15"/>
         </svg>
       </div>
-      <h3 class="barrier-title">Cost</h3>
+      <h3 class="barrier-title">Browser Extension Adoption</h3>
       <div class="barrier-toggle">+</div>
     </div>
     <div class="barrier-content" id="barrier2">
       <p class="barrier-description">
-        Sustainable fashion and eco-practices can be more expensive upfront, creating a financial barrier for many individuals.
+        Getting users to discover, install, and keep browser extensions active is challenging. Many people are skeptical of extensions or find them difficult to manage.
       </p>
       <div class="barrier-impact">
-        <strong>Impact on our tool:</strong> While our tool is free, it challenges users to reconsider purchases, which may conflict with the appeal of affordable fast fashion.
+        <strong>Impact on our tool:</strong> We need a compelling onboarding experience and clear communication of value to overcome installation hesitation and prevent uninstalls.
       </div>
     </div>
   </div>
@@ -92,19 +91,21 @@
     <div class="barrier-header">
       <div class="barrier-icon">
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
         </svg>
       </div>
-      <h3 class="barrier-title">Privacy & Trust</h3>
+      <h3 class="barrier-title">Wardrobe Data Entry</h3>
       <div class="barrier-toggle">+</div>
     </div>
     <div class="barrier-content" id="barrier3">
       <p class="barrier-description">
-        Users may be reluctant to have their actions tracked or shared, especially if transparency and data use are unclear.
+        For the tool to ask "Do you have something similar?", users need to initially catalog their existing wardrobe—a time-consuming task many may abandon.
       </p>
       <div class="barrier-impact">
-        <strong>Impact on our tool:</strong> Wardrobe tracking requires user data. Building trust through transparency about data usage and storage is essential.
+        <strong>Impact on our tool:</strong> We must minimize initial setup burden through smart defaults, photo uploads, or AI-assisted categorization to reduce friction in getting started.
       </div>
     </div>
   </div>
@@ -113,19 +114,20 @@
     <div class="barrier-header">
       <div class="barrier-icon">
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/>
-          <line x1="7" y1="7" x2="7.01" y2="7"/>
+          <circle cx="12" cy="12" r="10"/>
+          <circle cx="12" cy="12" r="6"/>
+          <circle cx="12" cy="12" r="2"/>
         </svg>
       </div>
-      <h3 class="barrier-title">Accessibility</h3>
+      <h3 class="barrier-title">Retailer Compatibility</h3>
       <div class="barrier-toggle">+</div>
     </div>
     <div class="barrier-content" id="barrier4">
       <p class="barrier-description">
-        Not everyone has equal access to repair shops, swaps, or affordable sustainable options in their communities.
+        E-commerce sites have vastly different layouts, checkout flows, and technical architectures. Building an extension that works across all platforms is technically complex.
       </p>
       <div class="barrier-impact">
-        <strong>Impact on our tool:</strong> Our intervention works best when sustainable alternatives exist. The tool must acknowledge varying access to resources.
+        <strong>Impact on our tool:</strong> Starting with major retailers and expanding gradually is more realistic than trying to support all sites immediately. Users may be frustrated if it doesn't work everywhere.
       </div>
     </div>
   </div>
@@ -134,26 +136,87 @@
     <div class="barrier-header">
       <div class="barrier-icon">
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <rect x="3" y="3" width="7" height="7"/>
-          <rect x="14" y="3" width="7" height="7"/>
-          <rect x="14" y="14" width="7" height="7"/>
-          <rect x="3" y="14" width="7" height="7"/>
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
         </svg>
       </div>
-      <h3 class="barrier-title">Market Saturation</h3>
+      <h3 class="barrier-title">Impulse Override</h3>
       <div class="barrier-toggle">+</div>
     </div>
     <div class="barrier-content" id="barrier5">
       <p class="barrier-description">
-        The eco-app space is crowded, and new initiatives risk blending in unless they offer clear differentiation or added value.
+        Even when prompted to reflect, users in an impulsive mindset may simply click through without genuine consideration, defeating the purpose of the intervention.
       </p>
       <div class="barrier-impact">
-        <strong>Impact on our tool:</strong> We must clearly communicate our unique value: intervention at the moment of purchase, not just awareness or alternatives.
+        <strong>Impact on our tool:</strong> The prompt must be designed to genuinely engage rather than being easily dismissed. We need to balance being thought-provoking without being preachy.
       </div>
     </div>
   </div>
 
   <div class="barrier-card" onclick="toggleBarrier('barrier6')">
+    <div class="barrier-header">
+      <div class="barrier-icon">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      </div>
+      <h3 class="barrier-title">Privacy Concerns</h3>
+      <div class="barrier-toggle">+</div>
+    </div>
+    <div class="barrier-content" id="barrier6">
+      <p class="barrier-description">
+        Tracking shopping behavior and wardrobe contents raises legitimate privacy concerns. Users may worry about data security, third-party sharing, or commercial exploitation.
+      </p>
+      <div class="barrier-impact">
+        <strong>Impact on our tool:</strong> Transparent data practices, local storage options, and clear privacy policies are essential. Trust is earned through openness about what data we collect and why.
+      </div>
+    </div>
+  </div>
+
+  <div class="barrier-card" onclick="toggleBarrier('barrier7')">
+    <div class="barrier-header">
+      <div class="barrier-icon">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        </svg>
+      </div>
+      <h3 class="barrier-title">Intervention Fatigue</h3>
+      <div class="barrier-toggle">+</div>
+    </div>
+    <div class="barrier-content" id="barrier7">
+      <p class="barrier-description">
+        Over time, users may become desensitized to the reflection prompt, seeing it as routine rather than meaningful. Repeated exposure can lead to automatic dismissal.
+      </p>
+      <div class="barrier-impact">
+        <strong>Impact on our tool:</strong> We need to vary the prompts, use smart timing, and avoid showing the intervention for every single item to maintain effectiveness without causing annoyance.
+      </div>
+    </div>
+  </div>
+
+  <div class="barrier-card" onclick="toggleBarrier('barrier8')">
+    <div class="barrier-header">
+      <div class="barrier-icon">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="8" r="7"/>
+          <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
+        </svg>
+      </div>
+      <h3 class="barrier-title">Lack of Immediate Reward</h3>
+      <div class="barrier-toggle">+</div>
+    </div>
+    <div class="barrier-content" id="barrier8">
+      <p class="barrier-description">
+        The tool asks users to NOT do something (buy), which lacks the immediate positive reinforcement of getting something new. Delayed environmental benefits feel abstract compared to instant gratification.
+      </p>
+      <div class="barrier-impact">
+        <strong>Impact on our tool:</strong> We're competing against instant gratification with long-term, indirect benefits. Need to find ways to make NOT buying feel rewarding in the moment through positive framing and celebration of restraint.
+      </div>
+    </div>
+  </div>
+
+  <div class="barrier-card" onclick="toggleBarrier('barrier9')">
     <div class="barrier-header">
       <div class="barrier-icon">
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -163,15 +226,15 @@
           <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
         </svg>
       </div>
-      <h3 class="barrier-title">Scalability</h3>
+      <h3 class="barrier-title">Cultural Pressure & Social Norms</h3>
       <div class="barrier-toggle">+</div>
     </div>
-    <div class="barrier-content" id="barrier6">
+    <div class="barrier-content" id="barrier9">
       <p class="barrier-description">
-        Community-based partners may lack resources to scale, and users may disengage if the platform feels like "just another app."
+        Fast fashion and constant newness are deeply embedded in social media culture. Users face pressure to have new outfits and avoid "outfit repeating" online, where validation comes from novelty.
       </p>
       <div class="barrier-impact">
-        <strong>Impact on our tool:</strong> Maintaining user engagement over time requires ongoing value delivery and avoiding intervention fatigue.
+        <strong>Impact on our tool:</strong> Our intervention fights against broader cultural forces and social validation mechanisms. Users may intellectually agree with reflection but still feel social pressure to buy, making the pause less effective.
       </div>
     </div>
   </div>
@@ -184,19 +247,27 @@
     <div style="display:grid;gap:25px">
       <div>
         <h4 style="margin-bottom:10px;font-size:16px">Minimize Friction</h4>
-        <p style="color:#666;font-size:14px;line-height:1.6">Design the intervention to take seconds, not minutes. A brief pause is enough to trigger reflection.</p>
+        <p style="color:#666;font-size:14px;line-height:1.6">Design the intervention to take seconds, not minutes. A brief pause is enough to trigger reflection without frustrating users.</p>
+      </div>
+      <div>
+        <h4 style="margin-bottom:10px;font-size:16px">Smart Onboarding</h4>
+        <p style="color:#666;font-size:14px;line-height:1.6">Use photo recognition and AI to help users quickly catalog their wardrobe, reducing the barrier of manual data entry.</p>
       </div>
       <div>
         <h4 style="margin-bottom:10px;font-size:16px">Transparent Data Practices</h4>
-        <p style="color:#666;font-size:14px;line-height:1.6">Clearly communicate what data is collected, how it's used, and give users control over their information.</p>
+        <p style="color:#666;font-size:14px;line-height:1.6">Clearly communicate what data is collected, offer local storage options, and give users full control over their information.</p>
       </div>
       <div>
-        <h4 style="margin-bottom:10px;font-size:16px">Focus on Behavior, Not Shame</h4>
-        <p style="color:#666;font-size:14px;line-height:1.6">Frame the tool as empowering conscious choice rather than guilting users about sustainability.</p>
+        <h4 style="margin-bottom:10px;font-size:16px">Adaptive Intervention</h4>
+        <p style="color:#666;font-size:14px;line-height:1.6">Vary prompts and use smart timing to prevent fatigue. Not every purchase needs intervention—focus on patterns that suggest impulse buying.</p>
       </div>
       <div>
-        <h4 style="margin-bottom:10px;font-size:16px">Unique Value Proposition</h4>
-        <p style="color:#666;font-size:14px;line-height:1.6">Our point-of-purchase intervention fills a gap that other tools miss: the critical moment between desire and decision.</p>
+        <h4 style="margin-bottom:10px;font-size:16px">Phased Rollout</h4>
+        <p style="color:#666;font-size:14px;line-height:1.6">Start with major fashion retailers before expanding. Perfect the experience on key platforms rather than spreading too thin.</p>
+      </div>
+      <div>
+        <h4 style="margin-bottom:10px;font-size:16px">Non-Judgmental Approach</h4>
+        <p style="color:#666;font-size:14px;line-height:1.6">Frame prompts as helpful questions, not guilt trips. Respect user autonomy and avoid preaching about sustainability.</p>
       </div>
     </div>
   </div>
