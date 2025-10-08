@@ -145,7 +145,7 @@
       width: 100%;
       height: 100%;
       z-index: 1;
-      display: none;
+      display: block;
     }
     
     .connection-line {
@@ -490,22 +490,53 @@
 
 <div class="section">
   <h2 class="section-header">Reading the Funnel</h2>
-  <div style="background:#f9f9f9;padding:30px;border-radius:12px;">
-    <p style="color:#333;line-height:1.8;margin-bottom:15px">
-      <strong>Psychology informs understanding:</strong> Research on retail therapy, decision fatigue, conspicuous consumption, and FOMO reveals the psychological mechanisms behind impulse buying.
-    </p>
-    <p style="color:#333;line-height:1.8;margin-bottom:15px">
-      <strong>Industry problems emerge:</strong> Understanding these mechanisms helps identify the core problems—impulse buying, overproduction, frictionless commerce, and the awareness-action gap.
-    </p>
-    <p style="color:#333;line-height:1.8;margin-bottom:15px">
-      <strong>Market gaps become visible:</strong> Existing tools provide information or organize wardrobes, but none create reflection at the critical moment of purchase.
-    </p>
-    <p style="color:#333;line-height:1.8;margin-bottom:15px">
-      <strong>Our intervention fills the gap:</strong> The Shopping Speed Bump targets the precise moment where behavior can change, bridging awareness and action.
-    </p>
-    <p style="color:#333;line-height:1.8;">
-      <strong>Mechanisms drive impact:</strong> Through reflection, wardrobe context, critical timing, and non-judgmental prompting, we transform unconscious consumption into conscious choice.
-    </p>
+  <div style="background:#f9f9f9;padding:40px;border-radius:12px;">
+    
+    <!-- Step 1 -->
+    <div style="display:flex;gap:30px;align-items:center;margin-bottom:30px;flex-wrap:wrap;">
+      <div style="flex:0 0 60px;height:60px;background:#fff;border:3px solid #aaa;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;color:#aaa;">1</div>
+      <div style="flex:1;min-width:250px;">
+        <div style="font-weight:600;font-size:16px;margin-bottom:8px;color:#000;">Psychological Foundations</div>
+        <p style="color:#555;line-height:1.7;margin:0;">Research on retail therapy, decision fatigue, conspicuous consumption, and FOMO reveals the psychological mechanisms behind impulse buying.</p>
+      </div>
+    </div>
+    
+    <!-- Step 2 -->
+    <div style="display:flex;gap:30px;align-items:center;margin-bottom:30px;flex-wrap:wrap;">
+      <div style="flex:0 0 60px;height:60px;background:#fff;border:3px solid #999;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;color:#999;">2</div>
+      <div style="flex:1;min-width:250px;">
+        <div style="font-weight:600;font-size:16px;margin-bottom:8px;color:#000;">Industry Problem Space</div>
+        <p style="color:#555;line-height:1.7;margin:0;">Understanding these mechanisms helps identify the core problems—impulse buying, overproduction, frictionless commerce, and the awareness-action gap.</p>
+      </div>
+    </div>
+    
+    <!-- Step 3 -->
+    <div style="display:flex;gap:30px;align-items:center;margin-bottom:30px;flex-wrap:wrap;">
+      <div style="flex:0 0 60px;height:60px;background:#333;border:3px solid #333;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;color:#fff;">3</div>
+      <div style="flex:1;min-width:250px;">
+        <div style="font-weight:600;font-size:16px;margin-bottom:8px;color:#000;">Market Gaps</div>
+        <p style="color:#555;line-height:1.7;margin:0;">Existing tools provide information or organize wardrobes, but none create reflection at the critical moment of purchase.</p>
+      </div>
+    </div>
+    
+    <!-- Step 4 -->
+    <div style="display:flex;gap:30px;align-items:center;margin-bottom:30px;flex-wrap:wrap;">
+      <div style="flex:0 0 60px;height:60px;background:#000;border:3px solid #000;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;color:#fff;">4</div>
+      <div style="flex:1;min-width:250px;">
+        <div style="font-weight:600;font-size:16px;margin-bottom:8px;color:#000;">Our Solution: The Shopping Speed Bump</div>
+        <p style="color:#555;line-height:1.7;margin:0;">Our intervention targets the precise moment where behavior can change, bridging awareness and action.</p>
+      </div>
+    </div>
+    
+    <!-- Step 5 -->
+    <div style="display:flex;gap:30px;align-items:center;flex-wrap:wrap;">
+      <div style="flex:0 0 60px;height:60px;background:#fff;border:3px solid #666;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;color:#666;">5</div>
+      <div style="flex:1;min-width:250px;">
+        <div style="font-weight:600;font-size:16px;margin-bottom:8px;color:#000;">How It Works</div>
+        <p style="color:#555;line-height:1.7;margin:0;">Through reflection, wardrobe context, critical timing, and non-judgmental prompting, we transform unconscious consumption into conscious choice.</p>
+      </div>
+    </div>
+    
   </div>
 </div>
 
@@ -513,72 +544,78 @@
   </main>
   <script src="assets/js/app.js"></script>
   <script>
-    // Connection explanations
+    // Connection explanations (updated for funnel flow)
     const connectionData = {
-      // Theory to Problems
+      // Psychological Foundations → Industry Problems
       'retail-therapy-impulse': {
-        title: 'Retail Therapy → Impulse',
-        text: 'Understanding shopping as emotional coping explains the dopamine-driven impulse buying behavior we see in the market.'
+        title: 'Retail Therapy → Impulse Buying',
+        text: 'Understanding shopping as emotional coping explains why consumers make impulsive purchases—they seek dopamine hits to regulate emotions.'
       },
       'paradox-impulse': {
-        title: 'Paradox of Choice → Impulse',
-        text: 'Too many options cause decision fatigue, leading directly to impulsive rather than thoughtful purchasing decisions.'
+        title: 'Paradox of Choice → Impulse Buying',
+        text: 'Too many options cause decision fatigue, leading consumers to make quick, impulsive decisions rather than thoughtful choices.'
       },
       'paradox-awareness-gap': {
-        title: 'Paradox → Awareness Gap',
-        text: 'Even when consumers know better, overwhelming choice makes it hard to act on that knowledge, creating the awareness-action gap.'
+        title: 'Paradox of Choice → Awareness-Action Gap',
+        text: 'Even when consumers know better, overwhelming choice makes it hard to act on that knowledge, creating the gap between intention and behavior.'
       },
-      // Problems to Market Gaps
+      'conspicuous-overproduction': {
+        title: 'Conspicuous Consumption → Overproduction',
+        text: 'The need to display status and gain social validation drives constant demand for new items, fueling overproduction cycles.'
+      },
+      'fomo-frictionless': {
+        title: 'FOMO & Scarcity → Frictionless Commerce',
+        text: 'Artificial scarcity creates urgency, which platforms exploit through one-click buying to convert FOMO into instant purchases.'
+      },
+      
+      // Industry Problems → Market Gaps
       'impulse-info-tools': {
-        title: 'Impulse → Info Tools Gap',
-        text: 'Current tools provide information but don\'t address the core impulse problem with reflection mechanisms.'
+        title: 'Impulse Buying → Information Tools Gap',
+        text: 'Current tools provide sustainability information but lack the reflection mechanism needed to interrupt impulsive behavior.'
+      },
+      'overproduction-intervention': {
+        title: 'Overproduction → Speed Bump',
+        text: 'By reducing unnecessary purchases through reflection, we address demand-side overproduction where consumers buy items they already own or don\'t need.'
       },
       'frictionless-wardrobe-apps': {
-        title: 'Frictionless → Wardrobe Apps Gap',
-        text: 'Wardrobe apps exist separately from the frictionless shopping experience, never intervening at purchase moment.'
+        title: 'Frictionless Commerce → Wardrobe Apps Gap',
+        text: 'Wardrobe organization apps exist separately from shopping experiences, never intervening at the critical purchase moment.'
       },
       'awareness-gap-phia-gap': {
-        title: 'Awareness Gap → Deal Focus Gap',
-        text: 'Tools like Phia focus on deal quality, not bridging the awareness-action gap around actual need.'
+        title: 'Awareness-Action Gap → Deal Focus Gap',
+        text: 'Tools focus on price and deals rather than addressing the fundamental gap between knowing better and acting on that knowledge.'
       },
-      // Market Gaps to Intervention
+      
+      // Market Gaps → Our Intervention
       'info-tools-intervention': {
-        title: 'Info Tools Gap → Speed Bump',
-        text: 'We fill the reflection gap by creating a pause that information tools alone cannot provide.'
+        title: 'Information Tools Gap → Speed Bump',
+        text: 'We fill the missing reflection piece by creating a pause that information alone cannot provide at the moment of purchase.'
       },
       'wardrobe-apps-intervention': {
         title: 'Wardrobe Apps Gap → Speed Bump',
-        text: 'We integrate wardrobe awareness directly into the shopping flow at the moment of decision.'
+        text: 'We bridge the disconnect by integrating wardrobe awareness directly into the shopping flow when it matters most.'
       },
       'phia-gap-intervention': {
         title: 'Deal Focus Gap → Speed Bump',
-        text: 'Instead of asking about deal quality, we ask the right question: "Do you already have something similar?"'
+        text: 'Instead of asking about deal quality, we ask the crucial question: "Do you already have something similar?"'
       },
-      // Intervention to Mechanisms
+      
+      // Our Intervention → Mechanisms
       'intervention-reflection': {
-        title: 'Speed Bump → Reflection',
-        text: 'The core mechanism: asking "Do you have something similar?" forces users to mentally access their wardrobe, creating genuine consideration.'
+        title: 'Speed Bump → Reflection Pause',
+        text: 'The intervention creates a brief moment that activates System 2 thinking, allowing conscious consideration instead of automatic impulse.'
       },
       'intervention-wardrobe': {
         title: 'Speed Bump → Wardrobe Context',
-        text: 'By prompting users to think about what they own, we make their existing wardrobe psychologically present at the moment of new purchase.'
+        text: 'By prompting users to think about their existing wardrobe, we make what they already own psychologically present during decision-making.'
       },
       'intervention-timing': {
         title: 'Speed Bump → Critical Timing',
-        text: 'Unlike pre-shopping education or post-purchase regret, we intervene at the precise moment when the purchase decision can still be influenced.'
+        text: 'We intervene at the precise moment between desire and purchase—the only point where behavior can still be influenced.'
       },
       'intervention-questioning': {
-        title: 'Speed Bump → Non-Judgmental',
-        text: 'Asking rather than telling respects user autonomy and avoids psychological reactance that occurs when people feel controlled or lectured.'
-      },
-      // Theory to Mechanisms
-      'implementation-timing': {
-        title: 'Implementation Intentions → Timing',
-        text: 'Research on if-then rules validates our point-of-purchase timing: intervene at the critical moment where the rule activates.'
-      },
-      'implementation-wardrobe': {
-        title: 'Implementation Intentions → Wardrobe',
-        text: 'Creating "if shopping, then check wardrobe" rules builds the pre-commitment that research shows effectively translates intentions to actions.'
+        title: 'Speed Bump → Non-Judgmental Approach',
+        text: 'Asking rather than commanding respects autonomy and avoids psychological reactance that would make people defensive.'
       }
     };
     
@@ -655,12 +692,15 @@
       
       // Define connections (funnel flow)
       const connections = [
-        // Theory to Problems
+        // Psychological Foundations to Industry Problems
         ['retail-therapy', 'impulse'],
         ['paradox', 'impulse'],
         ['paradox', 'awareness-gap'],
-        // Problems to Market Gaps
+        ['conspicuous', 'overproduction'],
+        ['fomo', 'frictionless'],
+        // Industry Problems to Market Gaps/Intervention
         ['impulse', 'info-tools'],
+        ['overproduction', 'intervention'],
         ['frictionless', 'wardrobe-apps'],
         ['awareness-gap', 'phia-gap'],
         // Market Gaps to Intervention
@@ -671,10 +711,7 @@
         ['intervention', 'reflection'],
         ['intervention', 'wardrobe'],
         ['intervention', 'timing'],
-        ['intervention', 'questioning'],
-        // Theory to Mechanisms (direct connections)
-        ['implementation', 'timing'],
-        ['implementation', 'wardrobe']
+        ['intervention', 'questioning']
       ];
       
       connections.forEach(([from, to]) => {
