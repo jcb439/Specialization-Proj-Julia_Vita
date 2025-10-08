@@ -3,87 +3,91 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ontology Diagram</title>
+  <title>Forking Paths Diagram</title>
   <link rel="stylesheet" href="assets/css/styles.css"/>
   <style>
-    .ontology-network {
-      max-width: 1600px;
+    .forking-system {
+      max-width: 1400px;
       margin: 40px auto;
       padding: 60px 40px;
       background: #fafafa;
       border-radius: 12px;
       position: relative;
-      overflow: visible;
     }
     
-    .network-layer {
+    .system-row {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      margin-bottom: 60px;
+      position: relative;
+    }
+    
+    .row-label {
+      min-width: 140px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #666;
+      text-align: left;
+      padding-right: 20px;
+      flex-shrink: 0;
+    }
+    
+    .system-nodes {
+      flex: 1;
       display: flex;
       justify-content: center;
-      align-items: center;
-      gap: 40px;
-      margin-bottom: 80px;
-      position: relative;
+      gap: 20px;
       flex-wrap: wrap;
     }
     
-    .layer-label {
-      position: absolute;
-      top: -35px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: #999;
+    .system-node {
+      background: #e0e0e0;
+      border: 2px solid #999;
+      border-radius: 8px;
+      padding: 20px 25px;
+      min-width: 140px;
       text-align: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
     }
     
-    .network-node {
-      background: #fff;
-      border: 2px solid #ddd;
-      border-radius: 10px;
-      padding: 20px 25px;
-      min-width: 160px;
-      max-width: 200px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      position: relative;
+    .system-node:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
       z-index: 10;
     }
     
-    .network-node:hover {
-      border-color: #333;
-      transform: scale(1.05);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-      z-index: 20;
-    }
-    
-    .network-node.active {
+    .system-node.primary {
       background: #000;
       color: #fff;
       border-color: #000;
-      z-index: 20;
     }
     
-    .node-title {
-      font-size: 15px;
+    .system-node.focus {
+      background: #d0d0d0;
+      border-color: #666;
       font-weight: 600;
-      margin-bottom: 5px;
     }
     
-    .node-subtitle {
-      font-size: 12px;
-      color: #666;
-      line-height: 1.4;
+    .system-node.active {
+      background: #000;
+      color: #fff;
+      border-color: #000;
+      transform: scale(1.1);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
     
-    .network-node.active .node-subtitle {
-      color: #ccc;
+    .node-label {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.3;
     }
     
-    .node-details {
+    .node-tooltip {
       display: none;
       position: absolute;
       top: 110%;
@@ -92,163 +96,144 @@
       background: #fff;
       border: 2px solid #333;
       border-radius: 8px;
-      padding: 20px;
-      width: 300px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      padding: 15px;
+      width: 220px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
       z-index: 100;
       text-align: left;
     }
     
-    .node-details.show {
+    .node-tooltip.show {
       display: block;
       animation: fadeInUp 0.3s ease;
     }
     
-    .node-details h4 {
-      font-size: 14px;
-      margin-bottom: 10px;
-      color: #000;
-    }
-    
-    .node-details p {
+    .node-tooltip h4 {
       font-size: 13px;
-      line-height: 1.6;
-      color: #555;
-      margin: 0;
-    }
-    
-    .central-node {
-      background: #000;
-      color: #fff;
-      border: 3px solid #000;
-      padding: 30px 35px;
-      min-width: 280px;
-      font-size: 18px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
-    
-    .central-node .node-subtitle {
-      color: #ccc;
-      margin-top: 8px;
-    }
-    
-    .node-problem { border-color: #999; }
-    .node-mechanism { border-color: #666; }
-    .node-literature { border-color: #aaa; }
-    .node-gap { background: #333; color: #fff; border-color: #333; }
-    .node-gap .node-subtitle { color: #ccc; }
-    
-    svg.connections {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      display: block;
-    }
-    
-    .connection-line {
-      stroke: #ccc;
-      stroke-width: 5;
-      fill: none;
-      stroke-dasharray: 8,4;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    
-    .connection-line:hover {
-      stroke: #666;
-      stroke-width: 7;
-      stroke-dasharray: none;
-    }
-    
-    .connection-line.active {
-      stroke: #000;
-      stroke-width: 8;
-      stroke-dasharray: none;
-    }
-    
-    .connection-tooltip {
-      display: none;
-      position: fixed;
-      background: #fff;
-      border: 2px solid #333;
-      border-radius: 8px;
-      padding: 15px 20px;
-      max-width: 320px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-      z-index: 1000;
-      pointer-events: none;
-    }
-    
-    .connection-tooltip.show {
-      display: block;
-    }
-    
-    .connection-tooltip h4 {
-      font-size: 13px;
-      font-weight: 600;
       margin-bottom: 8px;
       color: #000;
     }
     
-    .connection-tooltip p {
+    .node-tooltip p {
       font-size: 12px;
       line-height: 1.5;
       color: #555;
       margin: 0;
     }
     
-    .legend {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin-top: 40px;
-      padding-top: 30px;
-      border-top: 1px solid #ddd;
-      flex-wrap: wrap;
+    svg.path-connections {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
     }
     
-    .legend-item {
+    .path-line {
+      stroke: #666;
+      stroke-width: 3;
+      fill: none;
+      marker-end: url(#arrowhead);
+      transition: all 0.3s ease;
+    }
+    
+    .path-line.highlight {
+      stroke: #000;
+      stroke-width: 5;
+      animation: pulse-line 1.5s ease-in-out infinite;
+    }
+    
+    @keyframes pulse-line {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    
+    /* Understanding the System - Visual Layout */
+    .system-explanation {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin: 30px 0;
+    }
+    
+    .explanation-card {
+      background: #fff;
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 25px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+    }
+    
+    .explanation-card:hover {
+      border-color: #000;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    
+    .explanation-card.active {
+      background: #000;
+      color: #fff;
+      border-color: #000;
+    }
+    
+    .card-icon {
+      width: 50px;
+      height: 50px;
+      background: #f5f5f5;
+      border-radius: 50%;
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-size: 13px;
-      color: #666;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 15px;
+      transition: all 0.3s ease;
     }
     
-    .legend-box {
-      width: 20px;
-      height: 20px;
-      border-radius: 4px;
-      border: 2px solid;
+    .explanation-card.active .card-icon {
+      background: #fff;
+      color: #000;
     }
     
-    @media (max-width: 1200px) {
-      .network-layer {
-        gap: 25px;
-        margin-bottom: 60px;
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    
+    .card-description {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #555;
+    }
+    
+    .explanation-card.active .card-description {
+      color: #e0e0e0;
+    }
+    
+    @media (max-width: 1024px) {
+      .system-row {
+        flex-direction: column;
+        align-items: flex-start;
       }
       
-      .network-node {
-        min-width: 140px;
+      .row-label {
+        width: 100%;
+        margin-bottom: 15px;
       }
       
-      .node-details {
+      .system-nodes {
+        width: 100%;
+      }
+      
+      .node-tooltip {
         position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 90%;
-        max-width: 320px;
-      }
-      
-      .layer-label {
-        position: relative;
-        left: 0;
-        transform: none;
-        margin-bottom: 20px;
       }
     }
   </style>
@@ -259,13 +244,13 @@
     <div class="nav-logo"></div>
     <div class="nav-subtitle">Fall 2025 • Design 8131</div>
     <ul class="nav-menu">
-      <li class="nav-item"><a href="index.html" class="nav-link ">Home</a></li>
+      <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
       <li class="nav-item"><a href="knowledge.html" class="nav-link ">State of Knowledge</a></li>
       <li class="nav-item"><a href="community.html" class="nav-link ">Community Practice</a></li>
       <li class="nav-item"><a href="literature.html" class="nav-link ">Literature Review</a></li>
-      <li class="nav-item"><a href="ontology.html" class="nav-link active">Ontology Diagram</a></li>
+      <li class="nav-item"><a href="ontology.html" class="nav-link ">Ontology Diagram</a></li>
       <li class="nav-item"><a href="prototype.html" class="nav-link ">Radical Prototype</a></li>
-      <li class="nav-item"><a href="forking.html" class="nav-link ">Forking Paths</a></li>
+      <li class="nav-item"><a href="forking.html" class="nav-link active">Forking Paths</a></li>
       <li class="nav-item"><a href="barriers.html" class="nav-link ">Barriers to Entry</a></li>
     </ul>
   </nav>
@@ -273,270 +258,242 @@
   <button class="menu-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></button>
   <main class="main-content">
     <div class="header">
-      <div class="header-meta">Conceptual Framework</div>
-      <h1 class="page-title">Ontology Diagram</h1>
-      <p class="page-subtitle">From Theory to Intervention</p>
+      <div class="header-meta">Divergent Futures</div>
+      <h1 class="page-title">Forking Paths Diagram</h1>
+      <p class="page-subtitle">System Structure & Intervention Points</p>
     </div>
     <div class="content">
       
 <div class="section">
   <p style="color:#333;line-height:1.8;margin-bottom:20px">
-    This funnel diagram shows how theoretical foundations inform our understanding of problems, reveal market gaps, and guide our targeted intervention. Click nodes to explore relationships.
+    This diagram maps the fashion industry ecosystem and identifies where our intervention sits within everyday practices. Click on any node to learn more about that element.
+  </p>
+  <p style="color:#666;line-height:1.8;margin-bottom:40px;font-style:italic;">
+    The highlighted path (grey nodes) shows our focus area through the system.
   </p>
 </div>
 
-<!-- LEGEND (moved outside network container) -->
-<div class="legend" style="margin-bottom: 30px; padding-top: 0; border-top: none;">
-  <div class="legend-item">
-    <div class="legend-box" style="border-color:#aaa;background:#fff"></div>
-    <span>Literature</span>
-  </div>
-  <div class="legend-item">
-    <div class="legend-box" style="border-color:#999;background:#fff"></div>
-    <span>Problem Space</span>
-  </div>
-  <div class="legend-item">
-    <div class="legend-box" style="border-color:#333;background:#333"></div>
-    <span>Market Gaps</span>
-  </div>
-  <div class="legend-item">
-    <div class="legend-box" style="border-color:#666;background:#fff"></div>
-    <span>Mechanisms</span>
-  </div>
-</div>
-
-<div class="ontology-network" id="networkContainer">
+<div class="forking-system" id="forkingSystem">
   
-  <!-- SVG for connection lines -->
-  <svg class="connections" id="connectionSvg">
-    <!-- Lines will be drawn here by JavaScript -->
+  <!-- SVG for path connections -->
+  <svg class="path-connections" id="pathSvg">
+    <defs>
+      <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+        <polygon points="0 0, 10 3, 0 6" fill="#666"/>
+      </marker>
+    </defs>
   </svg>
   
-  <!-- Tooltip for connections -->
-  <div class="connection-tooltip" id="connectionTooltip">
-    <h4 id="tooltipTitle"></h4>
-    <p id="tooltipContent"></p>
-  </div>
-  
-  <!-- LAYER 1: PSYCHOLOGICAL FOUNDATIONS -->
-  <div class="network-layer" id="layer1">
-    <div class="layer-label">Psychological Foundations</div>
-    
-    <div class="network-node node-literature" data-id="retail-therapy" onclick="toggleNode(this)">
-      <div class="node-title">Retail Therapy</div>
-      <div class="node-subtitle">Coping mechanism</div>
-      <div class="node-details">
-        <h4>Emotional Regulation</h4>
-        <p>Shopping provides temporary dopamine hits. Understanding this psychological trigger is crucial for designing effective interventions.</p>
-      </div>
-    </div>
-    
-    <div class="network-node node-literature" data-id="paradox" onclick="toggleNode(this)">
-      <div class="node-title">Paradox of Choice</div>
-      <div class="node-subtitle">Decision fatigue</div>
-      <div class="node-details">
-        <h4>Overwhelm Leads to Impulse</h4>
-        <p>Too many options cause decision fatigue and impulsive choices. Our intervention simplifies by adding personal context.</p>
-      </div>
-    </div>
-    
-    <div class="network-node node-literature" data-id="conspicuous" onclick="toggleNode(this)">
-      <div class="node-title">Conspicuous Consumption</div>
-      <div class="node-subtitle">Social validation</div>
-      <div class="node-details">
-        <h4>Status Display Through Fashion</h4>
-        <p>Fashion displays wealth and status, driven by need for social validation amplified through likes and shares on social media.</p>
-      </div>
-    </div>
-    
-    <div class="network-node node-literature" data-id="fomo" onclick="toggleNode(this)">
-      <div class="node-title">FOMO & Scarcity</div>
-      <div class="node-subtitle">Artificial urgency</div>
-      <div class="node-details">
-        <h4>Creating Urgency Through Scarcity</h4>
-        <p>52 micro-collections per year create artificial scarcity and fear of missing out, driving impulsive purchases before items "sell out."</p>
+  <!-- DOMAINS -->
+  <div class="system-row">
+    <div class="row-label">DOMAINS</div>
+    <div class="system-nodes">
+      <div class="system-node focus" data-path="industry" onclick="toggleNodeInfo(this, 'industry')">
+        <div class="node-label">FASHION<br>INDUSTRY</div>
+        <div class="node-tooltip">
+          <h4>Fashion Industry</h4>
+          <p>The entire ecosystem of textile production, manufacturing, distribution, and consumption patterns.</p>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- LAYER 2: INDUSTRY PROBLEM SPACE -->
-  <div class="network-layer" id="layer2">
-    <div class="layer-label">Industry Problem Space</div>
-    
-    <div class="network-node node-problem" data-id="impulse" onclick="toggleNode(this)">
-      <div class="node-title">Impulse Buying</div>
-      <div class="node-subtitle">73% of purchases</div>
-      <div class="node-details">
-        <h4>Impulse Buying Epidemic</h4>
-        <p>Online shopping compresses decision windows to 2.5 seconds. Dopamine-driven reward cycles bypass reflective cognition, transforming desire instantly into ownership.</p>
+  <!-- SUB DOMAIN 1 -->
+  <div class="system-row">
+    <div class="row-label">SUB DOMAIN</div>
+    <div class="system-nodes">
+      <div class="system-node primary" onclick="toggleNodeInfo(this, 'textile')">
+        <div class="node-label">TEXTILE<br>PRODUCTION</div>
+        <div class="node-tooltip">
+          <h4>Textile Production</h4>
+          <p>Raw material sourcing and fabric creation—the foundational stage of the fashion supply chain.</p>
+        </div>
       </div>
-    </div>
-    
-    <div class="network-node node-problem" data-id="overproduction" onclick="toggleNode(this)">
-      <div class="node-title">Overproduction</div>
-      <div class="node-subtitle">40% never sold</div>
-      <div class="node-details">
-        <h4>Systematic Overproduction</h4>
-        <p>52 micro-collections per year create artificial scarcity. 40% of new clothes never sell; 30% are never worn after purchase.</p>
+      <div class="system-node focus" data-path="manufacturing" onclick="toggleNodeInfo(this, 'manufacturing')">
+        <div class="node-label">MANUFACTURING</div>
+        <div class="node-tooltip">
+          <h4>Manufacturing</h4>
+          <p>Where textiles become garments through cutting, sewing, and assembly processes.</p>
+        </div>
       </div>
-    </div>
-    
-    <div class="network-node node-problem" data-id="frictionless" onclick="toggleNode(this)">
-      <div class="node-title">Frictionless Commerce</div>
-      <div class="node-subtitle">One-click buying</div>
-      <div class="node-details">
-        <h4>Zero Friction Design</h4>
-        <p>E-commerce platforms eliminate barriers between desire and purchase. One-click buying and optimized checkout remove any pause for consideration.</p>
-      </div>
-    </div>
-    
-    <div class="network-node node-problem" data-id="awareness-gap" onclick="toggleNode(this)">
-      <div class="node-title">Awareness-Action Gap</div>
-      <div class="node-subtitle">Knowledge ≠ Behavior</div>
-      <div class="node-details">
-        <h4>Behavior-Intention Gap</h4>
-        <p>Consumers know about sustainability issues, but style and price dominate decisions. Information alone doesn't change behavior.</p>
+      <div class="system-node primary" onclick="toggleNodeInfo(this, 'distribution')">
+        <div class="node-label">DISTRIBUTION</div>
+        <div class="node-tooltip">
+          <h4>Distribution</h4>
+          <p>Transportation and retail networks that move products from factories to consumers.</p>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- LAYER 3: MARKET GAPS -->
-  <div class="network-layer" id="layer3">
-    <div class="layer-label">Market Gaps</div>
-    
-    <div class="network-node node-gap" data-id="info-tools" onclick="toggleNode(this)">
-      <div class="node-title">Information Tools</div>
-      <div class="node-subtitle">Missing reflection</div>
-      <div class="node-details">
-        <h4>Awareness Without Action</h4>
-        <p>Tools like SHADE provide alternatives but don't create reflection. Information about better options doesn't stop the impulse.</p>
+  <!-- SUB DOMAIN 2 -->
+  <div class="system-row">
+    <div class="row-label">SUB DOMAIN</div>
+    <div class="system-nodes">
+      <div class="system-node primary" onclick="toggleNodeInfo(this, 'labor')">
+        <div class="node-label">LABOR</div>
+        <div class="node-tooltip">
+          <h4>Labor</h4>
+          <p>The human workforce throughout the supply chain, often facing poor working conditions.</p>
+        </div>
       </div>
-    </div>
-    
-    <div class="network-node node-gap" data-id="wardrobe-apps" onclick="toggleNode(this)">
-      <div class="node-title">Wardrobe Apps</div>
-      <div class="node-subtitle">Not integrated</div>
-      <div class="node-details">
-        <h4>Disconnected from Shopping</h4>
-        <p>StyleBook helps organize closets but operates separately from shopping. Users don't consult it at purchase moment.</p>
+      <div class="system-node focus" data-path="overproduction" onclick="toggleNodeInfo(this, 'overproduction')">
+        <div class="node-label">OVERPRODUCTION</div>
+        <div class="node-tooltip">
+          <h4>Overproduction</h4>
+          <p>52 micro-collections per year create excess inventory. 40% of new clothes never sell; 30% are never worn.</p>
+        </div>
       </div>
-    </div>
-    
-    <div class="network-node node-gap" data-id="phia-gap" onclick="toggleNode(this)">
-      <div class="node-title">Deal Focus</div>
-      <div class="node-subtitle">Price vs. need</div>
-      <div class="node-details">
-        <h4>Wrong Question</h4>
-        <p>Phia asks "Should I buy?" but focuses on deal quality, not whether you need it or already own something similar.</p>
+      <div class="system-node primary" onclick="toggleNodeInfo(this, 'supply')">
+        <div class="node-label">SUPPLY CHAIN</div>
+        <div class="node-tooltip">
+          <h4>Supply Chain</h4>
+          <p>Complex global networks connecting raw materials to finished products and consumers.</p>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- LAYER 4: CENTRAL INTERVENTION -->
-  <div class="network-layer" id="layer4">
-    <div class="layer-label">Our Solution</div>
-    <div class="network-node central-node" data-id="intervention" onclick="toggleNode(this)">
-      <div class="node-title">The Shopping Speed Bump</div>
-      <div class="node-subtitle">Point-of-purchase reflection</div>
-      <div class="node-details">
-        <h4>Our Core Intervention</h4>
-        <p>A gentle intervention asking "Do you have something similar?" at the critical moment between desire and decision, creating conscious choice through brief reflection.</p>
+  <!-- EVERYDAY PRACTICES -->
+  <div class="system-row">
+    <div class="row-label">EVERYDAY<br>PRACTICES</div>
+    <div class="system-nodes">
+      <div class="system-node primary" onclick="toggleNodeInfo(this, 'repair')">
+        <div class="node-label">REPAIR/<br>MEND</div>
+        <div class="node-tooltip">
+          <h4>Repair/Mend</h4>
+          <p>Extending garment life through fixing and alterations rather than discarding.</p>
+        </div>
+      </div>
+      <div class="system-node focus" data-path="purchasing" onclick="toggleNodeInfo(this, 'purchasing')">
+        <div class="node-label">CONSCIOUS<br>PURCHASING</div>
+        <div class="node-tooltip">
+          <h4>Conscious Purchasing</h4>
+          <p>Our intervention point: the critical moment between desire and decision where reflection can create mindful choice.</p>
+        </div>
+      </div>
+      <div class="system-node primary" onclick="toggleNodeInfo(this, 'care')">
+        <div class="node-label">CARE/<br>WASHING</div>
+        <div class="node-tooltip">
+          <h4>Care/Washing</h4>
+          <p>How garments are maintained affects their longevity and environmental impact.</p>
+        </div>
+      </div>
+      <div class="system-node primary" onclick="toggleNodeInfo(this, 'reselling')">
+        <div class="node-label">RESELLING</div>
+        <div class="node-tooltip">
+          <h4>Reselling</h4>
+          <p>Secondary markets extend product life and reduce waste through resale and donation.</p>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- LAYER 5: HOW IT WORKS -->
-  <div class="network-layer" id="layer5">
-    <div class="layer-label">How It Works</div>
-    
-    <div class="network-node node-mechanism" data-id="reflection" onclick="toggleNode(this)">
-      <div class="node-title">Reflection Pause</div>
-      <div class="node-subtitle">Strategic friction</div>
-      <div class="node-details">
-        <h4>Brief Friction Moment</h4>
-        <p>Small delays enable reflection without triggering reactance. The pause activates System 2 thinking about existing wardrobe.</p>
+  <!-- LENSES -->
+  <div class="system-row">
+    <div class="row-label">LENSES</div>
+    <div class="system-nodes">
+      <div class="system-node primary" onclick="toggleNodeInfo(this, 'gamification')">
+        <div class="node-label">GAMIFICATION</div>
+        <div class="node-tooltip">
+          <h4>Gamification</h4>
+          <p>Using game mechanics like points and achievements to drive behavioral change.</p>
+        </div>
       </div>
-    </div>
-    
-    <div class="network-node node-mechanism" data-id="wardrobe" onclick="toggleNode(this)">
-      <div class="node-title">Wardrobe Context</div>
-      <div class="node-subtitle">Personal inventory</div>
-      <div class="node-details">
-        <h4>Ownership Awareness</h4>
-        <p>Reminding users of what they own increases satisfaction with existing wardrobe. Personal context beats abstract sustainability messaging.</p>
+      <div class="system-node focus" data-path="reflection" onclick="toggleNodeInfo(this, 'reflection')">
+        <div class="node-label">REFLECTION</div>
+        <div class="node-tooltip">
+          <h4>Reflection</h4>
+          <p>Our primary lens: asking users to pause and consider what they already own before purchasing.</p>
+        </div>
       </div>
-    </div>
-    
-    <div class="network-node node-mechanism" data-id="timing" onclick="toggleNode(this)">
-      <div class="node-title">Critical Timing</div>
-      <div class="node-subtitle">Purchase moment</div>
-      <div class="node-details">
-        <h4>Point-of-Purchase</h4>
-        <p>Unlike pre-shopping awareness or post-purchase regret, we intervene at the exact decision moment when users can still change course.</p>
+      <div class="system-node focus" data-path="recognition" onclick="toggleNodeInfo(this, 'recognition')">
+        <div class="node-label">RECOGNITION</div>
+        <div class="node-tooltip">
+          <h4>Recognition</h4>
+          <p>Helping users recognize and appreciate the value of their existing wardrobe.</p>
+        </div>
       </div>
-    </div>
-    
-    <div class="network-node node-mechanism" data-id="questioning" onclick="toggleNode(this)">
-      <div class="node-title">Non-Judgmental</div>
-      <div class="node-subtitle">Questions not commands</div>
-      <div class="node-details">
-        <h4>Avoiding Reactance</h4>
-        <p>Asking rather than commanding respects autonomy. Questions encourage self-reflection without triggering defensive responses.</p>
+      <div class="system-node primary" onclick="toggleNodeInfo(this, 'bridging')">
+        <div class="node-label">BRIDGING</div>
+        <div class="node-tooltip">
+          <h4>Bridging</h4>
+          <p>Connecting awareness to action through integrated interventions.</p>
+        </div>
       </div>
     </div>
   </div>
-  
+
+  <!-- INCENTIVES -->
+  <div class="system-row">
+    <div class="row-label">INCENTIVES</div>
+    <div class="system-nodes">
+      <div class="system-node primary" onclick="toggleNodeInfo(this, 'rewards')">
+        <div class="node-label">TANGIBLE<br>REWARDS</div>
+        <div class="node-tooltip">
+          <h4>Tangible Rewards</h4>
+          <p>External incentives like discounts or points that may not create lasting behavior change.</p>
+        </div>
+      </div>
+      <div class="system-node focus" data-path="social" onclick="toggleNodeInfo(this, 'social')">
+        <div class="node-label">SOCIAL<br>PRESSURE</div>
+        <div class="node-tooltip">
+          <h4>Social Pressure</h4>
+          <p>Influence from peers and community norms around sustainable consumption.</p>
+        </div>
+      </div>
+      <div class="system-node focus" data-path="intrinsic" onclick="toggleNodeInfo(this, 'intrinsic')">
+        <div class="node-label">INTRINSIC<br>MOTIVATION</div>
+        <div class="node-tooltip">
+          <h4>Intrinsic Motivation</h4>
+          <p>Internal satisfaction from making conscious choices and valuing what you already own.</p>
+        </div>
+      </div>
+      <div class="system-node primary" onclick="toggleNodeInfo(this, 'grants')">
+        <div class="node-label">CITY-WIDE<br>GRANTS</div>
+        <div class="node-tooltip">
+          <h4>City-Wide Grants</h4>
+          <p>Large-scale policy and funding interventions at the municipal or government level.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <div class="section">
-  <h2 class="section-header">Reading the Funnel</h2>
-  <div style="background:#f9f9f9;padding:40px;border-radius:12px;">
-    
-    <!-- Step 1 -->
-    <div style="display:flex;gap:30px;align-items:center;margin-bottom:30px;flex-wrap:wrap;">
-      <div style="flex:0 0 60px;height:60px;background:#fff;border:3px solid #aaa;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;color:#aaa;">1</div>
-      <div style="flex:1;min-width:250px;">
-        <div style="font-weight:600;font-size:16px;margin-bottom:8px;color:#000;">Psychological Foundations</div>
-        <p style="color:#555;line-height:1.7;margin:0;">Research on retail therapy, decision fatigue, conspicuous consumption, and FOMO reveals the psychological mechanisms behind impulse buying.</p>
-      </div>
+  <h2 class="section-header">Understanding the System</h2>
+  <p style="color:#666;line-height:1.8;margin-bottom:25px;text-align:center;">
+    Click each card to explore how different elements connect in our intervention strategy
+  </p>
+  
+  <div class="system-explanation">
+    <div class="explanation-card" onclick="highlightPath('path', this)" data-highlight="path">
+      <div class="card-icon">📍</div>
+      <div class="card-title">The Highlighted Path</div>
+      <div class="card-description">Traces from the fashion industry through manufacturing and overproduction to conscious purchasing—where our "speed bump" intervention operates.</div>
     </div>
     
-    <!-- Step 2 -->
-    <div style="display:flex;gap:30px;align-items:center;margin-bottom:30px;flex-wrap:wrap;">
-      <div style="flex:0 0 60px;height:60px;background:#fff;border:3px solid #999;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;color:#999;">2</div>
-      <div style="flex:1;min-width:250px;">
-        <div style="font-weight:600;font-size:16px;margin-bottom:8px;color:#000;">Industry Problem Space</div>
-        <p style="color:#555;line-height:1.7;margin:0;">Understanding these mechanisms helps identify the core problems—impulse buying, overproduction, frictionless commerce, and the awareness-action gap.</p>
-      </div>
+    <div class="explanation-card" onclick="highlightPath('lenses', this)" data-highlight="lenses">
+      <div class="card-icon">🔍</div>
+      <div class="card-title">Our Intervention Lenses</div>
+      <div class="card-description">Reflection and recognition—asking users to reflect on what they own and recognize their existing wardrobe value.</div>
     </div>
     
-    <!-- Step 3 -->
-    <div style="display:flex;gap:30px;align-items:center;margin-bottom:30px;flex-wrap:wrap;">
-      <div style="flex:0 0 60px;height:60px;background:#333;border:3px solid #333;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;color:#fff;">3</div>
-      <div style="flex:1;min-width:250px;">
-        <div style="font-weight:600;font-size:16px;margin-bottom:8px;color:#000;">Market Gaps</div>
-        <p style="color:#555;line-height:1.7;margin:0;">Existing tools provide information or organize wardrobes, but none create reflection at the critical moment of purchase.</p>
-      </div>
+    <div class="explanation-card" onclick="highlightPath('incentives', this)" data-highlight="incentives">
+      <div class="card-icon">💡</div>
+      <div class="card-title">Behavioral Incentives</div>
+      <div class="card-description">We activate intrinsic motivation (satisfaction with what you have) and social pressure, rather than external rewards.</div>
     </div>
-    
-    <!-- Step 4 -->
-    <div style="display:flex;gap:30px;align-items:center;margin-bottom:30px;flex-wrap:wrap;">
-      <div style="flex:0 0 60px;height:60px;background:#000;border:3px solid #000;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;color:#fff;">4</div>
-      <div style="flex:1;min-width:250px;">
-        <div style="font-weight:600;font-size:16px;margin-bottom:8px;color:#000;">Our Solution: The Shopping Speed Bump</div>
-        <p style="color:#555;line-height:1.7;margin:0;">Our intervention targets the precise moment where behavior can change, bridging awareness and action.</p>
-      </div>
-    </div>
-    
-    <!-- Step 5 -->
-    <div style="display:flex;gap:30px;align-items:center;flex-wrap:wrap;">
-      <div style="flex:0 0 60px;height:60px;background:#fff;border:3px solid #666;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;color:#666;">5</div>
-      <div style="flex:1;min-width:250px;">
-        <div style="font-weight:600;font-size:16px;margin-bottom:8px;color:#000;">How It Works</div>
-        <p style="color:#555;line-height:1.7;margin:0;">Through reflection, wardrobe context, critical timing, and non-judgmental prompting, we transform unconscious consumption into conscious choice.</p>
-      </div>
-    </div>
-    
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-header">Key Insight</h2>
+  <div style="background:#000;color:#fff;padding:30px;border-radius:12px;">
+    <p style="line-height:1.8;opacity:.95">
+      While the fashion industry creates overproduction at the supply level, our intervention addresses it at the demand level—the moment of conscious purchasing. By introducing reflection at this critical point, we activate intrinsic motivation rather than relying on external incentives that may not scale or sustain behavior change.
+    </p>
   </div>
 </div>
 
@@ -544,203 +501,115 @@
   </main>
   <script src="assets/js/app.js"></script>
   <script>
-    // Connection explanations (updated for funnel flow)
-    const connectionData = {
-      // Psychological Foundations → Industry Problems
-      'retail-therapy-impulse': {
-        title: 'Retail Therapy → Impulse Buying',
-        text: 'Understanding shopping as emotional coping explains why consumers make impulsive purchases—they seek dopamine hits to regulate emotions.'
-      },
-      'paradox-impulse': {
-        title: 'Paradox of Choice → Impulse Buying',
-        text: 'Too many options cause decision fatigue, leading consumers to make quick, impulsive decisions rather than thoughtful choices.'
-      },
-      'paradox-awareness-gap': {
-        title: 'Paradox of Choice → Awareness-Action Gap',
-        text: 'Even when consumers know better, overwhelming choice makes it hard to act on that knowledge, creating the gap between intention and behavior.'
-      },
-      'conspicuous-overproduction': {
-        title: 'Conspicuous Consumption → Overproduction',
-        text: 'The need to display status and gain social validation drives constant demand for new items, fueling overproduction cycles.'
-      },
-      'fomo-frictionless': {
-        title: 'FOMO & Scarcity → Frictionless Commerce',
-        text: 'Artificial scarcity creates urgency, which platforms exploit through one-click buying to convert FOMO into instant purchases.'
-      },
-      
-      // Industry Problems → Market Gaps
-      'impulse-info-tools': {
-        title: 'Impulse Buying → Information Tools Gap',
-        text: 'Current tools provide sustainability information but lack the reflection mechanism needed to interrupt impulsive behavior.'
-      },
-      'overproduction-intervention': {
-        title: 'Overproduction → Speed Bump',
-        text: 'By reducing unnecessary purchases through reflection, we address demand-side overproduction where consumers buy items they already own or don\'t need.'
-      },
-      'frictionless-wardrobe-apps': {
-        title: 'Frictionless Commerce → Wardrobe Apps Gap',
-        text: 'Wardrobe organization apps exist separately from shopping experiences, never intervening at the critical purchase moment.'
-      },
-      'awareness-gap-phia-gap': {
-        title: 'Awareness-Action Gap → Deal Focus Gap',
-        text: 'Tools focus on price and deals rather than addressing the fundamental gap between knowing better and acting on that knowledge.'
-      },
-      
-      // Market Gaps → Our Intervention
-      'info-tools-intervention': {
-        title: 'Information Tools Gap → Speed Bump',
-        text: 'We fill the missing reflection piece by creating a pause that information alone cannot provide at the moment of purchase.'
-      },
-      'wardrobe-apps-intervention': {
-        title: 'Wardrobe Apps Gap → Speed Bump',
-        text: 'We bridge the disconnect by integrating wardrobe awareness directly into the shopping flow when it matters most.'
-      },
-      'phia-gap-intervention': {
-        title: 'Deal Focus Gap → Speed Bump',
-        text: 'Instead of asking about deal quality, we ask the crucial question: "Do you already have something similar?"'
-      },
-      
-      // Our Intervention → Mechanisms
-      'intervention-reflection': {
-        title: 'Speed Bump → Reflection Pause',
-        text: 'The intervention creates a brief moment that activates System 2 thinking, allowing conscious consideration instead of automatic impulse.'
-      },
-      'intervention-wardrobe': {
-        title: 'Speed Bump → Wardrobe Context',
-        text: 'By prompting users to think about their existing wardrobe, we make what they already own psychologically present during decision-making.'
-      },
-      'intervention-timing': {
-        title: 'Speed Bump → Critical Timing',
-        text: 'We intervene at the precise moment between desire and purchase—the only point where behavior can still be influenced.'
-      },
-      'intervention-questioning': {
-        title: 'Speed Bump → Non-Judgmental Approach',
-        text: 'Asking rather than commanding respects autonomy and avoids psychological reactance that would make people defensive.'
-      }
-    };
+    let activeNode = null;
     
-    function toggleNode(node) {
-      const detail = node.querySelector('.node-details');
-      const allDetails = document.querySelectorAll('.node-details');
-      const allNodes = document.querySelectorAll('.network-node');
-      const tooltip = document.getElementById('connectionTooltip');
+    function toggleNodeInfo(node, nodeId) {
+      const tooltip = node.querySelector('.node-tooltip');
+      const allTooltips = document.querySelectorAll('.node-tooltip');
+      const allNodes = document.querySelectorAll('.system-node');
       
-      // Close connection tooltip
-      tooltip.classList.remove('show');
-      document.querySelectorAll('.connection-line').forEach(l => l.classList.remove('active'));
-      
-      allDetails.forEach(d => {
-        if (d !== detail) d.classList.remove('show');
+      // Close all other tooltips and deactivate nodes
+      allTooltips.forEach(t => {
+        if (t !== tooltip) t.classList.remove('show');
       });
       
       allNodes.forEach(n => {
         if (n !== node) n.classList.remove('active');
       });
       
-      detail.classList.toggle('show');
+      // Toggle current tooltip and node
+      tooltip.classList.toggle('show');
       node.classList.toggle('active');
+      
+      event.stopPropagation();
     }
     
-    function showConnectionTooltip(connectionKey, x, y, lineElement) {
-      const tooltip = document.getElementById('connectionTooltip');
-      const data = connectionData[connectionKey];
+    function highlightPath(pathType, card) {
+      const allCards = document.querySelectorAll('.explanation-card');
+      const allNodes = document.querySelectorAll('.system-node');
+      const allLines = document.querySelectorAll('.path-line');
       
-      if (!data) return;
+      // Reset all
+      allCards.forEach(c => c.classList.remove('active'));
+      allNodes.forEach(n => n.classList.remove('active'));
+      allLines.forEach(l => l.classList.remove('highlight'));
       
-      // Close node details
-      document.querySelectorAll('.node-details').forEach(d => d.classList.remove('show'));
-      document.querySelectorAll('.network-node').forEach(n => n.classList.remove('active'));
+      // Activate clicked card
+      card.classList.add('active');
       
-      // Deactivate other lines
-      document.querySelectorAll('.connection-line').forEach(l => l.classList.remove('active'));
-      lineElement.classList.add('active');
+      // Highlight relevant nodes and lines based on path type
+      if (pathType === 'path') {
+        document.querySelectorAll('[data-path]').forEach(n => n.classList.add('active'));
+        allLines.forEach(l => l.classList.add('highlight'));
+      } else if (pathType === 'lenses') {
+        document.querySelector('[data-path="reflection"]').classList.add('active');
+        document.querySelector('[data-path="recognition"]').classList.add('active');
+        document.querySelector('[data-path="purchasing"]').classList.add('active');
+      } else if (pathType === 'incentives') {
+        document.querySelector('[data-path="social"]').classList.add('active');
+        document.querySelector('[data-path="intrinsic"]').classList.add('active');
+      }
       
-      document.getElementById('tooltipTitle').textContent = data.title;
-      document.getElementById('tooltipContent').textContent = data.text;
-      
-      tooltip.style.left = x + 'px';
-      tooltip.style.top = y + 'px';
-      tooltip.classList.add('show');
+      // Auto-deactivate after 3 seconds
+      setTimeout(() => {
+        allCards.forEach(c => c.classList.remove('active'));
+        allNodes.forEach(n => n.classList.remove('active'));
+        allLines.forEach(l => l.classList.remove('highlight'));
+      }, 3000);
     }
     
+    // Close tooltips when clicking outside
     document.addEventListener('click', function(e) {
-      if (!e.target.closest('.network-node') && !e.target.closest('.connection-line')) {
-        document.querySelectorAll('.node-details').forEach(d => d.classList.remove('show'));
-        document.querySelectorAll('.network-node').forEach(n => n.classList.remove('active'));
-        document.getElementById('connectionTooltip').classList.remove('show');
-        document.querySelectorAll('.connection-line').forEach(l => l.classList.remove('active'));
+      if (!e.target.closest('.system-node')) {
+        document.querySelectorAll('.node-tooltip').forEach(t => t.classList.remove('show'));
+        document.querySelectorAll('.system-node').forEach(n => n.classList.remove('active'));
       }
     });
     
-    // Draw connection lines
-    function drawConnections() {
-      const svg = document.getElementById('connectionSvg');
-      const container = document.getElementById('networkContainer');
-      svg.innerHTML = '';
+    function drawPaths() {
+      const svg = document.getElementById('pathSvg');
+      const container = document.getElementById('forkingSystem');
+      svg.innerHTML = '<defs><marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><polygon points="0 0, 10 3, 0 6" fill="#666"/></marker></defs>';
       
-      // Get node positions
-      function getNodeCenter(id) {
-        const node = document.querySelector(`[data-id="${id}"]`);
+      function getNodeCenter(pathId) {
+        const node = document.querySelector(`[data-path="${pathId}"]`);
         if (!node) return null;
         const rect = node.getBoundingClientRect();
         const containerRect = container.getBoundingClientRect();
         return {
           x: rect.left + rect.width / 2 - containerRect.left,
-          y: rect.top + rect.height / 2 - containerRect.top
+          y: rect.top + rect.height / 2 - containerRect.top,
+          bottom: rect.bottom - containerRect.top,
+          top: rect.top - containerRect.top
         };
       }
       
-      // Define connections (funnel flow)
-      const connections = [
-        // Psychological Foundations to Industry Problems
-        ['retail-therapy', 'impulse'],
-        ['paradox', 'impulse'],
-        ['paradox', 'awareness-gap'],
-        ['conspicuous', 'overproduction'],
-        ['fomo', 'frictionless'],
-        // Industry Problems to Market Gaps/Intervention
-        ['impulse', 'info-tools'],
-        ['overproduction', 'intervention'],
-        ['frictionless', 'wardrobe-apps'],
-        ['awareness-gap', 'phia-gap'],
-        // Market Gaps to Intervention
-        ['info-tools', 'intervention'],
-        ['wardrobe-apps', 'intervention'],
-        ['phia-gap', 'intervention'],
-        // Intervention to Mechanisms
-        ['intervention', 'reflection'],
-        ['intervention', 'wardrobe'],
-        ['intervention', 'timing'],
-        ['intervention', 'questioning']
-      ];
-      
-      connections.forEach(([from, to]) => {
+      function drawLine(from, to) {
         const start = getNodeCenter(from);
         const end = getNodeCenter(to);
         if (!start || !end) return;
         
         const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         line.setAttribute('x1', start.x);
-        line.setAttribute('y1', start.y);
+        line.setAttribute('y1', start.bottom);
         line.setAttribute('x2', end.x);
-        line.setAttribute('y2', end.y);
-        line.setAttribute('class', 'connection-line');
-        
-        const connectionKey = `${from}-${to}`;
-        
-        line.addEventListener('click', function(e) {
-          e.stopPropagation();
-          showConnectionTooltip(connectionKey, e.clientX + 10, e.clientY + 10, line);
-        });
-        
+        line.setAttribute('y2', end.top - 5);
+        line.setAttribute('class', 'path-line');
         svg.appendChild(line);
-      });
+      }
+      
+      // Draw the main path
+      drawLine('industry', 'manufacturing');
+      drawLine('manufacturing', 'overproduction');
+      drawLine('overproduction', 'purchasing');
+      drawLine('purchasing', 'reflection');
+      drawLine('reflection', 'social');
+      drawLine('reflection', 'intrinsic');
     }
     
-    // Draw on load and resize
-    window.addEventListener('load', drawConnections);
-    window.addEventListener('resize', drawConnections);
-    setTimeout(drawConnections, 100);
+    window.addEventListener('load', drawPaths);
+    window.addEventListener('resize', drawPaths);
+    setTimeout(drawPaths, 100);
   </script>
 </body>
 </html>
