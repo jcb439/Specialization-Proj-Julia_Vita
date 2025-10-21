@@ -3,163 +3,367 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Intent of Radical Prototype</title>
+  <title>Radical Prototype - 10/23</title>
   <link rel="stylesheet" href="assets/css/styles.css"/>
+  <style>
+    /* Additional styles for this page */
+    .spectrum-container {
+      background: #f9f9f9;
+      padding: 40px;
+      border-radius: 12px;
+      margin-bottom: 40px;
+    }
+    
+    .spectrum-title {
+      text-align: center;
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 30px;
+    }
+    
+    .spectrum-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      margin-bottom: 30px;
+    }
+    
+    .spectrum-bar > div {
+      padding: 15px;
+      text-align: center;
+      font-weight: 700;
+    }
+    
+    .spectrum-bar .extreme {
+      background: #ff6b6b;
+      color: #fff;
+      border-radius: 8px 0 0 8px;
+    }
+    
+    .spectrum-bar .medium {
+      background: #ffd93d;
+      color: #000;
+    }
+    
+    .spectrum-bar .light {
+      background: #6bcfff;
+      color: #000;
+      border-radius: 0 8px 8px 0;
+    }
+    
+    .spectrum-details {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+    
+    .spectrum-card {
+      padding: 25px;
+      background: #fff;
+      border-radius: 8px;
+    }
+    
+    .spectrum-card.extreme {
+      border: 2px solid #ff6b6b;
+    }
+    
+    .spectrum-card.medium {
+      border: 2px solid #ffd93d;
+    }
+    
+    .spectrum-card.light {
+      border: 2px solid #6bcfff;
+    }
+    
+    .spectrum-card h4 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+    
+    .spectrum-card.extreme h4 {
+      color: #ff6b6b;
+    }
+    
+    .spectrum-card.medium h4 {
+      color: #c4a000;
+    }
+    
+    .spectrum-card.light h4 {
+      color: #0288d1;
+    }
+    
+    .spectrum-card p {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 12px;
+      font-style: italic;
+    }
+    
+    .spectrum-card ul {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #555;
+      padding-left: 20px;
+    }
+    
+    .spectrum-note {
+      margin-top: 30px;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      border-left: 4px solid #000;
+    }
+    
+    .spectrum-note p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #555;
+      margin: 0;
+    }
+    
+    .spectrum-note strong {
+      color: #000;
+    }
+    
+    /* Feature cards */
+    .feature-card {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+    
+    .feature-text {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .feature-text h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+    
+    .feature-text p {
+      color: #333;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+    
+    .feature-text ul {
+      color: #555;
+      line-height: 1.8;
+      margin-left: 25px;
+      margin-bottom: 20px;
+    }
+    
+    .feature-text .note {
+      color: #666;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    
+    .feature-visual {
+      flex: 1;
+      min-width: 300px;
+      background: #f5f5f5;
+      border-radius: 8px;
+      height: 350px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 14px;
+      text-align: center;
+      padding: 20px;
+    }
+    
+    @media (max-width: 768px) {
+      .spectrum-details {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
   
-    <nav class="nav-sidebar" id="navSidebar">
-      <div class="nav-logo"></div>
-      <div class="nav-subtitle">Fall 2025 • Design 8131</div>
-      <ul class="nav-menu">
-        <li class="nav-item"><a href="index.html" class="nav-link ">Home</a></li>
-        <li class="nav-item"><a href="knowledge.html" class="nav-link ">State of Knowledge</a></li>
-        <li class="nav-item"><a href="community.html" class="nav-link ">Community Practice</a></li>
-        <li class="nav-item"><a href="literature.html" class="nav-link ">Literature Review</a></li>
-        <li class="nav-item"><a href="ontology.html" class="nav-link ">Ontology Diagram</a></li>
-        <li class="nav-item"><a href="prototype.html" class="nav-link">Radical Prototype 10/16</a></li>
-        <li class="nav-item"><a href="prototype_2.html" class="nav-link active ">Radical Prototype 10/23</a></li>
-        <li class="nav-item"><a href="forking.html" class="nav-link ">Forking Paths</a></li>
-        <li class="nav-item"><a href="barriers.html" class="nav-link ">Barriers to Entry</a></li>
-      </ul>
-    </nav>
-    
-  <button class="menu-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  <nav class="nav-sidebar" id="navSidebar">
+    <div class="nav-logo"></div>
+    <div class="nav-subtitle">Fall 2025 • Design 8131</div>
+    <ul class="nav-menu">
+      <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+      <li class="nav-item"><a href="knowledge.html" class="nav-link">State of Knowledge</a></li>
+      <li class="nav-item"><a href="community.html" class="nav-link">Community Practice</a></li>
+      <li class="nav-item"><a href="literature.html" class="nav-link">Literature Review</a></li>
+      <li class="nav-item"><a href="ontology.html" class="nav-link">Ontology Diagram</a></li>
+      <li class="nav-item"><a href="prototype.html" class="nav-link">Radical Prototype 10/16</a></li>
+      <li class="nav-item"><a href="prototype_2.html" class="nav-link active">Radical Prototype 10/23</a></li>
+      <li class="nav-item"><a href="forking.html" class="nav-link">Forking Paths</a></li>
+      <li class="nav-item"><a href="barriers.html" class="nav-link">Barriers to Entry</a></li>
+    </ul>
+  </nav>
+  
+  <button class="menu-toggle" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+  
   <main class="main-content">
     <div class="header">
       <div class="header-meta">Design Innovation</div>
-      <h1 class="page-title">Radical Prototype: 10/16</h1>
-      <p class="page-subtitle">A Gentle Intervention in Digital Commerce</p>
+      <h1 class="page-title">Radical Prototype: 10/23</h1>
+      <p class="page-subtitle">Iteration & Evolution of the Shopping Speed Bump</p>
     </div>
+    
     <div class="content">
       
-<div class="section">
-  <h2 class="section-header">The Intervention</h2>
-  <p style="color:#333;line-height:1.8;margin-bottom:30px">
-    A browser-based overlay triggers on add-to-cart/checkout and asks: <strong>"Do you have something similar?"</strong> A gentle, judgment-free pause that enables conscious choice.
-  </p>
-</div>
-
-<div class="section">
-  <h2 class="section-header">Key Features</h2>
-  
-  <div style="display:flex;gap:30px;align-items:center;background:#fff;border:1px solid #e0e0e0;border-radius:12px;padding:30px;margin-bottom:30px;flex-wrap:wrap">
-    <div style="flex:1;min-width:300px">
-      <h3 style="font-size:20px;font-weight:600;margin-bottom:15px">Reflection Prompts</h3>
-      <p style="color:#333;line-height:1.8;margin-bottom:20px">
-        Before checkout (or when user hovers over the add to cart or checkout button), a <strong>pop-up card</strong> appears with simple, evidence-based reflection questions:
-      </p>
-      <ul style="color:#555;line-height:1.8;margin-left:25px;margin-bottom:20px">
-        <li><em>How many similar items do you already own?</em></li>
-        <li><em>How many times do you think you'll wear this in the next year?</em></li>
-        <li><em>What would happen if you waited 24 hours before buying?</em></li>
-      </ul>
-      <p style="color:#666;font-size:14px;line-height:1.6">
-        Users can set their own "reflection intensity" (light prompts vs. deeper nudges).
-      </p>
-    </div>
-    <div style="flex:1;min-width:300px;background:#f5f5f5;border-radius:8px;height:350px;display:flex;align-items:center;justify-content:center">
-      <img src="assets/img/prototype-reflection.png" alt="Reflection prompts prototype" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:8px">
-    </div>
-  </div>
-
-  <div style="display:flex;gap:30px;align-items:center;background:#fff;border:1px solid #e0e0e0;border-radius:12px;padding:30px;margin-bottom:30px;flex-wrap:wrap">
-    <div style="flex:1;min-width:300px">
-      <h3 style="font-size:20px;font-weight:600;margin-bottom:15px">Closet AI Comparison</h3>
-      <p style="color:#333;line-height:1.8;margin-bottom:20px">
-        AI scans past purchase history, saved receipts, or user-uploaded closet photos. When they hover over an item (e.g., a Zara blouse), the extension:
-      </p>
-      <ul style="color:#555;line-height:1.8;margin-left:25px;margin-bottom:0">
-        <li>Shows side-by-side images of <strong>similar items they already own</strong></li>
-        <li>Highlights overlap in color, style, and usage occasion</li>
-        <li>Provides a <strong>"cost per wear" projection</strong> based on their closet data</li>
-      </ul>
-    </div>
-    <div style="flex:1;min-width:300px;background:#f5f5f5;border-radius:8px;height:350px;display:flex;align-items:center;justify-content:center">
-      <img src="assets/img/prototype-closet.png" alt="Closet AI comparison prototype" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:8px">
-    </div>
-  </div>
-
-  <div style="display:flex;gap:30px;align-items:center;background:#fff;border:1px solid #e0e0e0;border-radius:12px;padding:30px;margin-bottom:30px;flex-wrap:wrap">
-    <div style="flex:1;min-width:300px">
-      <h3 style="font-size:20px;font-weight:600;margin-bottom:15px">Impact Awareness</h3>
-      <p style="color:#333;line-height:1.8;margin-bottom:20px">
-        A small tag overlays the item page with environmental and ethical cues:
-      </p>
-      <ul style="color:#555;line-height:1.8;margin-left:25px;margin-bottom:20px">
-        <li>Estimated <strong>water usage</strong> of item</li>
-        <li><strong>Carbon footprint equivalence</strong> (e.g., "= 50 miles of driving")</li>
-        <li>Quick fact like: <em>"Most fast fashion items are worn fewer than 10 times"</em></li>
-      </ul>
-      <p style="color:#666;font-size:14px;line-height:1.6">
-        Not judgmental, but <strong>framed as informational</strong>.
-      </p>
-    </div>
-    <div style="flex:1;min-width:300px;background:#f5f5f5;border-radius:8px;height:350px;display:flex;align-items:center;justify-content:center">
-      <img src="assets/img/prototype-impact.png" alt="Impact awareness prototype" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:8px">
-    </div>
-  </div>
-
-  <div style="display:flex;gap:30px;align-items:center;background:#fff;border:1px solid #e0e0e0;border-radius:12px;padding:30px;margin-bottom:30px;flex-wrap:wrap">
-    <div style="flex:1;min-width:300px">
-      <h3 style="font-size:20px;font-weight:600;margin-bottom:15px">Time Buffer</h3>
-      <p style="color:#333;line-height:1.8;margin-bottom:20px">
-        Option to add a <strong>"cool-down timer"</strong> (e.g., 24-hour waitlist) for certain websites.
-      </p>
-      <p style="color:#555;line-height:1.8">
-        Items can be added to a "Reflection Wishlist," where the user can revisit with fresh perspective.
-      </p>
-    </div>
-    <div style="flex:1;min-width:300px;background:#f5f5f5;border-radius:8px;height:350px;display:flex;align-items:center;justify-content:center">
-      <img src="assets/img/prototype-timer.png" alt="Time buffer prototype" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:8px">
-    </div>
-  </div>
-
-  <div style="display:flex;gap:30px;align-items:center;background:#fff;border:1px solid #e0e0e0;border-radius:12px;padding:30px">
-    <div style="flex:1;min-width:300px">
-      <h3 style="font-size:20px;font-weight:600;margin-bottom:15px">Gamified Goals</h3>
-      <p style="color:#333;line-height:1.8;margin-bottom:20px">
-        Users set <strong>personal sustainability or spending goals</strong> (e.g., "Limit 2 new pairs of shoes per season").
-      </p>
-      <p style="color:#333;line-height:1.8;margin-bottom:15px">Dashboard shows:</p>
-      <ul style="color:#555;line-height:1.8;margin-left:25px">
-        <li>Items purchased vs. avoided</li>
-        <li>Money saved</li>
-        <li>Impact reduced (water, emissions, waste)</li>
-      </ul>
-    </div>
-    <div style="flex:1;min-width:300px;background:#f5f5f5;border-radius:8px;height:350px;display:flex;align-items:center;justify-content:center">
-      <img src="assets/img/prototype-goals.png" alt="Gamified goals prototype" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:8px">
-    </div>
-  </div>
-</div>
-
-<div class="section">
-  <h2 class="section-header">Design Principles</h2>
-  <div style="background:#000;color:#fff;padding:30px;border-radius:12px;">
-    <div style="display:grid;gap:25px">
-      <div>
-        <h4 style="margin-bottom:10px;font-size:16px">Non-Judgmental</h4>
-        <p style="opacity:.9;font-size:14px;line-height:1.6">Questions rather than commands. Empowers choice without guilt or shame.</p>
+      <div class="section">
+        <h2 class="section-header">Customizable Intervention Intensity</h2>
+        <p style="color:#333;line-height:1.8;margin-bottom:30px">
+          Users can adjust the intensity of reflection prompts through our browser extension settings, allowing them to choose the level of intervention that works best for their shopping habits.
+        </p>
+        
+        <div class="spectrum-container">
+          <h3 class="spectrum-title">Spectrum of Reflection Prompts</h3>
+          
+          <div class="spectrum-bar">
+            <div class="extreme">EXTREME</div>
+            <div class="medium">MEDIUM</div>
+            <div class="light">LIGHT</div>
+          </div>
+          
+          <div class="spectrum-details">
+            <div class="spectrum-card extreme">
+              <h4>Extreme Intervention</h4>
+              <ul>
+                <li>UI is bigger, covering screen</li>
+                <li>Alarm noise</li>
+                <li>Wording is harsh and loud</li>
+                <li>Forces pause before proceeding</li>
+              </ul>
+            </div>
+            
+            <div class="spectrum-card medium">
+              <h4>Medium Intervention</h4>
+              <p>Examples from mid-review:</p>
+              <ul>
+                <li>Closet comparison</li>
+                <li>Reflection wishlist/timer</li>
+                <li>Goals reminder</li>
+                <li>Reflection prompts</li>
+              </ul>
+            </div>
+            
+            <div class="spectrum-card light">
+              <h4>Light Intervention</h4>
+              <ul>
+                <li>UI is just closet comparison</li>
+                <li>Subtle visual reminder</li>
+                <li>Non-intrusive notification</li>
+                <li>Easy to dismiss</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="spectrum-note">
+            <p>
+              <strong>Our Current Prototype:</strong> We're implementing the <strong>Medium</strong> level as the default setting, with the ability for users to adjust up or down based on their preferences. This balances effectiveness with user autonomy.
+            </p>
+          </div>
+        </div>
       </div>
-      <div>
-        <h4 style="margin-bottom:10px;font-size:16px">Contextual</h4>
-        <p style="opacity:.9;font-size:14px;line-height:1.6">Connects new purchases to existing wardrobe, making personal inventory psychologically present.</p>
+      
+      <div class="section">
+        <h2 class="section-header">Intervention Examples</h2>
+        <p style="color:#333;line-height:1.8;margin-bottom:30px">
+          Below are visual examples and detailed descriptions of how each intensity level appears to users during their shopping experience.
+        </p>
+        
+        <div class="feature-card">
+          <div class="feature-text">
+            <h3>Extreme: High-Impact Intervention</h3>
+            <p>
+              The most assertive intervention level, designed for users who want maximum support in curbing impulse purchases.
+            </p>
+            <p><strong>Visual Design:</strong></p>
+            <ul>
+              <li>Full-screen overlay blocking shopping site</li>
+              <li>Countdown timer forcing 1-hour pause</li>
+              <li>Grid of similar items from wardrobe</li>
+            </ul>
+            <p><strong>Interaction Pattern:</strong></p>
+            <ul>
+              <li>User cannot proceed until timer expires</li>
+              <li>Must acknowledge each similar item</li>
+              <li>Optional alarm sound notification</li>
+              <li>Requires explicit confirmation to continue</li>
+            </ul>
+          </div>
+          <div class="feature-visual">
+            [Screenshot: Full-screen modal overlay with warning colors, countdown timer, and comparison grid showing similar wardrobe items]
+          </div>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-text">
+            <h3>Medium: Balanced Reflection Prompt</h3>
+            <p>
+              The default setting that balances intervention effectiveness with user autonomy and shopping experience.
+            </p>
+            <p><strong>Visual Design:</strong></p>
+            <ul>
+              <li>Sidebar modal (doesn't block entire page)</li>
+              <li>Side-by-side comparison with wardrobe items</li>
+              <li>Personal goals reminder at bottom</li>
+            </ul>
+            <p><strong>Interaction Pattern:</strong></p>
+            <ul>
+              <li>Can dismiss after reviewing similar items</li>
+              <li>Optional wishlist timer feature</li>
+              <li>Two clear buttons: "Add to Wishlist" or "Continue to Cart"</li>
+              <li>No forced waiting period</li>
+            </ul>
+          </div>
+          <div class="feature-visual">
+            [Screenshot: Sidebar popup with closet comparison, reflection questions, and goals reminder with clear call-to-action buttons]
+          </div>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-text">
+            <h3>Light: Subtle Visual Reminder</h3>
+            <p>
+              A gentle nudge that provides information without disrupting the shopping flow, ideal for users who prefer minimal intervention.
+            </p>
+            <p><strong>Visual Design:</strong></p>
+            <ul>
+              <li>Small banner notification at page top</li>
+              <li>Thumbnail grid of similar items only</li>
+              <li>Collapsible to dismiss easily</li>
+            </ul>
+            <p><strong>Interaction Pattern:</strong></p>
+            <ul>
+              <li>Non-blocking, informational only</li>
+              <li>Auto-dismisses after 5 seconds</li>
+              <li>No action required to proceed</li>
+            </ul>
+          </div>
+          <div class="feature-visual">
+            [Screenshot: Small notification banner at top of page showing thumbnail images of similar wardrobe items with minimal text]
+          </div>
+        </div>
+        
       </div>
-      <div>
-        <h4 style="margin-bottom:10px;font-size:16px">Timely</h4>
-        <p style="opacity:.9;font-size:14px;line-height:1.6">Intervenes at the exact moment of decision when behavior can still change.</p>
-      </div>
-      <div>
-        <h4 style="margin-bottom:10px;font-size:16px">Brief</h4>
-        <p style="opacity:.9;font-size:14px;line-height:1.6">A speed bump, not a roadblock. Seconds of reflection, not minutes of friction.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
+      
     </div>
   </main>
+  
   <script src="assets/js/app.js"></script>
 </body>
 </html>
