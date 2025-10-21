@@ -117,10 +117,14 @@
       margin-bottom: 40px;
     }
     
-    .diagram-description p {
+    .diagram-description > p {
       color: #333;
       line-height: 1.8;
       margin-bottom: 15px;
+    }
+    
+    .diagram-description > p:last-of-type {
+      margin-bottom: 0;
     }
     
     .diagram-description ul {
@@ -131,6 +135,98 @@
     
     .diagram-description ul li {
       margin-bottom: 10px;
+    }
+    
+    .component-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 25px;
+    }
+    
+    .component-box {
+      background: #fff;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      min-height: 80px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .component-box:hover {
+      border-color: #000;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+    
+    .component-title {
+      font-weight: 600;
+      font-size: 15px;
+      color: #000;
+      margin-bottom: 10px;
+    }
+    
+    .component-detail {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.6;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+    
+    .component-box:hover .component-detail {
+      max-height: 200px;
+      opacity: 1;
+    }
+    
+    .color-legend {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 15px;
+      background: #fff;
+      border-radius: 8px;
+      border: 2px solid #e0e0e0;
+    }
+    
+    .legend-line {
+      width: 40px;
+      height: 3px;
+      border-radius: 2px;
+    }
+    
+    .legend-line.blue {
+      background: #4A90E2;
+    }
+    
+    .legend-line.grey {
+      background: #999;
+    }
+    
+    .legend-text {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.5;
+    }
+    
+    .legend-text strong {
+      color: #000;
+      display: block;
+      margin-bottom: 2px;
     }
   </style>
 </head>
@@ -167,18 +263,40 @@
           <p>
             This UML diagram illustrates the key components, relationships, and data flows within the Shopping Speed Bump system. It shows how different classes interact to provide a seamless intervention experience during online shopping.
           </p>
-          <p><strong>Key components include:</strong></p>
-          <ul>
-            <li><strong>User & Shopping Context:</strong> User profiles, preferences, and current shopping session management</li>
-            <li><strong>Item & Wardrobe Management:</strong> Product details, wardrobe inventory, and similarity detection algorithms</li>
-            <li><strong>Category & Comparison:</strong> Classification system and visual comparison tools</li>
-            <li><strong>Intervention Logic:</strong> Intensity settings and trigger mechanisms for different intervention levels</li>
-          </ul>
-          <p><strong>Relationship Color Coding:</strong></p>
-          <ul>
-            <li><strong style="color:#4A90E2;">Blue lines (reflection prompt):</strong> Relationships between the user and their set reflection prompt intensity in settings</li>
-            <li><strong style="color:#999;">Grey lines (wardrobe query):</strong> Comparisons between shopping data and the user's existing closet inventory</li>
-          </ul>
+          
+          <p><strong>Key components (hover to reveal details):</strong></p>
+          <div class="component-grid">
+            <div class="component-box">
+              <div class="component-title">User & Shopping Context</div>
+              <div class="component-detail">User profiles, preferences, and current shopping session management</div>
+            </div>
+            
+            <div class="component-box">
+              <div class="component-title">Item & Wardrobe Management</div>
+              <div class="component-detail">Product details, wardrobe inventory, and similarity detection algorithms</div>
+            </div>
+            
+            <div class="component-box">
+              <div class="component-title">Category & Comparison</div>
+              <div class="component-detail">Classification system and visual comparison tools</div>
+            </div>
+            
+            <div class="component-box">
+              <div class="component-title">Intervention Logic</div>
+              <div class="component-detail">Intensity settings and trigger mechanisms for different intervention levels</div>
+            </div>
+            
+            <div class="component-box">
+              <div class="component-title">Reflection Prompt <span style="color:#4A90E2;font-size:18px;">→</span></div>
+              <div class="component-detail">Relationships between the user and their set reflection prompt intensity in settings</div>
+            </div>
+            
+            <div class="component-box">
+              <div class="component-title">Wardrobe Query <span style="color:#999;font-size:18px;">→</span></div>
+              <div class="component-detail">Comparisons between shopping data and the user's existing closet inventory</div>
+            </div>
+          </div>
+          
           <p style="color:#666;font-size:14px;margin-top:20px;">
             <em>Tip: Use both horizontal and vertical scrolling to explore the full diagram. Use zoom controls to focus on specific class relationships and details.</em>
           </p>
