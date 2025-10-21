@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UML Diagram</title>
+  <link rel="stylesheet" href="assets/css/styles.css"/>
+  <style>
+    .diagram-container {
+      background: #f8f8f8;
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 40px;
+      overflow: scroll;
+      overflow-x: scroll;
+      overflow-y: scroll;
+      max-height: 85vh;
+      max-width: 100%;
+      position: relative;
+    }
+    
+    .zoom-controls {
+      position: sticky;
+      top: 10px;
+      right: 10px;
+      z-index: 10;
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      margin-bottom: 15px;
+    }
+    
+    .zoom-btn {
+      background: #fff;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: #333;
+    }
+    
+    .zoom-btn:hover {
+      background: #000;
+      color: #fff;
+      border-color: #000;
+    }
+    
+    .zoom-level {
+      background: #fff;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #666;
+    }
+    
+    .diagram-wrapper {
+      transform-origin: top left;
+      transition: transform 0.3s ease;
+    }
+    
+    .diagram-container::-webkit-scrollbar {
+      width: 12px;
+      height: 12px;
+    }
+    
+    .diagram-container::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+    
+    .diagram-container::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 10px;
+    }
+    
+    .diagram-container::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+    
+    .diagram-placeholder {
+      background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+      border: 2px dashed #ccc;
+      border-radius: 8px;
+      min-height: 1400px;
+      min-width: 2000px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 16px;
+      text-align: center;
+      padding: 40px;
+      line-height: 1.8;
+    }
+    
+    .diagram-placeholder p {
+      max-width: 500px;
+    }
+    
+    .diagram-image {
+      max-width: none;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+    }
+    
+    .diagram-description {
+      background: #f9f9f9;
+      padding: 30px;
+      border-radius: 12px;
+      margin-bottom: 40px;
+    }
+    
+    .diagram-description p {
+      color: #333;
+      line-height: 1.8;
+      margin-bottom: 15px;
+    }
+    
+    .diagram-description ul {
+      color: #555;
+      line-height: 1.8;
+      margin-left: 25px;
+    }
+    
+    .diagram-description ul li {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  
+  <nav class="nav-sidebar" id="navSidebar">
+    <div class="nav-logo"></div>
+    <div class="nav-subtitle">Fall 2025 • Design 8131</div>
+    <ul class="nav-menu">
+      <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+      <li class="nav-item"><a href="knowledge.html" class="nav-link">State of Knowledge</a></li>
+      <li class="nav-item"><a href="community.html" class="nav-link">Community Practice</a></li>
+      <li class="nav-item"><a href="literature.html" class="nav-link">Literature Review</a></li>
+      <li class="nav-item"><a href="ontology.html" class="nav-link">Ontology Diagram</a></li>
+      <li class="nav-item"><a href="prototype.html" class="nav-link">Radical Prototype 10/16</a></li>
+      <li class="nav-item"><a href="prototype_2.html" class="nav-link">Radical Prototype 10/23</a></li>
+      <li class="nav-item"><a href="forking.html" class="nav-link">Forking Paths</a></li>
+      <li class="nav-item"><a href="barriers.html" class="nav-link">Barriers to Entry</a></li>
+      <li class="nav-item"><a href="uml_diagram.html" class="nav-link active">UML Diagram</a></li>
+    </ul>
+  </nav>
+    
+  <button class="menu-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  <main class="main-content">
+    <div class="header">
+      <div class="header-meta">Variables & Relationships</div>
+      <h1 class="page-title">UML Diagram</h1>
+      <p class="page-subtitle">Understanding the units within our system</p>
+    </div>
+    <div class="content">
+      
+      <div class="section">
+        <div class="diagram-description">
+          <p>
+            This UML diagram illustrates the key components, relationships, and data flows within the Shopping Speed Bump system. It shows how different classes interact to provide a seamless intervention experience during online shopping.
+          </p>
+          <p><strong>Key components include:</strong></p>
+          <ul>
+            <li><strong>User & Shopping Context:</strong> User profiles, preferences, and current shopping session management</li>
+            <li><strong>Item & Wardrobe Management:</strong> Product details, wardrobe inventory, and similarity detection algorithms</li>
+            <li><strong>Category & Comparison:</strong> Classification system and visual comparison tools</li>
+            <li><strong>Intervention Logic:</strong> Intensity settings and trigger mechanisms for different intervention levels</li>
+          </ul>
+          <p><strong>Relationship Color Coding:</strong></p>
+          <ul>
+            <li><strong style="color:#4A90E2;">Blue lines (reflection prompt):</strong> Relationships between the user and their set reflection prompt intensity in settings</li>
+            <li><strong style="color:#999;">Grey lines (wardrobe query):</strong> Comparisons between shopping data and the user's existing closet inventory</li>
+          </ul>
+          <p style="color:#666;font-size:14px;margin-top:20px;">
+            <em>Tip: Use both horizontal and vertical scrolling to explore the full diagram. Use zoom controls to focus on specific class relationships and details.</em>
+          </p>
+        </div>
+        
+        <div class="diagram-container" id="diagramContainer">
+          <div class="zoom-controls">
+            <button class="zoom-btn" onclick="zoomOut()">−</button>
+            <div class="zoom-level" id="zoomLevel">100%</div>
+            <button class="zoom-btn" onclick="zoomIn()">+</button>
+            <button class="zoom-btn" onclick="resetZoom()">Reset</button>
+          </div>
+          
+          <div class="diagram-wrapper" id="diagramWrapper">
+            <div class="diagram-placeholder">
+              <p>
+                <strong>UML Diagram Placeholder</strong><br><br>
+                Your UML diagram image will be displayed here.<br>
+                Use the zoom controls above to zoom in/out.<br>
+                The container is scrollable to accommodate large diagrams.<br><br>
+                Replace this placeholder with:<br>
+                &lt;img src="assets/img/uml-diagram.png" alt="UML Diagram" class="diagram-image"&gt;
+              </p>
+            </div>
+          </div>
+          
+          <!-- Uncomment and use this when you have your image ready:
+          <div class="diagram-wrapper" id="diagramWrapper">
+            <img src="assets/img/uml-diagram.png" alt="UML Diagram" class="diagram-image">
+          </div>
+          -->
+        </div>
+      </div>
+      
+    </div>
+  </main>
+  <script src="assets/js/app.js"></script>
+  <script>
+    let currentZoom = 1;
+    const minZoom = 0.25;
+    const maxZoom = 3;
+    const zoomStep = 0.25;
+    
+    function updateZoom() {
+      const wrapper = document.getElementById('diagramWrapper');
+      const zoomLevel = document.getElementById('zoomLevel');
+      wrapper.style.transform = `scale(${currentZoom})`;
+      zoomLevel.textContent = `${Math.round(currentZoom * 100)}%`;
+    }
+    
+    function zoomIn() {
+      if (currentZoom < maxZoom) {
+        currentZoom += zoomStep;
+        updateZoom();
+      }
+    }
+    
+    function zoomOut() {
+      if (currentZoom > minZoom) {
+        currentZoom -= zoomStep;
+        updateZoom();
+      }
+    }
+    
+    function resetZoom() {
+      currentZoom = 1;
+      updateZoom();
+    }
+  </script>
+</body>
+</html>
