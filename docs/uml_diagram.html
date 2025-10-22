@@ -20,10 +20,68 @@
       position: relative;
     }
     
+    .zoom-controls {
+      position: sticky;
+      top: 10px;
+      left: 10px;
+      z-index: 10;
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    
+    .zoom-btn {
+      background: #fff;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: #333;
+    }
+    
+    .zoom-btn:hover {
+      background: #000;
+      color: #fff;
+      border-color: #000;
+    }
+    
+    .zoom-level {
+      background: #fff;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #666;
+    }
+    
+    .layer-toggle-btn {
+      background: #fff;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: #333;
+    }
+    
+    .layer-toggle-btn:hover {
+      background: #000;
+      color: #fff;
+      border-color: #000;
+    }
+    
     .diagram-layers {
       position: relative;
       min-height: 1400px;
       min-width: 2000px;
+      transform-origin: top left;
+      transition: transform 0.3s ease;
     }
     
     .diagram-layer {
@@ -315,9 +373,15 @@
         </div>
         
         <div class="diagram-container" id="diagramContainer">
-          <button class="layer-toggle-btn" id="toggleBtn" onclick="toggleLayer()">Click to Toggle Layers</button>
+          <div class="zoom-controls">
+            <button class="zoom-btn" onclick="zoomOut()">−</button>
+            <div class="zoom-level" id="zoomLevel">100%</div>
+            <button class="zoom-btn" onclick="zoomIn()">+</button>
+            <button class="zoom-btn" onclick="resetZoom()">Reset</button>
+            <button class="layer-toggle-btn" id="toggleBtn" onclick="toggleLayer()">Hide Overlay</button>
+          </div>
           
-          <div class="diagram-layers">
+          <div class="diagram-layers" id="diagramLayers">
             <!-- Background Layer (always visible, clickable to show overlay) -->
             <div class="diagram-layer background" id="backgroundLayer" onclick="toggleLayer()">
               <img src="assets/img/background.png" alt="UML Background Diagram" style="width:100%;height:auto;display:block;">
@@ -335,18 +399,54 @@
   </main>
   <script src="assets/js/app.js"></script>
   <script>
+    let currentZoom = 0.5;
+    const minZoom = 0.25;
+    const maxZoom = 3;
+    const zoomStep = 0.25;
+    
+    function updateZoom() {
+      const layers = document.getElementById('diagramLayers');
+      const zoomLevel = document.getElementById('zoomLevel');
+      layers.style.transform = `scale(${currentZoom})`;
+      zoomLevel.textContent = `${Math.round(currentZoom * 100)}%`;
+    }
+    
+    function zoomIn() {
+      if (currentZoom < maxZoom) {
+        currentZoom += zoomStep;
+        updateZoom();
+      }
+    }
+    
+    function zoomOut() {
+      if (currentZoom > minZoom) {
+        currentZoom -= zoomStep;
+        updateZoom();
+      }
+    }
+    
+    function resetZoom() {
+      currentZoom = 0.5;
+      updateZoom();
+    }
+    
     function toggleLayer() {
       const foreground = document.getElementById('foregroundLayer');
       const toggleBtn = document.getElementById('toggleBtn');
       
       if (foreground.classList.contains('hidden')) {
         foreground.classList.remove('hidden');
-        toggleBtn.textContent = 'Hide Overlay Layer';
+        toggleBtn.textContent = 'Hide Overlay';
       } else {
         foreground.classList.add('hidden');
-        toggleBtn.textContent = 'Show Overlay Layer';
+        toggleBtn.textContent = 'Show Overlay';
       }
     }
+    
+    // Initialize zoom on page load
+    window.addEventListener('DOMContentLoaded', function() {
+      updateZoom();
+    });
   </script>
 </body>
 </html>
