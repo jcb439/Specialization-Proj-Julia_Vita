@@ -37,22 +37,20 @@
     
     .diagram-layer.background {
       z-index: 1;
-      opacity: 0;
+      opacity: 1;
+      cursor: pointer;
     }
     
     .diagram-layer.foreground {
       z-index: 2;
       opacity: 1;
       cursor: pointer;
+      background: transparent;
     }
     
     .diagram-layer.foreground.hidden {
       opacity: 0;
       pointer-events: none;
-    }
-    
-    .diagram-layer.background.visible {
-      opacity: 1;
     }
     
     .layer-toggle-btn {
@@ -320,43 +318,16 @@
           <button class="layer-toggle-btn" id="toggleBtn" onclick="toggleLayer()">Click to Toggle Layers</button>
           
           <div class="diagram-layers">
-            <!-- Background Layer -->
-            <div class="diagram-layer background" id="backgroundLayer">
-              <div class="diagram-placeholder" style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);">
-                <p>
-                  <strong>Background Layer</strong><br><br>
-                  This is the background diagram image.<br>
-                  Replace with:<br>
-                  &lt;img src="assets/img/uml-background.png" alt="UML Background" style="width:100%;height:auto;display:block;"&gt;
-                </p>
-              </div>
+            <!-- Background Layer (always visible, clickable to show overlay) -->
+            <div class="diagram-layer background" id="backgroundLayer" onclick="toggleLayer()">
+              <img src="assets/img/background.png" alt="UML Background Diagram" style="width:100%;height:auto;display:block;">
             </div>
             
-            <!-- Foreground Layer (clickable) -->
+            <!-- Foreground Layer (clickable with transparent background) -->
             <div class="diagram-layer foreground" id="foregroundLayer" onclick="toggleLayer()">
-              <div class="diagram-placeholder" style="background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);">
-                <p>
-                  <strong>Foreground Layer (Click Me)</strong><br><br>
-                  This is the foreground diagram image overlay.<br>
-                  Click anywhere on this layer to reveal the background.<br><br>
-                  Replace with:<br>
-                  &lt;img src="assets/img/uml-foreground.png" alt="UML Foreground" style="width:100%;height:auto;display:block;"&gt;
-                </p>
-              </div>
+              <img src="assets/img/covers.png" alt="UML Foreground Overlay" style="width:100%;height:auto;display:block;">
             </div>
           </div>
-          
-          <!-- Uncomment and use when you have your images ready:
-          <div class="diagram-layers">
-            <div class="diagram-layer background" id="backgroundLayer">
-              <img src="assets/img/uml-background.png" alt="UML Background Diagram" style="width:100%;height:auto;display:block;">
-            </div>
-            
-            <div class="diagram-layer foreground" id="foregroundLayer" onclick="toggleLayer()">
-              <img src="assets/img/uml-foreground.png" alt="UML Foreground Diagram" style="width:100%;height:auto;display:block;">
-            </div>
-          </div>
-          -->
         </div>
       </div>
       
@@ -364,23 +335,16 @@
   </main>
   <script src="assets/js/app.js"></script>
   <script>
-    let isBackgroundVisible = false;
-    
     function toggleLayer() {
       const foreground = document.getElementById('foregroundLayer');
-      const background = document.getElementById('backgroundLayer');
       const toggleBtn = document.getElementById('toggleBtn');
       
-      isBackgroundVisible = !isBackgroundVisible;
-      
-      if (isBackgroundVisible) {
-        foreground.classList.add('hidden');
-        background.classList.add('visible');
-        toggleBtn.textContent = 'Show Foreground Layer';
-      } else {
+      if (foreground.classList.contains('hidden')) {
         foreground.classList.remove('hidden');
-        background.classList.remove('visible');
-        toggleBtn.textContent = 'Show Background Layer';
+        toggleBtn.textContent = 'Hide Overlay Layer';
+      } else {
+        foreground.classList.add('hidden');
+        toggleBtn.textContent = 'Show Overlay Layer';
       }
     }
   </script>
