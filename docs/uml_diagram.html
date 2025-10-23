@@ -386,7 +386,6 @@
             <div class="component-title">Similarity Scoring Algorithm</div>
             <div class="component-detail">
               <strong>Challenge:</strong> Determining how similar a shopping item is to existing wardrobe items in a way that's personally relevant to each user.<br><br>
-              <strong>Approach:</strong> Multi-attribute weighted comparison using color matching, category overlap, pattern recognition, and style similarity. Weights are adaptive and personalized - they adjust over time based on which attributes actually influence the user's purchase decisions and align with their stated goals.<br><br>
               <strong>Formula:</strong> Similarity = Σ(weight<sub>i</sub> × match<sub>i</sub>) where weights evolve based on user behavior
             </div>
           </div>
@@ -395,7 +394,6 @@
             <div class="component-title">Threshold Optimization</div>
             <div class="component-detail">
               <strong>Challenge:</strong> Setting the right similarity threshold to trigger interventions without causing alert fatigue.<br><br>
-              <strong>Approach:</strong> Dynamic threshold adjustment based on user behavior. If users frequently dismiss prompts, threshold increases. If users often reconsider purchases, threshold may lower.<br><br>
               <strong>Adaptive formula:</strong> New Threshold = Current Threshold ± (Dismiss Rate × Adjustment Factor)
             </div>
           </div>
@@ -404,7 +402,6 @@
             <div class="component-title">Adaptive Weight Calibration</div>
             <div class="component-detail">
               <strong>Challenge:</strong> Determining which attributes matter most for each individual user and adapting to their evolving preferences and goals.<br><br>
-              <strong>Approach:</strong> Weights are continuously recalibrated based on user behavior patterns - what similarities actually caused them to reconsider purchases, which attributes align with their stated goals (e.g., if goal is "reduce fast fashion," brand weight increases). The system learns from every interaction and adjusts to be more personally relevant over time.<br><br>
               <strong>Personalized learning:</strong> Initial weights → User behavior feedback → Goal alignment → Updated weights → Repeat
             </div>
           </div>
