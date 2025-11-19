@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PAL User Journey - Extreme Level</title>
+  <link rel="stylesheet" href="assets/css/styles.css"/>
+  <style>
+    /* Journey Container */
+    .journey-container {
+      background: #f9f9f9;
+      border: 2px solid #e0e0e0;
+      border-radius: 16px;
+      padding: 40px;
+      margin: 40px 0;
+      position: relative;
+    }
+    
+    .journey-frame {
+      display: flex;
+      align-items: stretch;
+      gap: 40px;
+      min-height: 500px;
+    }
+    
+    /* Back Navigation */
+    .journey-nav-back {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    
+    .nav-arrow {
+      width: 50px;
+      height: 50px;
+      background: #000;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      font-size: 20px;
+    }
+    
+    .nav-arrow:hover {
+      background: #333;
+      transform: scale(1.1);
+    }
+    
+    .nav-arrow:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    .nav-arrow svg {
+      width: 24px;
+      height: 24px;
+    }
+    
+    /* Image Frame */
+    .journey-image-frame {
+      flex: 1;
+      max-width: 350px;
+      background: #fff;
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 450px;
+    }
+    
+    .journey-image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    
+    .image-placeholder {
+      color: #999;
+      text-align: center;
+      padding: 40px;
+    }
+    
+    .image-placeholder svg {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 15px;
+      opacity: 0.5;
+    }
+    
+    /* Content Frame */
+    .journey-content {
+      flex: 1.5;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 20px 0;
+    }
+    
+    .step-indicator {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #999;
+      margin-bottom: 15px;
+    }
+    
+    .step-title {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: #000;
+    }
+    
+    .step-description {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #555;
+      margin-bottom: 30px;
+    }
+    
+    .pal-dialogue {
+      background: #fff;
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+      position: relative;
+    }
+    
+    .pal-dialogue::before {
+      content: 'PAL says:';
+      position: absolute;
+      top: -10px;
+      left: 15px;
+      background: #f9f9f9;
+      padding: 0 10px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #666;
+    }
+    
+    .pal-dialogue p {
+      font-size: 18px;
+      font-style: italic;
+      color: #333;
+      margin: 0;
+      line-height: 1.6;
+    }
+    
+    .pal-emotion {
+      font-size: 13px;
+      color: #888;
+      margin-top: 10px;
+      font-style: normal;
+    }
+    
+    /* Options */
+    .journey-options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .options-label {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #666;
+      margin-bottom: 5px;
+    }
+    
+    .option-btn {
+      padding: 15px 25px;
+      background: #000;
+      color: #fff;
+      border: 2px solid #000;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .option-btn:hover {
+      background: #333;
+      transform: translateX(5px);
+    }
+    
+    .option-btn.secondary {
+      background: #fff;
+      color: #000;
+    }
+    
+    .option-btn.secondary:hover {
+      background: #f5f5f5;
+    }
+    
+    .option-btn.yes {
+      background: #2e7d32;
+      border-color: #2e7d32;
+    }
+    
+    .option-btn.yes:hover {
+      background: #1b5e20;
+    }
+    
+    .option-btn.no {
+      background: #c62828;
+      border-color: #c62828;
+    }
+    
+    .option-btn.no:hover {
+      background: #b71c1c;
+    }
+    
+    .option-btn.add {
+      background: #1565c0;
+      border-color: #1565c0;
+    }
+    
+    .option-btn.add:hover {
+      background: #0d47a1;
+    }
+    
+    .option-btn.skip {
+      background: #f57c00;
+      border-color: #f57c00;
+    }
+    
+    .option-btn.skip:hover {
+      background: #e65100;
+    }
+    
+    .option-icon {
+      font-size: 18px;
+    }
+    
+    /* Progress indicator */
+    .journey-progress {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #e0e0e0;
+    }
+    
+    .progress-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ddd;
+      transition: all 0.3s ease;
+    }
+    
+    .progress-dot.active {
+      background: #000;
+      transform: scale(1.3);
+    }
+    
+    .progress-dot.visited {
+      background: #888;
+    }
+    
+    /* Path indicator */
+    .path-indicator {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 12px;
+      color: #888;
+      font-weight: 500;
+    }
+    
+    .path-indicator .path-name {
+      color: #000;
+      font-weight: 700;
+    }
+    
+    /* Text input simulation */
+    .text-input-container {
+      background: #fff;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+    
+    .text-input-container input {
+      width: 100%;
+      border: none;
+      font-size: 15px;
+      font-family: inherit;
+      outline: none;
+      color: #333;
+    }
+    
+    .text-input-container input::placeholder {
+      color: #999;
+    }
+    
+    /* Restart button */
+    .restart-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      padding: 8px 15px;
+      background: #fff;
+      border: 2px solid #e0e0e0;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: #666;
+    }
+    
+    .restart-btn:hover {
+      border-color: #000;
+      color: #000;
+    }
+    
+    /* Responsive */
+    @media (max-width: 900px) {
+      .journey-frame {
+        flex-direction: column;
+      }
+      
+      .journey-nav-back {
+        flex-direction: row;
+        justify-content: flex-start;
+        order: -1;
+      }
+      
+      .journey-image-frame {
+        max-width: 100%;
+        min-height: 350px;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <nav class="nav-sidebar" id="navSidebar">
+    <div class="nav-logo"></div>
+    <div class="nav-subtitle">Fall 2025 • Design 8131</div>
+    <ul class="nav-menu">
+      <li class="nav-item"><a href="index.html" class="nav-link ">Home</a></li>
+      <li class="nav-item"><a href="knowledge.html" class="nav-link ">State of Knowledge</a></li>
+      <li class="nav-item"><a href="community.html" class="nav-link ">Community Practice</a></li>
+      <li class="nav-item"><a href="literature.html" class="nav-link ">Literature Review</a></li>
+      <li class="nav-item"><a href="ontology.html" class="nav-link ">Ontology Diagram</a></li>
+      <li class="nav-item"><a href="prototype.html" class="nav-link ">Radical Prototype 10/16</a></li>
+      <li class="nav-item"><a href="prototype_2.html" class="nav-link ">Radical Prototype 10/23</a></li>
+      <li class="nav-item"><a href="forking.html" class="nav-link ">Forking Paths</a></li>
+      <li class="nav-item"><a href="barriers.html" class="nav-link ">Barriers to Entry</a></li>
+      <li class="nav-item"><a href="uml_diagram.html" class="nav-link ">UML Diagram</a></li>
+      <li class="nav-item"><a href="storyboard.html" class="nav-link ">User Journey Storyboards</a></li>
+      <li class="nav-item"><a href="meet_pal.html" class="nav-link active">Meet PAL</a></li>
+    </ul>
+  </nav>
+    
+  <button class="menu-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  <main class="main-content">
+    <div class="header">
+      <div class="header-meta">Interactive Prototype</div>
+      <h1 class="page-title">PAL User Journey</h1>
+      <p class="page-subtitle">Extreme Reflection Level Walkthrough</p>
+    </div>
+    <div class="content">
+      
+      <div class="section">
+        <p style="color:#333;line-height:1.8;margin-bottom:20px">
+          Experience the complete user journey of PAL (Personal AI Liaison) at the <strong>Extreme</strong> reflection level. This interactive walkthrough demonstrates how PAL intervenes when a user attempts to make an impulse purchase.
+        </p>
+        <p style="color:#666;font-size:14px;font-style:italic;margin-bottom:30px">
+          Use the back arrow to revisit previous steps. Click on the available options to advance through the journey.
+        </p>
+      </div>
+      
+      <div class="journey-container">
+        <button class="restart-btn" onclick="restartJourney()">↺ Restart Journey</button>
+        
+        <div class="journey-frame">
+          <!-- Back Navigation -->
+          <div class="journey-nav-back">
+            <button class="nav-arrow" id="backBtn" onclick="goBack()" disabled>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+          </div>
+          
+          <!-- Image Frame -->
+          <div class="journey-image-frame">
+            <div id="stepImage">
+              <div class="image-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                  <polyline points="21 15 16 10 5 21"></polyline>
+                </svg>
+                <div>Screenshot placeholder</div>
+                <div style="font-size:12px;margin-top:5px">Replace with Figma export</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Content Frame -->
+          <div class="journey-content">
+            <div class="step-indicator" id="stepIndicator">Step 1 of 8</div>
+            <h2 class="step-title" id="stepTitle">Starting Point</h2>
+            <div id="stepContent">
+              <!-- Dynamic content will be inserted here -->
+            </div>
+          </div>
+        </div>
+        
+        <div class="journey-progress" id="progressDots">
+          <!-- Progress dots will be generated dynamically -->
+        </div>
+        
+        <div class="path-indicator" id="pathIndicator">
+          Current path: <span class="path-name">Main Journey</span>
+        </div>
+      </div>
+      
+      <div class="section">
+        <h2 class="section-header">Journey Branches</h2>
+        <div style="background:#f9f9f9;padding:30px;border-radius:12px;">
+          <p style="color:#333;line-height:1.8;margin-bottom:20px">
+            The PAL Extreme journey has <strong>three possible endings</strong> based on user choices:
+          </p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px">
+            <div style="background:#fff;padding:20px;border-radius:8px;border-left:4px solid #2e7d32">
+              <h4 style="margin-bottom:10px;color:#2e7d32">✓ Good Choice Path</h4>
+              <p style="font-size:14px;color:#666;line-height:1.6">User decides not to purchase. PAL celebrates the mindful decision.</p>
+            </div>
+            <div style="background:#fff;padding:20px;border-radius:8px;border-left:4px solid #1565c0">
+              <h4 style="margin-bottom:10px;color:#1565c0">📋 Wishlist Path</h4>
+              <p style="font-size:14px;color:#666;line-height:1.6">User adds item to 24-hour wishlist for later consideration.</p>
+            </div>
+            <div style="background:#fff;padding:20px;border-radius:8px;border-left:4px solid #c62828">
+              <h4 style="margin-bottom:10px;color:#c62828">🚫 Blocked Path</h4>
+              <p style="font-size:14px;color:#666;line-height:1.6">User insists on purchase. PAL blocks the site for 1 hour.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </main>
+  
+  <script src="assets/js/app.js"></script>
+  <script>
+    // Journey data structure
+    const journeySteps = {
+      // Step 1: Starting
+      'start': {
+        id: 'start',
+        title: 'Shopping Online',
+        indicator: 'Step 1',
+        image: 'assets/img/journey/step-1-start.png',
+        content: `
+          <div class="step-description">
+            The user is browsing SSense (the retailer) and finds a red purse they like. They click to add the item to their bag.
+          </div>
+          <div class="journey-options">
+            <div class="options-label">User Action</div>
+            <button class="option-btn" onclick="goToStep('pal-appears')">
+              <span class="option-icon">🛒</span>
+              Click "Add to Bag"
+            </button>
+          </div>
+        `,
+        path: 'Main Journey',
+        canGoBack: false
+      },
+      
+      // Step 2: PAL appears
+      'pal-appears': {
+        id: 'pal-appears',
+        title: 'PAL Slides In',
+        indicator: 'Step 2',
+        image: 'assets/img/journey/step-2-waving.png',
+        content: `
+          <div class="pal-dialogue">
+            <p>"HOLD ON. We need to talk."</p>
+            <div class="pal-emotion">PAL waves hello</div>
+          </div>
+          <div class="step-description">
+            PAL slides into the screen, blocking the "Add to Bag" button with a red rectangle. The user cannot proceed without engaging with PAL.
+          </div>
+          <div class="journey-options">
+            <div class="options-label">User Action</div>
+            <button class="option-btn" onclick="goToStep('warning')">
+              <span class="option-icon">→</span>
+              Click Continue
+            </button>
+          </div>
+        `,
+        path: 'Main Journey',
+        canGoBack: true,
+        prevStep: 'start'
+      },
+      
+      // Step 3: Warning
+      'warning': {
+        id: 'warning',
+        title: 'The Warning',
+        indicator: 'Step 3',
+        image: 'assets/img/journey/step-3-warning.png',
+        content: `
+          <div class="pal-dialogue">
+            <p>"You're about to buy ANOTHER red purse..."</p>
+            <div class="pal-emotion">PAL waves in caution</div>
+          </div>
+          <div class="step-description">
+            PAL changes gesture to express concern, alerting the user that this purchase might be redundant.
+          </div>
+          <div class="journey-options">
+            <div class="options-label">User Action</div>
+            <button class="option-btn" onclick="goToStep('comparison')">
+              <span class="option-icon">→</span>
+              Click Continue
+            </button>
+          </div>
+        `,
+        path: 'Main Journey',
+        canGoBack: true,
+        prevStep: 'pal-appears'
+      },
+      
+      // Step 4: Comparison
+      'comparison': {
+        id: 'comparison',
+        title: 'Wardrobe Comparison',
+        indicator: 'Step 4',
+        image: 'assets/img/journey/step-4-comparison.png',
+        content: `
+          <div class="pal-dialogue">
+            <p>"You already have THREE. Look!"</p>
+            <div class="pal-emotion">PAL points to a diagram</div>
+          </div>
+          <div class="step-description">
+            PAL shows 3 similar bags from the user's uploaded wardrobe. Each bag displays when it was added to their closet and its meaning/occasion.
+          </div>
+          <div class="journey-options">
+            <div class="options-label">User Action</div>
+            <button class="option-btn" onclick="goToStep('question')">
+              <span class="option-icon">✓</span>
+              Click Acknowledge
+            </button>
+          </div>
+        `,
+        path: 'Main Journey',
+        canGoBack: true,
+        prevStep: 'warning'
+      },
+      
+      // Step 5: Question
+      'question': {
+        id: 'question',
+        title: 'PAL Asks Why',
+        indicator: 'Step 5',
+        image: 'assets/img/journey/step-5-question.png',
+        content: `
+          <div class="pal-dialogue">
+            <p>"What does this one do that those three don't?"</p>
+            <div class="pal-emotion">PAL stands concerned, arms crossed</div>
+          </div>
+          <div class="step-description">
+            A text box appears under PAL's speech bubble, prompting the user to reflect and type a response.
+          </div>
+          <div class="text-input-container">
+            <input type="text" placeholder="Type your response to PAL..." id="userResponse">
+          </div>
+          <div class="journey-options">
+            <div class="options-label">User Action</div>
+            <button class="option-btn" onclick="goToStep('submit-response')">
+              <span class="option-icon">📝</span>
+              Submit Response
+            </button>
+          </div>
+        `,
+        path: 'Main Journey',
+        canGoBack: true,
+        prevStep: 'comparison'
+      },
+      
+      // Step 6: After response
+      'submit-response': {
+        id: 'submit-response',
+        title: 'Final Question',
+        indicator: 'Step 6',
+        image: 'assets/img/journey/step-6-thinking.png',
+        content: `
+          <div class="pal-dialogue">
+            <p>"Hmm. Are you sure you need this?"</p>
+            <div class="pal-emotion">PAL scratches his head</div>
+          </div>
+          <div class="step-description">
+            This is the critical decision point. The user's choice here determines which path the journey takes.
+          </div>
+          <div class="journey-options">
+            <div class="options-label">Choose Your Path</div>
+            <button class="option-btn no" onclick="goToStep('no-good-choice')">
+              <span class="option-icon">✗</span>
+              NO - I don't need it
+            </button>
+            <button class="option-btn yes" onclick="goToStep('yes-sigh')">
+              <span class="option-icon">✓</span>
+              YES - I still want it
+            </button>
+          </div>
+        `,
+        path: 'Main Journey',
+        canGoBack: true,
+        prevStep: 'question'
+      },
+      
+      // NO PATH - Good choice
+      'no-good-choice': {
+        id: 'no-good-choice',
+        title: 'Good Choice!',
+        indicator: 'Step 7',
+        image: 'assets/img/journey/step-no-happy.png',
+        content: `
+          <div class="pal-dialogue">
+            <p>"Good choice! See you later."</p>
+            <div class="pal-emotion">PAL looks happy with hands in the air</div>
+          </div>
+          <div class="step-description">
+            PAL celebrates the user's mindful decision not to make an impulsive purchase.
+          </div>
+          <div class="journey-options">
+            <div class="options-label">User Action</div>
+            <button class="option-btn" onclick="goToStep('no-dismiss')">
+              <span class="option-icon">👋</span>
+              Click Dismiss
+            </button>
+          </div>
+        `,
+        path: 'Good Choice Path',
+        canGoBack: true,
+        prevStep: 'submit-response'
+      },
+      
+      // NO PATH - Dismiss
+      'no-dismiss': {
+        id: 'no-dismiss',
+        title: 'Journey Complete',
+        indicator: 'Complete',
+        image: 'assets/img/journey/step-no-dismiss.png',
+        content: `
+          <div style="background:#2e7d32;color:#fff;padding:25px;border-radius:12px;margin-bottom:20px">
+            <h3 style="margin-bottom:10px">🎉 Mindful Decision Made!</h3>
+            <p style="opacity:0.95;line-height:1.6">PAL slides out of the screen along with the red rectangle. The user can continue browsing with the "Add to Bag" button now accessible.</p>
+          </div>
+          <div class="step-description">
+            The intervention successfully helped the user pause and reconsider. They avoided an impulse purchase of a redundant item.
+          </div>
+          <div class="journey-options">
+            <button class="option-btn secondary" onclick="restartJourney()">
+              <span class="option-icon">↺</span>
+              Restart Journey
+            </button>
+          </div>
+        `,
+        path: 'Good Choice Path',
+        canGoBack: true,
+        prevStep: 'no-good-choice'
+      },
+      
+      // YES PATH - Sigh
+      'yes-sigh': {
+        id: 'yes-sigh',
+        title: 'PAL Sighs',
+        indicator: 'Step 7',
+        image: 'assets/img/journey/step-yes-sigh.png',
+        content: `
+          <div class="pal-dialogue">
+            <p>"*sigh* You set this level for a reason."</p>
+            <div class="pal-emotion">PAL looks frustrated, arms crossed</div>
+          </div>
+          <div class="step-description">
+            PAL reminds the user that they chose the Extreme reflection level themselves, indicating they wanted strong intervention.
+          </div>
+          <div class="journey-options">
+            <div class="options-label">User Action</div>
+            <button class="option-btn" onclick="goToStep('yes-wishlist')">
+              <span class="option-icon">→</span>
+              Click Continue
+            </button>
+          </div>
+        `,
+        path: 'Insistent Path',
+        canGoBack: true,
+        prevStep: 'submit-response'
+      },
+      
+      // YES PATH - Wishlist offer
+      'yes-wishlist': {
+        id: 'yes-wishlist',
+        title: 'Wishlist Offer',
+        indicator: 'Step 8',
+        image: 'assets/img/journey/step-yes-wishlist.png',
+        content: `
+          <div class="pal-dialogue">
+            <p>"How about we add this bag to your wishlist?"</p>
+            <div class="pal-emotion">PAL angry with head tilted, arms crossed</div>
+          </div>
+          <div class="step-description">
+            PAL offers a compromise: add the item to a wishlist instead of buying immediately. This creates a cooling-off period.
+          </div>
+          <div class="journey-options">
+            <div class="options-label">Choose Your Path</div>
+            <button class="option-btn add" onclick="goToStep('add-wishlist')">
+              <span class="option-icon">📋</span>
+              ADD to Wishlist
+            </button>
+            <button class="option-btn skip" onclick="goToStep('skip-fine')">
+              <span class="option-icon">⏭</span>
+              SKIP - I want to buy now
+            </button>
+          </div>
+        `,
+        path: 'Insistent Path',
+        canGoBack: true,
+        prevStep: 'yes-sigh'
+      },
+      
+      // ADD PATH - Added to wishlist
+      'add-wishlist': {
+        id: 'add-wishlist',
+        title: 'Added to Wishlist',
+        indicator: 'Step 9',
+        image: 'assets/img/journey/step-add-success.png',
+        content: `
+          <div class="pal-dialogue">
+            <p>"Item added! You can buy in 24 hours."</p>
+            <div class="pal-emotion">PAL holds a digital version of the purse</div>
+          </div>
+          <div class="step-description">
+            The purse is added to an embodied, personalized wishlist. PAL now holds a visual representation of the item.
+          </div>
+          <div class="journey-options">
+            <div class="options-label">User Action</div>
+            <button class="option-btn" onclick="goToStep('add-dismiss')">
+              <span class="option-icon">👋</span>
+              Click Dismiss
+            </button>
+          </div>
+        `,
+        path: 'Wishlist Path',
+        canGoBack: true,
+        prevStep: 'yes-wishlist'
+      },
+      
+      // ADD PATH - Dismiss
+      'add-dismiss': {
+        id: 'add-dismiss',
+        title: 'Journey Complete',
+        indicator: 'Complete',
+        image: 'assets/img/journey/step-add-dismiss.png',
+        content: `
+          <div style="background:#1565c0;color:#fff;padding:25px;border-radius:12px;margin-bottom:20px">
+            <h3 style="margin-bottom:10px">📋 Added to Wishlist</h3>
+            <p style="opacity:0.95;line-height:1.6">PAL slides out and the red rectangle disappears. The item is saved for 24 hours, giving the user time to reconsider.</p>
+          </div>
+          <div class="step-description">
+            The intervention created a cooling-off period. The user can return tomorrow with fresh perspective to decide if they still want the item.
+          </div>
+          <div class="journey-options">
+            <button class="option-btn secondary" onclick="restartJourney()">
+              <span class="option-icon">↺</span>
+              Restart Journey
+            </button>
+          </div>
+        `,
+        path: 'Wishlist Path',
+        canGoBack: true,
+        prevStep: 'add-wishlist'
+      },
+      
+      // SKIP PATH - Fine
+      'skip-fine': {
+        id: 'skip-fine',
+        title: 'PAL Is Frustrated',
+        indicator: 'Step 9',
+        image: 'assets/img/journey/step-skip-fine.png',
+        content: `
+          <div class="pal-dialogue">
+            <p>"*sigh* Fine."</p>
+            <div class="pal-emotion">PAL visibly frustrated, arms crossed</div>
+          </div>
+          <div class="step-description">
+            PAL reluctantly accepts the user's decision but isn't done yet...
+          </div>
+          <div class="journey-options">
+            <div class="options-label">User Action</div>
+            <button class="option-btn" onclick="goToStep('skip-blocking')">
+              <span class="option-icon">→</span>
+              Click Continue
+            </button>
+          </div>
+        `,
+        path: 'Blocked Path',
+        canGoBack: true,
+        prevStep: 'yes-wishlist'
+      },
+      
+      // SKIP PATH - Blocking announcement
+      'skip-blocking': {
+        id: 'skip-blocking',
+        title: 'Site Blocking',
+        indicator: 'Step 10',
+        image: 'assets/img/journey/step-skip-blocking.png',
+        content: `
+          <div class="pal-dialogue">
+            <p>"But I'm blocking this site for an hour."</p>
+            <div class="pal-emotion">PAL still frustrated, arms crossed</div>
+          </div>
+          <div class="step-description">
+            PAL announces the consequence of the Extreme level: the shopping site will be temporarily blocked.
+          </div>
+          <div class="journey-options">
+            <div class="options-label">User Action</div>
+            <button class="option-btn" onclick="goToStep('skip-dismiss')">
+              <span class="option-icon">👋</span>
+              Click Dismiss
+            </button>
+          </div>
+        `,
+        path: 'Blocked Path',
+        canGoBack: true,
+        prevStep: 'skip-fine'
+      },
+      
+      // SKIP PATH - Dismiss and try again
+      'skip-dismiss': {
+        id: 'skip-dismiss',
+        title: 'PAL Leaves',
+        indicator: 'Step 11',
+        image: 'assets/img/journey/step-skip-dismiss.png',
+        content: `
+          <div class="step-description">
+            PAL slides out of the screen along with the red rectangle. The "Add to Bag" button is now visible. The user attempts to click it...
+          </div>
+          <div class="journey-options">
+            <div class="options-label">User Action</div>
+            <button class="option-btn" onclick="goToStep('skip-blocked')">
+              <span class="option-icon">🛒</span>
+              Try to Add to Bag
+            </button>
+          </div>
+        `,
+        path: 'Blocked Path',
+        canGoBack: true,
+        prevStep: 'skip-blocking'
+      },
+      
+      // SKIP PATH - Blocked screen
+      'skip-blocked': {
+        id: 'skip-blocked',
+        title: 'Site Blocked',
+        indicator: 'Complete',
+        image: 'assets/img/journey/step-skip-blocked.png',
+        content: `
+          <div style="background:#c62828;color:#fff;padding:25px;border-radius:12px;margin-bottom:20px">
+            <h3 style="margin-bottom:10px">🚫 Site Blocked for 59 Minutes</h3>
+            <p style="opacity:0.95;line-height:1.6">The screen transforms with a red tint and a large X over the site. The user cannot proceed with any purchases.</p>
+          </div>
+          <div class="step-description">
+            The Extreme level's ultimate intervention: a forced cooling-off period. The user must wait before they can access the site again.
+          </div>
+          <div class="journey-options">
+            <button class="option-btn secondary" onclick="restartJourney()">
+              <span class="option-icon">↺</span>
+              Restart Journey
+            </button>
+          </div>
+        `,
+        path: 'Blocked Path',
+        canGoBack: true,
+        prevStep: 'skip-dismiss'
+      }
+    };
+    
+    // Track journey state
+    let currentStep = 'start';
+    let history = ['start'];
+    let visitedSteps = new Set(['start']);
+    
+    // Initialize journey
+    function initJourney() {
+      renderStep(currentStep);
+      updateProgress();
+    }
+    
+    // Render a step
+    function renderStep(stepId) {
+      const step = journeySteps[stepId];
+      if (!step) return;
+      
+      // Update indicator
+      document.getElementById('stepIndicator').textContent = step.indicator;
+      
+      // Update title
+      document.getElementById('stepTitle').textContent = step.title;
+      
+      // Update content
+      document.getElementById('stepContent').innerHTML = step.content;
+      
+      // Update image
+      const imageContainer = document.getElementById('stepImage');
+      imageContainer.innerHTML = `
+        <img src="${step.image}" alt="${step.title}" class="journey-image" 
+             onerror="this.parentElement.innerHTML='<div class=\\'image-placeholder\\'><svg viewBox=\\'0 0 24 24\\' fill=\\'none\\' stroke=\\'currentColor\\' stroke-width=\\'1.5\\'><rect x=\\'3\\' y=\\'3\\' width=\\'18\\' height=\\'18\\' rx=\\'2\\' ry=\\'2\\'></rect><circle cx=\\'8.5\\' cy=\\'8.5\\' r=\\'1.5\\'></circle><polyline points=\\'21 15 16 10 5 21\\'></polyline></svg><div>${step.title}</div><div style=\\'font-size:12px;margin-top:5px\\'>Screenshot: ${step.id}</div></div>'">
+      `;
+      
+      // Update back button
+      const backBtn = document.getElementById('backBtn');
+      backBtn.disabled = !step.canGoBack;
+      
+      // Update path indicator
+      document.getElementById('pathIndicator').innerHTML = `Current path: <span class="path-name">${step.path}</span>`;
+      
+      // Update progress
+      updateProgress();
+    }
+    
+    // Go to a specific step
+    function goToStep(stepId) {
+      if (!journeySteps[stepId]) return;
+      
+      history.push(stepId);
+      currentStep = stepId;
+      visitedSteps.add(stepId);
+      
+      renderStep(stepId);
+    }
+    
+    // Go back
+    function goBack() {
+      if (history.length > 1) {
+        history.pop();
+        currentStep = history[history.length - 1];
+        renderStep(currentStep);
+      }
+    }
+    
+    // Restart journey
+    function restartJourney() {
+      currentStep = 'start';
+      history = ['start'];
+      visitedSteps = new Set(['start']);
+      renderStep(currentStep);
+    }
+    
+    // Update progress dots
+    function updateProgress() {
+      const mainPath = ['start', 'pal-appears', 'warning', 'comparison', 'question', 'submit-response'];
+      const container = document.getElementById('progressDots');
+      
+      let dotsHTML = '';
+      mainPath.forEach(stepId => {
+        let className = 'progress-dot';
+        if (stepId === currentStep) {
+          className += ' active';
+        } else if (visitedSteps.has(stepId)) {
+          className += ' visited';
+        }
+        dotsHTML += `<div class="${className}"></div>`;
+      });
+      
+      // Add indicator for branch
+      if (!mainPath.includes(currentStep)) {
+        dotsHTML += `<div class="progress-dot active"></div>`;
+      }
+      
+      container.innerHTML = dotsHTML;
+    }
+    
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', initJourney);
+  </script>
+</body>
+</html>
