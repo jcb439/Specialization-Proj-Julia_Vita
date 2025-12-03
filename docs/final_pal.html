@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PAL Companion - Agentic Design</title>
+  <link rel="stylesheet" href="assets/css/styles.css"/>
+  <style>
+    /* PAL-specific styles */
+    .pal-hero {
+      background: #000;
+      color: white;
+      padding: 80px;
+      border-radius: 12px;
+      margin-bottom: 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border: 3px solid #333;
+    }
+    
+    .pal-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+      animation: pulse 8s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.3; }
+      50% { transform: scale(1.1) rotate(180deg); opacity: 0.5; }
+    }
+    
+    .pal-hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .pal-hero h1 {
+      font-size: 56px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+    
+    .pal-hero p {
+      font-size: 20px;
+      opacity: 0.95;
+      max-width: 800px;
+      margin: 0 auto 30px;
+      line-height: 1.7;
+    }
+    
+    .pal-tagline {
+      font-size: 24px;
+      font-style: italic;
+      opacity: 0.9;
+      margin-top: 30px;
+    }
+    
+    /* System Overview - Compact with interactive steps */
+    .system-flow {
+      background: #f9f9f9;
+      border-radius: 12px;
+      padding: 30px;
+      margin: 30px 0;
+      border: 2px solid #e0e0e0;
+    }
+    
+    .flow-diagram {
+      display: flex;
+      align-items: stretch;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    
+    .flow-step {
+      flex: 1;
+      min-width: 150px;
+      text-align: center;
+      background: white;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 20px 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .flow-step:hover {
+      border-color: #000;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .flow-step.active {
+      background: #000;
+      border-color: #000;
+      color: white;
+    }
+    
+    .flow-arrow {
+      font-size: 24px;
+      color: #000;
+      flex: 0;
+      display: flex;
+      align-items: center;
+    }
+    
+    .flow-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 0;
+    }
+    
+    .flow-step.active .flow-label {
+      color: white;
+    }
+    
+    .flow-description {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.4;
+      margin-top: 10px;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+    
+    .flow-step.active .flow-description {
+      max-height: 100px;
+      opacity: 1;
+      color: #e0e0e0;
+    }
+    
+    /* Persona Cards - Compact with side image */
+    .persona-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      margin: 40px 0;
+    }
+    
+    .persona-card {
+      background: white;
+      border: 2px solid #e0e0e0;
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .persona-card:hover {
+      border-color: #000;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+      transform: translateY(-5px);
+    }
+    
+    .persona-header {
+      background: #000;
+      color: white;
+      padding: 20px 30px;
+      text-align: left;
+    }
+    
+    .persona-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    
+    .persona-subtitle {
+      font-size: 14px;
+      opacity: 0.9;
+      font-style: italic;
+    }
+    
+    .persona-body {
+      padding: 30px;
+      display: flex;
+      gap: 30px;
+      align-items: flex-start;
+    }
+    
+    .persona-image-container {
+      width: 180px;
+      height: 180px;
+      background: #f5f5f5;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    
+    .persona-image-placeholder {
+      color: #ccc;
+      font-size: 64px;
+      text-align: center;
+    }
+    
+    .persona-image-label {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    
+    .persona-content {
+      flex: 1;
+    }
+    
+    .behavioral-markers {
+      margin: 0;
+    }
+    
+    .behavioral-markers h4 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #333;
+    }
+    
+    .behavioral-markers ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .behavioral-markers li {
+      padding: 8px 0 8px 25px;
+      position: relative;
+      color: #555;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    
+    .behavioral-markers li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: #000;
+      font-weight: bold;
+    }
+    
+    .pal-journey-note {
+      background:#f9f9f9;
+      padding:15px;
+      border-radius:8px;
+      margin-top:20px;
+      border-left:3px solid #000;
+    }
+    
+    .pal-journey-note h4 {
+      font-size:14px;
+      margin-bottom:8px;
+      color:#333;
+    }
+    
+    .pal-journey-note p {
+      color:#555;
+      font-size:12px;
+      line-height:1.6;
+      margin: 0;
+    }
+    
+    /* Evolution Timeline - Vertical with side-by-side layout */
+    .evolution-section {
+      background: #f5f5f5;
+      padding: 40px;
+      border-radius: 16px;
+      margin: 40px 0;
+      border: 2px solid #e0e0e0;
+    }
+    
+    .evolution-container {
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+      margin: 30px 0;
+    }
+    
+    .evolution-timeline {
+      flex: 0 0 auto;
+      position: relative;
+    }
+    
+    .timeline-stages {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      gap: 30px;
+      padding: 20px 0;
+    }
+    
+    .timeline-line {
+      display: none;
+    }
+    
+    .stage-container {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      position: relative;
+      z-index: 2;
+      width: 400px;
+    }
+    
+    .stage-image-container {
+      width: 150px;
+      height: 150px;
+      background: white;
+      border: 3px solid #000;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #999;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+      text-align: center;
+      padding: 5px;
+    }
+    
+    .stage-image-container:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      border-width: 4px;
+    }
+    
+    .stage-image-container.active {
+      background: #000;
+      color: white;
+      transform: scale(1.15);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+      border-width: 4px;
+    }
+    
+    .stage-info {
+      flex: 1;
+      text-align: left;
+    }
+    
+    .stage-number {
+      font-size: 16px;
+      font-weight: 700;
+      color: #000;
+      margin-bottom: 5px;
+    }
+    
+    .stage-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #333;
+      line-height: 1.4;
+    }
+    
+    /* Character Details Panel - Side by side */
+    .character-details {
+      flex: 1;
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      border: 2px solid #e0e0e0;
+      min-height: 400px;
+      position: sticky;
+      top: 100px;
+      transition: all 0.4s ease;
+      align-self: flex-start;
+    }
+    
+    .character-details.visible {
+      border-color: #000;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+    
+    .character-details h4 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #000;
+      margin-bottom: 15px;
+    }
+    
+    .character-details p {
+      color: #555;
+      line-height: 1.8;
+      font-size: 14px;
+    }
+    
+    .character-traits {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    
+    .trait-badge {
+      background: #f0f0f0;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      color: #555;
+      border: 1px solid #e0e0e0;
+    }
+    
+    /* Relationship Building Section */
+    .relationship-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin: 40px 0;
+    }
+    
+    .relationship-card {
+      background: white;
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 30px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .relationship-card:hover {
+      border-color: #000;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    .relationship-icon {
+      font-size: 40px;
+      margin-bottom: 15px;
+    }
+    
+    .relationship-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #333;
+    }
+    
+    .relationship-description {
+      color: #666;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    
+    /* Design Principles */
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin: 40px 0;
+    }
+    
+    .principle-box {
+      background: #000;
+      color: white;
+      padding: 30px;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: 3px solid #333;
+    }
+    
+    .principle-box:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+      border-color: #666;
+    }
+    
+    .principle-number {
+      font-size: 48px;
+      font-weight: 200;
+      opacity: 0.3;
+      margin-bottom: 15px;
+    }
+    
+    .principle-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    
+    .principle-text {
+      font-size: 14px;
+      opacity: 0.95;
+      line-height: 1.7;
+    }
+    
+    /* Interaction showcase */
+    .interaction-showcase {
+      background: white;
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 40px;
+      margin: 40px 0;
+    }
+    
+    .interaction-demo {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    
+    .demo-visual {
+      flex: 1;
+      min-width: 300px;
+      height: 400px;
+      background: #f9f9f9;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 80px;
+      border: 2px dashed #e0e0e0;
+    }
+    
+    .demo-description {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .demo-description h4 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #333;
+    }
+    
+    .demo-description p {
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 15px;
+    }
+    
+    .feature-list {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .feature-list li {
+      padding: 10px 0 10px 30px;
+      position: relative;
+      color: #555;
+      line-height: 1.6;
+    }
+    
+    .feature-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #667eea;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      .pal-hero {
+        padding: 60px 40px;
+      }
+      
+      .pal-hero h1 {
+        font-size: 42px;
+      }
+      
+      .persona-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .timeline-stages {
+        overflow-x: scroll;
+        justify-content: flex-start;
+      }
+      
+      .system-flow {
+        padding: 30px;
+      }
+      
+      .flow-diagram {
+        flex-direction: column;
+      }
+      
+      .flow-arrow {
+        transform: rotate(90deg);
+      }
+    }
+    
+    @media (max-width: 640px) {
+      .pal-hero {
+        padding: 40px 20px;
+      }
+      
+      .pal-hero h1 {
+        font-size: 32px;
+      }
+      
+      .evolution-section {
+        padding: 30px 20px;
+      }
+      
+      .stage-image-container {
+        width: 100px;
+        height: 100px;
+        font-size: 36px;
+      }
+      
+      .interaction-demo {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <nav class="nav-sidebar" id="navSidebar">
+    <div class="nav-logo">Shopping Speed Bump</div>
+    <div class="nav-subtitle">Fall 2025 • Design 8131</div>
+    <ul class="nav-menu">
+      <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+      <li class="nav-item"><a href="knowledge.html" class="nav-link">State of Knowledge</a></li>
+      <li class="nav-item"><a href="community.html" class="nav-link">Community Practice</a></li>
+      <li class="nav-item"><a href="literature.html" class="nav-link">Literature Review</a></li>
+      <li class="nav-item"><a href="ontology.html" class="nav-link">Ontology Diagram</a></li>
+      <li class="nav-item"><a href="prototype.html" class="nav-link">Radical Prototype 10/16</a></li>
+      <li class="nav-item"><a href="prototype_2.html" class="nav-link">Radical Prototype 10/23</a></li>
+      <li class="nav-item"><a href="forking.html" class="nav-link">Forking Paths</a></li>
+      <li class="nav-item"><a href="barriers.html" class="nav-link">Barriers to Entry</a></li>
+      <li class="nav-item"><a href="uml_diagram.html" class="nav-link">UML Diagram</a></li>
+      <li class="nav-item"><a href="meet_pal.html" class="nav-link ">Meet PAL</a></li>
+      <li class="nav-item"><a href="final_pal.html" class="nav-link active">PAL Companion</a></li>
+    </ul>
+  </nav>
+    
+  <button class="menu-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  
+  <main class="main-content">
+    <div class="header">
+      <div class="header-meta">Agentic Design Evolution</div>
+      <h1 class="page-title">PAL: Your Personal Agentic Companion</h1>
+      <p class="page-subtitle">A living reflection of your shopping journey that transforms alongside you</p>
+    </div>
+    
+    <div class="content">
+      
+      <!-- System Overview -->
+      <div class="section">
+        <h2 class="section-header">How PAL Works</h2>
+        <p style="color:#333;line-height:1.8;margin-bottom:30px">
+          PAL creates a unique, evolving relationship by analyzing shopping patterns and reflecting them through an adaptive character. Click each step to learn more.
+        </p>
+        
+        <div class="system-flow">
+          <div class="flow-diagram">
+            <div class="flow-step" onclick="toggleFlowStep(this)">
+              <div class="flow-label">Data Mining</div>
+              <div class="flow-description">
+                Analyzes shopping habits and purchase history
+              </div>
+            </div>
+            
+            <div class="flow-arrow">→</div>
+            
+            <div class="flow-step" onclick="toggleFlowStep(this)">
+              <div class="flow-label">AI Engine</div>
+              <div class="flow-description">
+                Generates character archetype unique to each user
+              </div>
+            </div>
+            
+            <div class="flow-arrow">→</div>
+            
+            <div class="flow-step" onclick="toggleFlowStep(this)">
+              <div class="flow-label">Character Evolution</div>
+              <div class="flow-description">
+                PAL adapts as user habits change
+              </div>
+            </div>
+            
+            <div class="flow-arrow">→</div>
+            
+            <div class="flow-step" onclick="toggleFlowStep(this)">
+              <div class="flow-label">Relationship Building</div>
+              <div class="flow-description">
+                Users develop care-based connection
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- User Personas -->
+      <div class="section">
+        <h2 class="section-header">Meet Our Users & Their PALs</h2>
+        <p style="color:#333;line-height:1.8;margin-bottom:40px">
+          PAL manifests differently for each user, creating a personalized character that mirrors their unique shopping psychology and evolves as they grow. Here are two archetypal journeys:
+        </p>
+        
+        <div class="persona-grid">
+          
+          <!-- Persona 1: Confused Returner -->
+          <div class="persona-card" onclick="highlightPersona(1)">
+            <div class="persona-header" style="background: #000;">
+              <div class="persona-title">The Uncertain Shopper</div>
+              <div class="persona-subtitle">Chronic returner, always ordering the wrong size</div>
+            </div>
+            <div class="persona-body">
+              <div class="persona-image-container">
+                <div class="persona-image-placeholder">
+                  👤
+                </div>
+                <div class="persona-image-label">USER 1</div>
+              </div>
+              <div class="persona-content">
+                <div class="behavioral-markers">
+                  <h4>Behavioral Markers:</h4>
+                  <ul>
+                    <li>Takes out her phone and squints at size charts repeatedly</li>
+                    <li>Says "I'm usually a medium... but sometimes a large... or maybe it runs big?"</li>
+                    <li>Returns packages so frequently the UPS staff knows her by name</li>
+                    <li>Ends up with duplicates because she forgot she already ordered it</li>
+                  </ul>
+                </div>
+                
+                <div class="pal-journey-note">
+                  <h4>Her PAL Journey:</h4>
+                  <p>
+                    PAL begins as a confused, unconfident early-20s woman—just as lost as the user. Together, they navigate uncertainty. Over time, PAL matures, developing insight and warmth, eventually becoming a supportive late-60s grandmother figure who offers emotional support and confidence.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      <!-- Evolution Timeline for Persona 1 -->
+      <div class="section">
+        <div class="evolution-section" id="evolution1">
+          <h2 style="font-size:24px;font-weight:600;margin-bottom:12px;color:#333">
+            PAL Evolution: The Uncertain Shopper's Journey
+          </h2>
+          <p style="color:#666;line-height:1.6;margin-bottom:30px;font-size:14px">
+            Watch how PAL transforms from a confused young woman into a wise, supportive grandmother as the user builds confidence and understanding in their shopping decisions.
+          </p>
+          
+          <div class="evolution-container">
+            <div class="evolution-timeline">
+              <div class="timeline-line"></div>
+              <div class="timeline-stages">
+                <div class="stage-container">
+                  <div class="stage-image-container" onclick="showStageDetails(1, 1)">
+                    <span style="font-size: 10px;">PAL Stage 1 Image</span>
+                  </div>
+                  <div class="stage-info">
+                    <div class="stage-number">Stage 1</div>
+                    <div class="stage-label">Lost & Confused</div>
+                  </div>
+                </div>
+                
+                <div class="stage-container">
+                  <div class="stage-image-container" onclick="showStageDetails(1, 2)">
+                    <span style="font-size: 10px;">PAL Stage 2 Image</span>
+                  </div>
+                  <div class="stage-info">
+                    <div class="stage-number">Stage 2</div>
+                    <div class="stage-label">Questioning</div>
+                  </div>
+                </div>
+                
+                <div class="stage-container">
+                  <div class="stage-image-container" onclick="showStageDetails(1, 3)">
+                    <span style="font-size: 10px;">PAL Stage 3 Image</span>
+                  </div>
+                  <div class="stage-info">
+                    <div class="stage-number">Stage 3</div>
+                    <div class="stage-label">Understanding</div>
+                  </div>
+                </div>
+                
+                <div class="stage-container">
+                  <div class="stage-image-container" onclick="showStageDetails(1, 4)">
+                    <span style="font-size: 10px;">PAL Stage 4 Image</span>
+                  </div>
+                  <div class="stage-info">
+                    <div class="stage-number">Stage 4</div>
+                    <div class="stage-label">Insightful</div>
+                  </div>
+                </div>
+                
+                <div class="stage-container">
+                  <div class="stage-image-container" onclick="showStageDetails(1, 5)">
+                    <span style="font-size: 10px;">PAL Stage 5 Image</span>
+                  </div>
+                  <div class="stage-info">
+                    <div class="stage-number">Stage 5</div>
+                    <div class="stage-label">Wise Guardian</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="character-details" id="details1">
+              <h4>Click on any stage to see PAL's character</h4>
+              <p>PAL's appearance, personality, and guidance style evolve based on the user's growing confidence and improved shopping habits. Each stage represents progress in the relationship.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- User Persona 2 -->
+      <div class="section">
+        <h2 class="section-header">Meet Our Users & Their PALs</h2>
+        <p style="color:#333;line-height:1.8;margin-bottom:40px">
+          Each user's journey with PAL is unique. Here's our second archetypal user:
+        </p>
+        
+        <div class="persona-grid">
+          
+          <!-- Persona 2: Shopping Addict -->
+          <div class="persona-card" onclick="highlightPersona(2)">
+            <div class="persona-header" style="background: #000;">
+              <div class="persona-title">The Dopamine Chaser</div>
+              <div class="persona-subtitle">Shopping addict constantly seeking the high</div>
+            </div>
+            <div class="persona-body">
+              <div class="persona-image-container">
+                <div class="persona-image-placeholder">
+                  👤
+                </div>
+                <div class="persona-image-label">USER 2</div>
+              </div>
+              <div class="persona-content">
+                <div class="behavioral-markers">
+                  <h4>Behavioral Markers:</h4>
+                  <ul>
+                    <li>Refreshes tracking numbers like it's a heartbeat monitor</li>
+                    <li>Knows every sale cycle and can smell a discount across the internet</li>
+                    <li>Has closets overflowing with unopened packages "I'll get to later"</li>
+                    <li>Experiences euphoria and overwhelm—buys fast, crashes hard, repeats</li>
+                  </ul>
+                </div>
+                
+                <div class="pal-journey-note">
+                  <h4>Her PAL Journey:</h4>
+                  <p>
+                    PAL starts as a chaotic, overwhelmed gremlin with an insatiable need to consume—mirroring the user's frantic energy. As the relationship develops, PAL learns to calm and regulate, transforming into a serene, floating light body that acts as a gentle therapist, helping the user find peace.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      <!-- Evolution Timeline for Persona 2 -->
+      <div class="section">
+        <div class="evolution-section" id="evolution2">
+          <h2 style="font-size:24px;font-weight:600;margin-bottom:12px;color:#333">
+            PAL Evolution: The Dopamine Chaser's Journey
+          </h2>
+          <p style="color:#666;line-height:1.6;margin-bottom:30px;font-size:14px">
+            Experience PAL's transformation from a frenzied gremlin to a peaceful, therapeutic presence as the user learns to regulate their impulses and find inner calm.
+          </p>
+          
+          <div class="evolution-container">
+            <div class="evolution-timeline">
+              <div class="timeline-line"></div>
+              <div class="timeline-stages">
+                <div class="stage-container">
+                  <div class="stage-image-container" onclick="showStageDetails(2, 1)">
+                    <span style="font-size: 10px;">PAL Stage 1 Image</span>
+                  </div>
+                  <div class="stage-info">
+                    <div class="stage-number">Stage 1</div>
+                    <div class="stage-label">Chaotic Gremlin</div>
+                  </div>
+                </div>
+                
+                <div class="stage-container">
+                  <div class="stage-image-container" onclick="showStageDetails(2, 2)">
+                    <span style="font-size: 10px;">PAL Stage 2 Image</span>
+                  </div>
+                  <div class="stage-info">
+                    <div class="stage-number">Stage 2</div>
+                    <div class="stage-label">Overwhelmed</div>
+                  </div>
+                </div>
+                
+                <div class="stage-container">
+                  <div class="stage-image-container" onclick="showStageDetails(2, 3)">
+                    <span style="font-size: 10px;">PAL Stage 3 Image</span>
+                  </div>
+                  <div class="stage-info">
+                    <div class="stage-number">Stage 3</div>
+                    <div class="stage-label">Recognizing</div>
+                  </div>
+                </div>
+                
+                <div class="stage-container">
+                  <div class="stage-image-container" onclick="showStageDetails(2, 4)">
+                    <span style="font-size: 10px;">PAL Stage 4 Image</span>
+                  </div>
+                  <div class="stage-info">
+                    <div class="stage-number">Stage 4</div>
+                    <div class="stage-label">Calming</div>
+                  </div>
+                </div>
+                
+                <div class="stage-container">
+                  <div class="stage-image-container" onclick="showStageDetails(2, 5)">
+                    <span style="font-size: 10px;">PAL Stage 5 Image</span>
+                  </div>
+                  <div class="stage-info">
+                    <div class="stage-number">Stage 5</div>
+                    <div class="stage-label">Serene Light</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="character-details" id="details2">
+              <h4>Click on any stage to see PAL's character</h4>
+              <p>From frenetic energy to peaceful presence, PAL's form literally transforms as the user develops healthier shopping patterns and emotional regulation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Future Vision -->
+      <div class="section">
+        <div style="background:#000;color:#fff;padding:50px;border-radius:12px">
+          <h2 style="font-size:32px;font-weight:600;margin-bottom:20px">The Future of PAL</h2>
+          <p style="opacity:0.95;line-height:1.8;margin-bottom:20px">
+            PAL represents a new paradigm in behavior change design—one built on relationship, empathy, and visual storytelling rather than restriction and guilt. As the companion evolves, so does our understanding of how technology can support human growth.
+          </p>
+          <p style="opacity:0.95;line-height:1.8">
+            The question shifts from <em>"How do we stop bad behavior?"</em> to <em>"How do we nurture care that makes good choices natural?"</em> PAL is the answer: a living, evolving relationship that makes sustainable consumption feel like caring for a friend—because it is.
+          </p>
+        </div>
+      </div>
+      
+    </div>
+  </main>
+  
+  <script src="assets/js/app.js"></script>
+  <script>
+    // Toggle flow step visibility
+    function toggleFlowStep(element) {
+      // Get all flow steps
+      const allSteps = document.querySelectorAll('.flow-step');
+      
+      // If clicking an already active step, just toggle it off
+      if (element.classList.contains('active')) {
+        element.classList.remove('active');
+        return;
+      }
+      
+      // Remove active class from all steps
+      allSteps.forEach(step => step.classList.remove('active'));
+      
+      // Add active class to clicked step
+      element.classList.add('active');
+    }
+    
+    // Stage details data
+    const stageData = {
+      1: { // Uncertain Shopper
+        1: {
+          title: "Stage 1: Lost & Confused",
+          description: "PAL appears as a confused young woman in her early 20s, squinting at screens and second-guessing every choice. She mirrors the user's uncertainty without judgment, saying things like 'I'm not sure either... should we look at the size chart again?'",
+          traits: ["Uncertain", "Tentative", "Empathetic", "Seeking", "Relatable"]
+        },
+        2: {
+          title: "Stage 2: Questioning Together",
+          description: "Now in her late 20s, PAL has started to notice patterns. She gently asks questions: 'I see we've returned this brand before... what happened last time?' She's beginning to understand but still learning alongside the user.",
+          traits: ["Observant", "Curious", "Pattern-aware", "Gentle", "Growing"]
+        },
+        3: {
+          title: "Stage 3: Understanding Emerges",
+          description: "In her 40s, PAL has developed real insight. She understands that the sizing confusion stems from deeper insecurities. She offers context without pressure: 'You know, this brand tends to run small. Remember how good you felt in that other one?'",
+          traits: ["Insightful", "Contextual", "Supportive", "Knowledgeable", "Caring"]
+        },
+        4: {
+          title: "Stage 4: Becoming Insightful",
+          description: "Now in her late 50s, PAL radiates warmth and understanding. She helps the user see the emotional patterns: 'I notice we shop more when you're feeling stressed. Let's figure out what you really need right now.'",
+          traits: ["Wise", "Warm", "Emotionally intelligent", "Nurturing", "Perceptive"]
+        },
+        5: {
+          title: "Stage 5: Wise Guardian",
+          description: "PAL has transformed into a supportive grandmother figure in her late 60s. She provides confidence through experience: 'You've got this, dear. You know what works for you now. Trust yourself.' The user has internalized PAL's wisdom.",
+          traits: ["Confident", "Loving", "Experienced", "Empowering", "Trust-building"]
+        }
+      },
+      2: { // Dopamine Chaser
+        1: {
+          title: "Stage 1: Chaotic Gremlin",
+          description: "PAL manifests as a frantic, overwhelmed gremlin—eyes wide, darting around, saying things like 'NEED IT! BUY NOW! WHAT'S NEXT?!' She embodies the user's dopamine-driven frenzy without shame, making the behavior visible.",
+          traits: ["Frantic", "Impulsive", "Energetic", "Scattered", "Urgent"]
+        },
+        2: {
+          title: "Stage 2: Feeling Overwhelmed",
+          description: "The gremlin is still chaotic but starting to show signs of exhaustion. 'So... tired... but what if we miss the sale?' PAL reflects the crash after the high, helping the user see the emotional toll.",
+          traits: ["Exhausted", "Conflicted", "Aware", "Burnt out", "Questioning"]
+        },
+        3: {
+          title: "Stage 3: Recognition Dawns",
+          description: "PAL's form begins to soften and slow down. The gremlin takes deeper breaths. 'Wait... do we actually need this? What if we just... waited?' The pace of interaction becomes more thoughtful.",
+          traits: ["Reflective", "Calmer", "Self-aware", "Breathing", "Considering"]
+        },
+        4: {
+          title: "Stage 4: Learning to Regulate",
+          description: "PAL is transforming into a more human, peaceful presence. Her voice is soothing: 'Let's sit with this feeling instead of acting on it immediately. What's underneath the urge to buy?' She's becoming a gentle therapist.",
+          traits: ["Therapeutic", "Soothing", "Regulated", "Patient", "Understanding"]
+        },
+        5: {
+          title: "Stage 5: Serene Light Body",
+          description: "PAL has become a floating, luminous presence—a peaceful light that radiates calm. She speaks in gentle tones: 'You don't need external things to feel complete. You are enough.' Pure therapeutic presence.",
+          traits: ["Peaceful", "Transcendent", "Healing", "Complete", "Zen"]
+        }
+      }
+    };
+    
+    function showStageDetails(persona, stage) {
+      const data = stageData[persona][stage];
+      const detailsContainer = document.getElementById(`details${persona}`);
+      
+      // Update all stage containers for this persona
+      const personaSection = document.getElementById(`evolution${persona}`);
+      const stageContainers = personaSection.querySelectorAll('.stage-image-container');
+      stageContainers.forEach((container, index) => {
+        if (index + 1 === stage) {
+          container.classList.add('active');
+        } else {
+          container.classList.remove('active');
+        }
+      });
+      
+      // Build traits HTML
+      const traitsHTML = data.traits.map(trait => 
+        `<span class="trait-badge">${trait}</span>`
+      ).join('');
+      
+      // Update details panel (no scroll needed since it's side-by-side)
+      detailsContainer.innerHTML = `
+        <h4>${data.title}</h4>
+        <p>${data.description}</p>
+        <div class="character-traits">
+          ${traitsHTML}
+        </div>
+      `;
+      detailsContainer.classList.add('visible');
+    }
+    
+    function highlightPersona(personaId) {
+      // Visual feedback for persona selection
+      console.log(`Persona ${personaId} highlighted`);
+    }
+  </script>
+</body>
+</html>
