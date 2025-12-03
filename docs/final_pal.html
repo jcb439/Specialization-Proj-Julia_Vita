@@ -343,15 +343,14 @@
     .stage-image-container:hover {
       transform: scale(1.1);
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-      border-width: 4px;
     }
     
     .stage-image-container.active {
-      background: #000;
-      color: white;
-      transform: scale(1.15);
+      width: 200px;
+      height: 200px;
+      transform: scale(1);
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
-      border-width: 4px;
+      z-index: 10;
     }
     
     .stage-info {
@@ -637,18 +636,19 @@
     <div class="nav-logo">Shopping Speed Bump</div>
     <div class="nav-subtitle">Fall 2025 • Design 8131</div>
     <ul class="nav-menu">
-      <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-      <li class="nav-item"><a href="knowledge.html" class="nav-link">State of Knowledge</a></li>
-      <li class="nav-item"><a href="community.html" class="nav-link">Community Practice</a></li>
-      <li class="nav-item"><a href="literature.html" class="nav-link">Literature Review</a></li>
-      <li class="nav-item"><a href="ontology.html" class="nav-link">Ontology Diagram</a></li>
-      <li class="nav-item"><a href="prototype.html" class="nav-link">Radical Prototype 10/16</a></li>
-      <li class="nav-item"><a href="prototype_2.html" class="nav-link">Radical Prototype 10/23</a></li>
-      <li class="nav-item"><a href="forking.html" class="nav-link">Forking Paths</a></li>
-      <li class="nav-item"><a href="barriers.html" class="nav-link">Barriers to Entry</a></li>
-      <li class="nav-item"><a href="uml_diagram.html" class="nav-link">UML Diagram</a></li>
-      <li class="nav-item"><a href="meet_pal.html" class="nav-link ">Meet PAL</a></li>
-      <li class="nav-item"><a href="final_pal.html" class="nav-link active">PAL Companion</a></li>
+        <li class="nav-item"><a href="index.html" class="nav-link ">Home</a></li>
+        <li class="nav-item"><a href="knowledge.html" class="nav-link ">State of Knowledge</a></li>
+        <li class="nav-item"><a href="community.html" class="nav-link ">Community Practice</a></li>
+        <li class="nav-item"><a href="literature.html" class="nav-link ">Literature Review</a></li>
+        <li class="nav-item"><a href="ontology.html" class="nav-link ">Ontology Diagram</a></li>
+        <li class="nav-item"><a href="prototype.html" class="nav-link ">Radical Prototype 10/16</a></li>
+        <li class="nav-item"><a href="prototype_2.html" class="nav-link ">Radical Prototype 10/23</a></li>
+        <li class="nav-item"><a href="forking.html" class="nav-link ">Forking Paths</a></li>
+        <li class="nav-item"><a href="barriers.html" class="nav-link ">Barriers to Entry</a></li>
+        <li class="nav-item"><a href="uml_diagram.html" class="nav-link ">UML Diagram</a></li>
+        <li class="nav-item"><a href="storyboard.html" class="nav-link ">User Journey Storyboards</a></li>
+        <li class="nav-item"><a href="meet_pal.html" class="nav-link ">Meet PAL</a></li>
+        <li class="nav-item"><a href="final_pal.html" class="nav-link active">PAL 2.0</a></li>
     </ul>
   </nav>
     
@@ -726,9 +726,7 @@
             </div>
             <div class="persona-body">
               <div class="persona-image-container">
-                <div class="persona-image-placeholder">
-                  👤
-                </div>
+                <img src="assets/img/user1.png" alt="The Uncertain Shopper" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
                 <div class="persona-image-label">USER 1</div>
               </div>
               <div class="persona-content">
@@ -740,13 +738,6 @@
                     <li>Returns packages so frequently the UPS staff knows her by name</li>
                     <li>Ends up with duplicates because she forgot she already ordered it</li>
                   </ul>
-                </div>
-                
-                <div class="pal-journey-note">
-                  <h4>Her PAL Journey:</h4>
-                  <p>
-                    PAL begins as a confused, unconfident early-20s woman—just as lost as the user. Together, they navigate uncertainty. Over time, PAL matures, developing insight and warmth, eventually becoming a supportive late-60s grandmother figure who offers emotional support and confidence.
-                  </p>
                 </div>
               </div>
             </div>
@@ -771,7 +762,7 @@
               <div class="timeline-stages">
                 <div class="stage-container">
                   <div class="stage-image-container" onclick="showStageDetails(1, 1)">
-                    <span style="font-size: 10px;">PAL Stage 1 Image</span>
+                    <img src="assets/img/pal1_stage1.png" alt="PAL Stage 1 - Lost & Confused" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
                   </div>
                   <div class="stage-info">
                     <div class="stage-number">Stage 1</div>
@@ -781,7 +772,7 @@
                 
                 <div class="stage-container">
                   <div class="stage-image-container" onclick="showStageDetails(1, 2)">
-                    <span style="font-size: 10px;">PAL Stage 2 Image</span>
+                    <img src="assets/img/pal1_stage2.png" alt="PAL Stage 2 - Questioning" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
                   </div>
                   <div class="stage-info">
                     <div class="stage-number">Stage 2</div>
@@ -791,7 +782,7 @@
                 
                 <div class="stage-container">
                   <div class="stage-image-container" onclick="showStageDetails(1, 3)">
-                    <span style="font-size: 10px;">PAL Stage 3 Image</span>
+                    <img src="assets/img/pal1_stage3.png" alt="PAL Stage 3 - Understanding" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
                   </div>
                   <div class="stage-info">
                     <div class="stage-number">Stage 3</div>
@@ -801,7 +792,7 @@
                 
                 <div class="stage-container">
                   <div class="stage-image-container" onclick="showStageDetails(1, 4)">
-                    <span style="font-size: 10px;">PAL Stage 4 Image</span>
+                    <img src="assets/img/pal1_stage4.png" alt="PAL Stage 4 - Insightful" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
                   </div>
                   <div class="stage-info">
                     <div class="stage-number">Stage 4</div>
@@ -811,7 +802,7 @@
                 
                 <div class="stage-container">
                   <div class="stage-image-container" onclick="showStageDetails(1, 5)">
-                    <span style="font-size: 10px;">PAL Stage 5 Image</span>
+                    <img src="assets/img/pal1_stage5.png" alt="PAL Stage 5 - Wise Guardian" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
                   </div>
                   <div class="stage-info">
                     <div class="stage-number">Stage 5</div>
@@ -831,11 +822,6 @@
       
       <!-- User Persona 2 -->
       <div class="section">
-        <h2 class="section-header">Meet Our Users & Their PALs</h2>
-        <p style="color:#333;line-height:1.8;margin-bottom:40px">
-          Each user's journey with PAL is unique. Here's our second archetypal user:
-        </p>
-        
         <div class="persona-grid">
           
           <!-- Persona 2: Shopping Addict -->
@@ -846,9 +832,7 @@
             </div>
             <div class="persona-body">
               <div class="persona-image-container">
-                <div class="persona-image-placeholder">
-                  👤
-                </div>
+                <img src="assets/img/user2.png" alt="The Dopamine Chaser" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
                 <div class="persona-image-label">USER 2</div>
               </div>
               <div class="persona-content">
@@ -860,13 +844,6 @@
                     <li>Has closets overflowing with unopened packages "I'll get to later"</li>
                     <li>Experiences euphoria and overwhelm—buys fast, crashes hard, repeats</li>
                   </ul>
-                </div>
-                
-                <div class="pal-journey-note">
-                  <h4>Her PAL Journey:</h4>
-                  <p>
-                    PAL starts as a chaotic, overwhelmed gremlin with an insatiable need to consume—mirroring the user's frantic energy. As the relationship develops, PAL learns to calm and regulate, transforming into a serene, floating light body that acts as a gentle therapist, helping the user find peace.
-                  </p>
                 </div>
               </div>
             </div>
@@ -891,7 +868,7 @@
               <div class="timeline-stages">
                 <div class="stage-container">
                   <div class="stage-image-container" onclick="showStageDetails(2, 1)">
-                    <span style="font-size: 10px;">PAL Stage 1 Image</span>
+                    <img src="assets/img/pal2_stage1.png" alt="PAL Stage 1 - Chaotic Gremlin" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
                   </div>
                   <div class="stage-info">
                     <div class="stage-number">Stage 1</div>
@@ -901,7 +878,7 @@
                 
                 <div class="stage-container">
                   <div class="stage-image-container" onclick="showStageDetails(2, 2)">
-                    <span style="font-size: 10px;">PAL Stage 2 Image</span>
+                    <img src="assets/img/pal2_stage2.png" alt="PAL Stage 2 - Overwhelmed" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
                   </div>
                   <div class="stage-info">
                     <div class="stage-number">Stage 2</div>
@@ -911,7 +888,7 @@
                 
                 <div class="stage-container">
                   <div class="stage-image-container" onclick="showStageDetails(2, 3)">
-                    <span style="font-size: 10px;">PAL Stage 3 Image</span>
+                    <img src="assets/img/pal2_stage3.png" alt="PAL Stage 3 - Recognizing" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
                   </div>
                   <div class="stage-info">
                     <div class="stage-number">Stage 3</div>
@@ -921,7 +898,7 @@
                 
                 <div class="stage-container">
                   <div class="stage-image-container" onclick="showStageDetails(2, 4)">
-                    <span style="font-size: 10px;">PAL Stage 4 Image</span>
+                    <img src="assets/img/pal2_stage4.png" alt="PAL Stage 4 - Calming" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
                   </div>
                   <div class="stage-info">
                     <div class="stage-number">Stage 4</div>
@@ -931,7 +908,7 @@
                 
                 <div class="stage-container">
                   <div class="stage-image-container" onclick="showStageDetails(2, 5)">
-                    <span style="font-size: 10px;">PAL Stage 5 Image</span>
+                    <img src="assets/img/pal2_stage5.png" alt="PAL Stage 5 - Serene Light" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
                   </div>
                   <div class="stage-info">
                     <div class="stage-number">Stage 5</div>
@@ -991,54 +968,54 @@
         1: {
           title: "Stage 1: Lost & Confused",
           description: "PAL appears as a confused young woman in her early 20s, squinting at screens and second-guessing every choice. She mirrors the user's uncertainty without judgment, saying things like 'I'm not sure either... should we look at the size chart again?'",
-          traits: ["Uncertain", "Tentative", "Empathetic", "Seeking", "Relatable"]
+          traits: ["Uncertain", "Tentative", "Empathetic", "Seeking"]
         },
         2: {
           title: "Stage 2: Questioning Together",
           description: "Now in her late 20s, PAL has started to notice patterns. She gently asks questions: 'I see we've returned this brand before... what happened last time?' She's beginning to understand but still learning alongside the user.",
-          traits: ["Observant", "Curious", "Pattern-aware", "Gentle", "Growing"]
+          traits: ["Observant", "Curious", "Pattern-aware", "Gentle"]
         },
         3: {
           title: "Stage 3: Understanding Emerges",
           description: "In her 40s, PAL has developed real insight. She understands that the sizing confusion stems from deeper insecurities. She offers context without pressure: 'You know, this brand tends to run small. Remember how good you felt in that other one?'",
-          traits: ["Insightful", "Contextual", "Supportive", "Knowledgeable", "Caring"]
+          traits: ["Insightful", "Supportive", "Knowledgeable", "Caring"]
         },
         4: {
           title: "Stage 4: Becoming Insightful",
           description: "Now in her late 50s, PAL radiates warmth and understanding. She helps the user see the emotional patterns: 'I notice we shop more when you're feeling stressed. Let's figure out what you really need right now.'",
-          traits: ["Wise", "Warm", "Emotionally intelligent", "Nurturing", "Perceptive"]
+          traits: ["Warm", "Emotionally intelligent", "Nurturing", "Perceptive"]
         },
         5: {
           title: "Stage 5: Wise Guardian",
           description: "PAL has transformed into a supportive grandmother figure in her late 60s. She provides confidence through experience: 'You've got this, dear. You know what works for you now. Trust yourself.' The user has internalized PAL's wisdom.",
-          traits: ["Confident", "Loving", "Experienced", "Empowering", "Trust-building"]
+          traits: ["Confident", "Loving", "Experienced", "Empowering"]
         }
       },
       2: { // Dopamine Chaser
         1: {
           title: "Stage 1: Chaotic Gremlin",
           description: "PAL manifests as a frantic, overwhelmed gremlin—eyes wide, darting around, saying things like 'NEED IT! BUY NOW! WHAT'S NEXT?!' She embodies the user's dopamine-driven frenzy without shame, making the behavior visible.",
-          traits: ["Frantic", "Impulsive", "Energetic", "Scattered", "Urgent"]
+          traits: ["Frantic", "Impulsive", "Energetic", "Scattered"]
         },
         2: {
           title: "Stage 2: Feeling Overwhelmed",
           description: "The gremlin is still chaotic but starting to show signs of exhaustion. 'So... tired... but what if we miss the sale?' PAL reflects the crash after the high, helping the user see the emotional toll.",
-          traits: ["Exhausted", "Conflicted", "Aware", "Burnt out", "Questioning"]
+          traits: ["Exhausted", "Conflicted", "Burnt out", "Questioning"]
         },
         3: {
           title: "Stage 3: Recognition Dawns",
           description: "PAL's form begins to soften and slow down. The gremlin takes deeper breaths. 'Wait... do we actually need this? What if we just... waited?' The pace of interaction becomes more thoughtful.",
-          traits: ["Reflective", "Calmer", "Self-aware", "Breathing", "Considering"]
+          traits: ["Reflective", "Calmer", "Self-aware", "Considering"]
         },
         4: {
           title: "Stage 4: Learning to Regulate",
           description: "PAL is transforming into a more human, peaceful presence. Her voice is soothing: 'Let's sit with this feeling instead of acting on it immediately. What's underneath the urge to buy?' She's becoming a gentle therapist.",
-          traits: ["Therapeutic", "Soothing", "Regulated", "Patient", "Understanding"]
+          traits: ["Therapeutic", "Soothing", "Patient", "Understanding"]
         },
         5: {
           title: "Stage 5: Serene Light Body",
           description: "PAL has become a floating, luminous presence—a peaceful light that radiates calm. She speaks in gentle tones: 'You don't need external things to feel complete. You are enough.' Pure therapeutic presence.",
-          traits: ["Peaceful", "Transcendent", "Healing", "Complete", "Zen"]
+          traits: ["Peaceful", "Transcendent", "Healing", "Zen"]
         }
       }
     };
