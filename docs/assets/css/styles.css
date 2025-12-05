@@ -549,3 +549,113 @@ body{
   .forking-diagram-container{
     padding:20px;
   }
+
+  /* ============================================
+   NESTED NAVIGATION STYLES
+   ============================================ */
+
+/* Section container */
+.nav-section {
+  margin-bottom: 8px;
+}
+
+/* Section header (clickable area) */
+.nav-section-header {
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 12px 20px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: var(--transition);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+
+.nav-section-header:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Arrow indicator */
+.nav-arrow {
+  font-size: 10px;
+  transition: transform 0.3s ease;
+  opacity: 0.7;
+}
+
+/* Rotate arrow when expanded */
+.nav-section.expanded .nav-arrow {
+  transform: rotate(-180deg);
+}
+
+/* Submenu container */
+.nav-submenu {
+  list-style: none;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+  opacity: 0;
+  margin-left: 15px;
+  padding-left: 15px;
+  border-left: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Submenu when expanded */
+.nav-submenu.expanded {
+  max-height: 1000px;
+  opacity: 1;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+/* Individual submenu items */
+.nav-subitem {
+  margin-bottom: 3px;
+}
+
+/* Submenu links */
+.nav-subitem .nav-link {
+  font-size: 14px;
+  padding: 8px 15px;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 400;
+}
+
+.nav-subitem .nav-link:hover {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Active submenu link */
+.nav-subitem .nav-link.active {
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--white);
+  font-weight: 500;
+}
+
+/* Override the ::before indicator for sublinks */
+.nav-subitem .nav-link::before {
+  width: 2px;
+  height: 0;
+}
+
+.nav-subitem .nav-link.active::before {
+  height: 60%;
+}
+
+/* Mobile adjustments */
+@media (max-width: 1024px) {
+  .nav-section-header {
+    padding: 10px 15px;
+    font-size: 13px;
+  }
+  
+  .nav-subitem .nav-link {
+    font-size: 13px;
+    padding: 7px 12px;
+  }
+}

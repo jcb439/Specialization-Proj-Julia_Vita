@@ -52,3 +52,43 @@ function toggleBarrier(id) {
   }
 }
 window.toggleBarrier = toggleBarrier;
+
+// Nested navigation functionality
+document.addEventListener('DOMContentLoaded', function() {
+  
+  // Add click handlers to all section headers
+  document.querySelectorAll('.nav-section-header').forEach(header => {
+    header.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const sectionId = this.getAttribute('data-section');
+      const submenu = document.getElementById(sectionId);
+      const section = this.closest('.nav-section');
+      
+      // Toggle expanded state
+      section.classList.toggle('expanded');
+      submenu.classList.toggle('expanded');
+    });
+  });
+  
+  // Auto-highlight current page
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  
+  document.querySelectorAll('.nav-subitem .nav-link').forEach(link => {
+    const href = link.getAttribute('href');
+    
+    if (href === currentPage) {
+      link.classList.add('active');
+      
+      // Make sure parent section stays expanded
+      const submenu = link.closest('.nav-submenu');
+      const section = submenu.closest('.nav-section');
+      
+      if (submenu && section) {
+        submenu.classList.add('expanded');
+        section.classList.add('expanded');
+      }
+    }
+  });
+});
