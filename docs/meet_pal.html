@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PAL User Journey - Extreme Level</title>
+  <title>Meet PAL - Extreme Level</title>
   <link rel="stylesheet" href="assets/css/styles.css"/>
   <style>
     /* Journey Container */
@@ -337,6 +337,136 @@
       color: #000;
     }
     
+    /* PAL CHARACTER CAROUSEL STYLES */
+    .pal-carousel-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      padding: 40px 20px;
+      background: #fff;
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+    
+    .carousel-nav-btn {
+      width: 60px;
+      height: 60px;
+      background: #000;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+    
+    .carousel-nav-btn:hover {
+      background: #333;
+      transform: scale(1.1);
+    }
+    
+    .carousel-nav-btn:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+    
+    .carousel-nav-btn svg {
+      width: 28px;
+      height: 28px;
+    }
+    
+    .pal-carousel-content {
+      flex: 1;
+      max-width: 1000px;
+      text-align: center;
+    }
+    
+    .carousel-label {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #620F19;
+      margin-bottom: 20px;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    .pal-carousel-image-wrapper {
+      width: 100%;
+      overflow: hidden;
+      border-radius: 8px;
+      background: #f9f9f9;
+      margin-bottom: 20px;
+    }
+    
+    .pal-carousel-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      animation: slideIn 0.5s ease;
+    }
+    
+    .carousel-description {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #666;
+      max-width: 700px;
+      margin: 0 auto;
+      animation: fadeIn 0.5s ease 0.2s backwards;
+    }
+    
+    .carousel-indicators {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    
+    .carousel-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #ddd;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .carousel-dot.active {
+      background: #620F19;
+      transform: scale(1.2);
+    }
+    
+    .carousel-dot:hover {
+      background: #999;
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
     /* Responsive */
     @media (max-width: 900px) {
       .journey-frame {
@@ -352,6 +482,20 @@
       .journey-image-frame {
         max-width: 100%;
         min-height: 350px;
+      }
+      
+      .pal-carousel-container {
+        flex-direction: column;
+        gap: 20px;
+      }
+      
+      .carousel-nav-btn {
+        width: 50px;
+        height: 50px;
+      }
+      
+      .pal-carousel-image-wrapper {
+        margin-bottom: 15px;
       }
     }
   </style>
@@ -405,16 +549,53 @@
   <main class="main-content">
     <div class="header">
       <div class="header-meta">Interactive Prototype</div>
-      <h1 class="page-title">PAL User Journey</h1>
-      <p class="page-subtitle">Extreme Reflection Level Walkthrough</p>
+      <h1 class="page-title">Meet PAL</h1>
+      <p class="page-subtitle">Character Design & Extreme Reflection Level Walkthrough</p>
     </div>
     <div class="content">
       
+      <!-- PAL Character Design Carousel -->
       <div class="section">
-        <p style="color:#333;line-height:1.8;margin-bottom:20px">
+        <h2 class="section-header">Meet PAL's Emotional Range</h2>
+        <p style="color:#333;line-height:1.8;margin-bottom:30px">
+          PAL expresses different emotional ranges depending on the intervention intensity level you choose. Flip through the character designs below to see how PAL's personality and gestures adapt from gentle nudges to assertive interventions.
+        </p>
+        
+        <div class="pal-carousel-container">
+          <button class="carousel-nav-btn carousel-prev" onclick="prevPalImage()" aria-label="Previous intensity level">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          
+          <div class="pal-carousel-content">
+            <div class="carousel-label" id="carouselLabel">LIGHT INTENSITY</div>
+            <div class="pal-carousel-image-wrapper">
+              <img id="palCarouselImage" src="assets/img/pal-light.png" alt="PAL Light Intensity Emotions" class="pal-carousel-image">
+            </div>
+            <div class="carousel-description" id="carouselDescription">
+              Gentle nudges and subtle reminders. PAL maintains a friendly, supportive presence with minimal emotional expression.
+            </div>
+          </div>
+          
+          <button class="carousel-nav-btn carousel-next" onclick="nextPalImage()" aria-label="Next intensity level">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+        
+        <div class="carousel-indicators">
+          <div class="carousel-dot active" onclick="goToPalImage(0)"></div>
+          <div class="carousel-dot" onclick="goToPalImage(1)"></div>
+          <div class="carousel-dot" onclick="goToPalImage(2)"></div>
+        </div>
+        <h2 class="section-header"></h2>
+        <h2 class="section-header">User Journey with Extreme Level PAL</h2>
+        <p style="color:#333;line-height:1.8;margin-top:40px;margin-bottom:20px">
           Experience the complete user journey of PAL (Personal wardrobe Assistant & Lifestyle companion) at the <strong>Extreme</strong> reflection level. This interactive walkthrough demonstrates how PAL intervenes when a user attempts to make an impulse purchase.
         </p>
-        <p style="color:#666;font-size:14px;font-style:italic;margin-bottom:30px">
+        <p style="color:#666;font-size:14px;font-style:italic;margin-bottom:0">
           Use the back arrow to revisit previous steps. Click on the available options to advance through the journey.
         </p>
       </div>
@@ -494,6 +675,83 @@
   
   <script src="assets/js/app.js"></script>
   <script>
+    // PAL CHARACTER CAROUSEL DATA
+    const palImages = [
+      {
+        src: 'assets/img/pal-light.png',
+        label: 'LIGHT INTENSITY',
+        description: 'PAL maintains a friendly, supportive presence with minimal emotional expression.'
+      },
+      {
+        src: 'assets/img/pal-medium.png',
+        label: 'MEDIUM INTENSITY',
+        description: 'PAL shows concern, encouragement, and thoughtful guidance while respecting your autonomy.'
+      },
+      {
+        src: 'assets/img/pal-extreme.png',
+        label: 'EXTREME INTENSITY',
+        description: 'PAL expresses frustration, determination, and protective care to help you meet your goals.'
+      }
+    ];
+    
+    let currentPalIndex = 0;
+    
+    function updatePalCarousel() {
+      const image = document.getElementById('palCarouselImage');
+      const label = document.getElementById('carouselLabel');
+      const description = document.getElementById('carouselDescription');
+      const dots = document.querySelectorAll('.carousel-dot');
+      
+      // Update content
+      image.src = palImages[currentPalIndex].src;
+      image.alt = palImages[currentPalIndex].label;
+      label.textContent = palImages[currentPalIndex].label;
+      description.textContent = palImages[currentPalIndex].description;
+      
+      // Update dots
+      dots.forEach((dot, index) => {
+        if (index === currentPalIndex) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+      
+      // Trigger animation
+      image.style.animation = 'none';
+      label.style.animation = 'none';
+      description.style.animation = 'none';
+      setTimeout(() => {
+        image.style.animation = 'slideIn 0.5s ease';
+        label.style.animation = 'fadeIn 0.5s ease';
+        description.style.animation = 'fadeIn 0.5s ease 0.2s backwards';
+      }, 10);
+    }
+    
+    function nextPalImage() {
+      currentPalIndex = (currentPalIndex + 1) % palImages.length;
+      updatePalCarousel();
+    }
+    
+    function prevPalImage() {
+      currentPalIndex = (currentPalIndex - 1 + palImages.length) % palImages.length;
+      updatePalCarousel();
+    }
+    
+    function goToPalImage(index) {
+      currentPalIndex = index;
+      updatePalCarousel();
+    }
+    
+    // Keyboard navigation for carousel
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowLeft') {
+        prevPalImage();
+      } else if (e.key === 'ArrowRight') {
+        nextPalImage();
+      }
+    });
+    
     // Journey data structure
     const journeySteps = {
       // Step 1: Starting

@@ -62,7 +62,7 @@
       margin-top: 30px;
     }
     
-    /* System Overview - Compact with interactive steps */
+    /* System Overview */
     .system-flow {
       background: #f9f9f9;
       border-radius: 12px;
@@ -89,7 +89,6 @@
       padding: 20px 15px;
       cursor: pointer;
       transition: all 0.3s ease;
-      position: relative;
     }
     
     .flow-step:hover {
@@ -116,7 +115,6 @@
       font-size: 14px;
       font-weight: 600;
       color: #333;
-      margin-bottom: 0;
     }
     
     .flow-step.active .flow-label {
@@ -140,7 +138,91 @@
       color: #e0e0e0;
     }
     
-    /* Persona Cards - Compact with side image */
+    /* Archetype Grid */
+    .archetype-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin: 40px 0;
+    }
+    
+    .archetype-card {
+      background: white;
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .archetype-card:hover {
+      border-color: #000;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .archetype-image-container {
+      width: 100%;
+      height: 280px;
+      background: #f5f5f5;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .archetype-image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    
+    .archetype-card:hover .archetype-image-container img {
+      transform: scale(1.05);
+    }
+    
+    .archetype-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+      padding: 20px;
+      color: white;
+    }
+    
+    .archetype-name {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    
+    .archetype-details {
+      padding: 25px;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: all 0.4s ease;
+    }
+    
+    .archetype-card.expanded .archetype-details {
+      max-height: 300px;
+      opacity: 1;
+    }
+    
+    .archetype-details h4 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #333;
+    }
+    
+    .archetype-details p {
+      color: #555;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+    
+    /* Persona Cards */
     .persona-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -166,7 +248,6 @@
       background: #000;
       color: white;
       padding: 20px 30px;
-      text-align: left;
     }
     
     .persona-title {
@@ -201,12 +282,6 @@
       position: relative;
     }
     
-    .persona-image-placeholder {
-      color: #ccc;
-      font-size: 64px;
-      text-align: center;
-    }
-    
     .persona-image-label {
       position: absolute;
       bottom: 8px;
@@ -222,10 +297,6 @@
     
     .persona-content {
       flex: 1;
-    }
-    
-    .behavioral-markers {
-      margin: 0;
     }
     
     .behavioral-markers h4 {
@@ -256,28 +327,7 @@
       font-weight: bold;
     }
     
-    .pal-journey-note {
-      background:#f9f9f9;
-      padding:15px;
-      border-radius:8px;
-      margin-top:20px;
-      border-left:3px solid #000;
-    }
-    
-    .pal-journey-note h4 {
-      font-size:14px;
-      margin-bottom:8px;
-      color:#333;
-    }
-    
-    .pal-journey-note p {
-      color:#555;
-      font-size:12px;
-      line-height:1.6;
-      margin: 0;
-    }
-    
-    /* Evolution Timeline - Vertical with side-by-side layout */
+    /* Evolution Timeline */
     .evolution-section {
       background: #f5f5f5;
       padding: 40px;
@@ -295,28 +345,19 @@
     
     .evolution-timeline {
       flex: 0 0 auto;
-      position: relative;
     }
     
     .timeline-stages {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      position: relative;
       gap: 30px;
       padding: 20px 0;
-    }
-    
-    .timeline-line {
-      display: none;
     }
     
     .stage-container {
       display: flex;
       align-items: center;
       gap: 30px;
-      position: relative;
-      z-index: 2;
       width: 400px;
     }
     
@@ -329,15 +370,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 11px;
-      color: #999;
       cursor: pointer;
       transition: all 0.4s ease;
-      position: relative;
       overflow: hidden;
       flex-shrink: 0;
-      text-align: center;
-      padding: 5px;
     }
     
     .stage-image-container:hover {
@@ -348,14 +384,12 @@
     .stage-image-container.active {
       width: 200px;
       height: 200px;
-      transform: scale(1);
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
       z-index: 10;
     }
     
     .stage-info {
       flex: 1;
-      text-align: left;
     }
     
     .stage-number {
@@ -372,7 +406,7 @@
       line-height: 1.4;
     }
     
-    /* Character Details Panel - Side by side */
+    /* Character Details Panel */
     .character-details {
       flex: 1;
       background: white;
@@ -383,7 +417,6 @@
       position: sticky;
       top: 100px;
       transition: all 0.4s ease;
-      align-self: flex-start;
     }
     
     .character-details.visible {
@@ -421,179 +454,10 @@
       border: 1px solid #e0e0e0;
     }
     
-    /* Relationship Building Section */
-    .relationship-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      margin: 40px 0;
-    }
-    
-    .relationship-card {
-      background: white;
-      border: 2px solid #e0e0e0;
-      border-radius: 12px;
-      padding: 30px;
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-    
-    .relationship-card:hover {
-      border-color: #000;
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    }
-    
-    .relationship-icon {
-      font-size: 40px;
-      margin-bottom: 15px;
-    }
-    
-    .relationship-title {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 12px;
-      color: #333;
-    }
-    
-    .relationship-description {
-      color: #666;
-      font-size: 14px;
-      line-height: 1.7;
-    }
-    
-    /* Design Principles */
-    .principles-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px;
-      margin: 40px 0;
-    }
-    
-    .principle-box {
-      background: #000;
-      color: white;
-      padding: 30px;
-      border-radius: 12px;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      border: 3px solid #333;
-    }
-    
-    .principle-box:hover {
-      transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-      border-color: #666;
-    }
-    
-    .principle-number {
-      font-size: 48px;
-      font-weight: 200;
-      opacity: 0.3;
-      margin-bottom: 15px;
-    }
-    
-    .principle-title {
-      font-size: 20px;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-    
-    .principle-text {
-      font-size: 14px;
-      opacity: 0.95;
-      line-height: 1.7;
-    }
-    
-    /* Interaction showcase */
-    .interaction-showcase {
-      background: white;
-      border: 2px solid #e0e0e0;
-      border-radius: 12px;
-      padding: 40px;
-      margin: 40px 0;
-    }
-    
-    .interaction-demo {
-      display: flex;
-      gap: 40px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    
-    .demo-visual {
-      flex: 1;
-      min-width: 300px;
-      height: 400px;
-      background: #f9f9f9;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 80px;
-      border: 2px dashed #e0e0e0;
-    }
-    
-    .demo-description {
-      flex: 1;
-      min-width: 300px;
-    }
-    
-    .demo-description h4 {
-      font-size: 22px;
-      font-weight: 600;
-      margin-bottom: 15px;
-      color: #333;
-    }
-    
-    .demo-description p {
-      color: #555;
-      line-height: 1.8;
-      margin-bottom: 15px;
-    }
-    
-    .feature-list {
-      list-style: none;
-      padding: 0;
-    }
-    
-    .feature-list li {
-      padding: 10px 0 10px 30px;
-      position: relative;
-      color: #555;
-      line-height: 1.6;
-    }
-    
-    .feature-list li::before {
-      content: '✓';
-      position: absolute;
-      left: 0;
-      color: #667eea;
-      font-weight: bold;
-      font-size: 18px;
-    }
-    
-    /* Responsive adjustments */
+    /* Responsive */
     @media (max-width: 1024px) {
-      .pal-hero {
-        padding: 60px 40px;
-      }
-      
-      .pal-hero h1 {
-        font-size: 42px;
-      }
-      
-      .persona-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .timeline-stages {
-        overflow-x: scroll;
-        justify-content: flex-start;
-      }
-      
-      .system-flow {
-        padding: 30px;
+      .archetype-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       }
       
       .flow-diagram {
@@ -606,75 +470,32 @@
     }
     
     @media (max-width: 640px) {
-      .pal-hero {
-        padding: 40px 20px;
-      }
-      
-      .pal-hero h1 {
-        font-size: 32px;
-      }
-      
-      .evolution-section {
-        padding: 30px 20px;
-      }
-      
-      .stage-image-container {
-        width: 100px;
-        height: 100px;
-        font-size: 36px;
-      }
-      
-      .interaction-demo {
-        flex-direction: column;
+      .archetype-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
   
-    <nav class="nav-sidebar" id="navSidebar">
-        <div class="nav-logo">Shopping Speed Bump</div>
-        <div class="nav-subtitle">Fall 2025 • Design 8131</div>
-        
-        <ul class="nav-menu">
-          <li class="nav-item">
-            <a href="index.html" class="nav-link">Home</a>
-          </li>
-          
-          <!-- Research Process Section -->
-          <li class="nav-item nav-section expanded">
-            <div class="nav-section-header" data-section="research">
-              <span>Research Process</span>
-              <span class="nav-arrow">▼</span>
-            </div>
-            <ul class="nav-submenu expanded" id="research">
-              <li class="nav-subitem"><a href="forking.html" class="nav-link">Forking Paths</a></li>
-              <li class="nav-subitem"><a href="literature.html" class="nav-link">Literature Review</a></li>
-              <li class="nav-subitem"><a href="knowledge.html" class="nav-link">State of Knowledge</a></li>
-              <li class="nav-subitem"><a href="community.html" class="nav-link">Community Practice</a></li>
-              <li class="nav-subitem"><a href="ontology.html" class="nav-link">Ontology Diagram</a></li>
-              <li class="nav-subitem"><a href="barriers.html" class="nav-link">Barriers to Entry</a></li>
-            </ul>
-          </li>
-          
-          <!-- Prototyping Section -->
-          <li class="nav-item nav-section expanded">
-            <div class="nav-section-header" data-section="prototyping">
-              <span>Prototyping</span>
-              <span class="nav-arrow">▼</span>
-            </div>
-            <ul class="nav-submenu expanded" id="prototyping">
-              <li class="nav-subitem"><a href="prototype.html" class="nav-link">Radical Prototype 10/16</a></li>
-              <li class="nav-subitem"><a href="storyboard.html" class="nav-link">User Journey Storyboards</a></li>
-              <li class="nav-subitem"><a href="uml_diagram.html" class="nav-link">UML Diagram</a></li>
-              <li class="nav-subitem"><a href="prototype_2.html" class="nav-link">Radical Prototype 10/23</a></li>
-              <li class="nav-subitem"><a href="meet_pal.html" class="nav-link">Meet PAL</a></li>
-              <li class="nav-subitem"><a href="final_pal.html" class="nav-link">PAL 2.0</a></li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
-    
+  <nav class="nav-sidebar" id="navSidebar">
+    <div class="nav-logo"></div>
+    <div class="nav-subtitle">Fall 2025 • Design 8131</div>
+    <ul class="nav-menu">
+      <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+      <li class="nav-item"><a href="knowledge.html" class="nav-link">State of Knowledge</a></li>
+      <li class="nav-item"><a href="community.html" class="nav-link">Community Practice</a></li>
+      <li class="nav-item"><a href="literature.html" class="nav-link">Literature Review</a></li>
+      <li class="nav-item"><a href="ontology.html" class="nav-link">Ontology Diagram</a></li>
+      <li class="nav-item"><a href="prototype.html" class="nav-link">Radical Prototype 10/16</a></li>
+      <li class="nav-item"><a href="prototype_2.html" class="nav-link">Radical Prototype 10/23</a></li>
+      <li class="nav-item"><a href="forking.html" class="nav-link">Forking Paths</a></li>
+      <li class="nav-item"><a href="barriers.html" class="nav-link">Barriers to Entry</a></li>
+      <li class="nav-item"><a href="uml_diagram.html" class="nav-link">UML Diagram</a></li>
+      <li class="nav-item"><a href="meet_pal.html" class="nav-link active">Meet PAL</a></li>
+    </ul>
+  </nav>
+  
   <button class="menu-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></button>
   
   <main class="main-content">
@@ -697,38 +518,169 @@
           <div class="flow-diagram">
             <div class="flow-step" onclick="toggleFlowStep(this)">
               <div class="flow-label">Data Mining</div>
-              <div class="flow-description">
-                Analyzes shopping habits and purchase history
-              </div>
+              <div class="flow-description">Analyzes shopping habits and purchase history</div>
             </div>
             
             <div class="flow-arrow">→</div>
             
             <div class="flow-step" onclick="toggleFlowStep(this)">
               <div class="flow-label">AI Engine</div>
-              <div class="flow-description">
-                Generates character archetype unique to each user
-              </div>
+              <div class="flow-description">Generates character archetype unique to each user</div>
             </div>
             
             <div class="flow-arrow">→</div>
             
             <div class="flow-step" onclick="toggleFlowStep(this)">
               <div class="flow-label">Character Evolution</div>
-              <div class="flow-description">
-                PAL adapts as user habits change
-              </div>
+              <div class="flow-description">PAL adapts as user habits change</div>
             </div>
             
             <div class="flow-arrow">→</div>
             
             <div class="flow-step" onclick="toggleFlowStep(this)">
               <div class="flow-label">Relationship Building</div>
-              <div class="flow-description">
-                Users develop care-based connection
-              </div>
+              <div class="flow-description">Users develop care-based connection</div>
             </div>
           </div>
+        </div>
+      </div>
+      
+      <!-- PAL Archetype Range -->
+      <div class="section">
+        <h2 class="section-header">The Language of Form</h2>
+        <p style="color:#333;line-height:1.8;margin-bottom:20px">
+          PAL doesn't just display emotions—it becomes a physical manifestation of shopping behavior. Each archetype draws from mythology and abstract forms to embody different patterns, creating an intuitive visual language that makes behavior tangible.
+        </p>
+        <p style="color:#666;line-height:1.7;margin-bottom:40px;font-style:italic">
+          Click any archetype to understand what it represents in shopping psychology
+        </p>
+        
+        <div class="archetype-grid">
+          
+          <div class="archetype-card" onclick="toggleArchetype(this)">
+            <div class="archetype-image-container">
+              <img src="assets/img/archetype_werewolf.png" alt="Werewolf archetype">
+              <div class="archetype-overlay">
+                <div class="archetype-name">Werewolf</div>
+              </div>
+            </div>
+            <div class="archetype-details">
+              <h4>Loss of Control</h4>
+              <p>The transformation represents impulse overtaking intention. Like the werewolf during a full moon, the user experiences shopping as something that "happens to them" rather than a conscious choice.</p>
+            </div>
+          </div>
+          
+          <div class="archetype-card" onclick="toggleArchetype(this)">
+            <div class="archetype-image-container">
+              <img src="assets/img/archetype_dryad.png" alt="Dryad archetype">
+              <div class="archetype-overlay">
+                <div class="archetype-name">Dryad</div>
+              </div>
+            </div>
+            <div class="archetype-details">
+              <h4>Rooted Balance</h4>
+              <p>Deep roots indicate stability and thoughtful purchases. The tree spirit embodies finding balance—connected to needs, growing sustainably, purchasing with intention and patience.</p>
+            </div>
+          </div>
+          
+          <div class="archetype-card" onclick="toggleArchetype(this)">
+            <div class="archetype-image-container">
+              <img src="assets/img/archetype_spiked.png" alt="Spiked creature archetype">
+              <div class="archetype-overlay">
+                <div class="archetype-name">Spiked Form</div>
+              </div>
+            </div>
+            <div class="archetype-details">
+              <h4>Erratic Spikes</h4>
+              <p>Sharp, unpredictable spikes represent sudden large purchases that disrupt budget and routine. Each spike is an impulse that punctures financial planning without warning.</p>
+            </div>
+          </div>
+          
+          <div class="archetype-card" onclick="toggleArchetype(this)">
+            <div class="archetype-image-container">
+              <img src="assets/img/archetype_medusa.png" alt="Medusa archetype">
+              <div class="archetype-overlay">
+                <div class="archetype-name">Medusa</div>
+              </div>
+            </div>
+            <div class="archetype-details">
+              <h4>Obsessive Collection</h4>
+              <p>Each snake holds a different purchase, constantly writhing for attention. The fixed gaze represents hyperfocus on acquiring—unable to look away from shopping, trapped in the cycle.</p>
+            </div>
+          </div>
+          
+          <div class="archetype-card" onclick="toggleArchetype(this)">
+            <div class="archetype-image-container">
+              <img src="assets/img/archetype_crystalline.png" alt="Crystalline form archetype">
+              <div class="archetype-overlay">
+                <div class="archetype-name">Crystalline</div>
+              </div>
+            </div>
+            <div class="archetype-details">
+              <h4>Clarity & Structure</h4>
+              <p>Geometric precision reflects clear goals and organized behavior. Each facet is a deliberate choice, transparent in purpose. Light passes through cleanly—nothing hidden, everything intentional.</p>
+            </div>
+          </div>
+          
+          <div class="archetype-card" onclick="toggleArchetype(this)">
+            <div class="archetype-image-container">
+              <img src="assets/img/archetype_liquid.png" alt="Liquid form archetype">
+              <div class="archetype-overlay">
+                <div class="archetype-name">Liquid Form</div>
+              </div>
+            </div>
+            <div class="archetype-details">
+              <h4>Fluid Exploration</h4>
+              <p>Constantly shifting shape represents experimentation with new brands and styles. The sloshing movement shows curiosity and adaptability—exploring without rigid attachment to patterns.</p>
+            </div>
+          </div>
+          
+          <div class="archetype-card" onclick="toggleArchetype(this)">
+            <div class="archetype-image-container">
+              <img src="assets/img/archetype_broken.png" alt="Broken glass archetype">
+              <div class="archetype-overlay">
+                <div class="archetype-name">Broken Glass</div>
+              </div>
+            </div>
+            <div class="archetype-details">
+              <h4>Fractured Integrity</h4>
+              <p>Cracks spread through the form as behavior contradicts personal goals. Each purchase that goes against values creates another fracture. Left unchecked, the breaking accelerates.</p>
+            </div>
+          </div>
+          
+          <div class="archetype-card" onclick="toggleArchetype(this)">
+            <div class="archetype-image-container">
+              <img src="assets/img/archetype_weeds.png" alt="Overgrown weeds archetype">
+              <div class="archetype-overlay">
+                <div class="archetype-name">Overgrown Weeds</div>
+              </div>
+            </div>
+            <div class="archetype-details">
+              <h4>Excessive Abundance</h4>
+              <p>Wild, tangled growth represents uncontrolled accumulation. What started small has sprawled everywhere, choking out space and clarity. The excess becomes overwhelming and impossible to manage.</p>
+            </div>
+          </div>
+          
+          <div class="archetype-card" onclick="toggleArchetype(this)">
+            <div class="archetype-image-container">
+              <img src="assets/img/archetype_hollow.png" alt="Hollow void archetype">
+              <div class="archetype-overlay">
+                <div class="archetype-name">Hollow Void</div>
+              </div>
+            </div>
+            <div class="archetype-details">
+              <h4>Neglectful Absence</h4>
+              <p>Empty space where a form should be represents complete neglect of shopping needs. The void is neither good nor bad—it signals disconnection from necessary self-care through clothing.</p>
+            </div>
+          </div>
+          
+        </div>
+        
+        <div style="background:#f9f9f9;padding:30px;border-radius:12px;margin-top:40px;border-left:4px solid #000">
+          <h4 style="font-size:18px;margin-bottom:15px;color:#333">Why Physical Manifestation Matters</h4>
+          <p style="color:#555;line-height:1.8;margin:0">
+            By embodying shopping behavior in tangible forms drawn from mythology and nature, PAL creates an immediate, visceral understanding that transcends data and statistics. Users don't need to analyze charts—they feel the meaning in the werewolf's transformation, see their goals fracturing in broken glass, or find peace in the dryad's roots. The form is the message.
+          </p>
         </div>
       </div>
       
@@ -741,9 +693,9 @@
         
         <div class="persona-grid">
           
-          <!-- Persona 1: Confused Returner -->
-          <div class="persona-card" onclick="highlightPersona(1)">
-            <div class="persona-header" style="background: #000;">
+          <!-- Persona 1 -->
+          <div class="persona-card">
+            <div class="persona-header">
               <div class="persona-title">The Uncertain Shopper</div>
               <div class="persona-subtitle">Chronic returner, always ordering the wrong size</div>
             </div>
@@ -769,7 +721,7 @@
         </div>
       </div>
       
-      <!-- Evolution Timeline for Persona 1 -->
+      <!-- Evolution Timeline Persona 1 -->
       <div class="section">
         <div class="evolution-section" id="evolution1">
           <h2 style="font-size:24px;font-weight:600;margin-bottom:12px;color:#333">
@@ -781,11 +733,10 @@
           
           <div class="evolution-container">
             <div class="evolution-timeline">
-              <div class="timeline-line"></div>
               <div class="timeline-stages">
                 <div class="stage-container">
                   <div class="stage-image-container" onclick="showStageDetails(1, 1)">
-                    <img src="assets/img/pal1_stage1.png" alt="PAL Stage 1 - Lost & Confused" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                    <img src="assets/img/pal1_stage1.png" alt="PAL Stage 1" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
                   </div>
                   <div class="stage-info">
                     <div class="stage-number">Stage 1</div>
@@ -795,7 +746,7 @@
                 
                 <div class="stage-container">
                   <div class="stage-image-container" onclick="showStageDetails(1, 2)">
-                    <img src="assets/img/pal1_stage2.png" alt="PAL Stage 2 - Questioning" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                    <img src="assets/img/pal1_stage2.png" alt="PAL Stage 2" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
                   </div>
                   <div class="stage-info">
                     <div class="stage-number">Stage 2</div>
@@ -805,7 +756,7 @@
                 
                 <div class="stage-container">
                   <div class="stage-image-container" onclick="showStageDetails(1, 3)">
-                    <img src="assets/img/pal1_stage3.png" alt="PAL Stage 3 - Understanding" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                    <img src="assets/img/pal1_stage3.png" alt="PAL Stage 3" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
                   </div>
                   <div class="stage-info">
                     <div class="stage-number">Stage 3</div>
@@ -815,7 +766,7 @@
                 
                 <div class="stage-container">
                   <div class="stage-image-container" onclick="showStageDetails(1, 4)">
-                    <img src="assets/img/pal1_stage4.png" alt="PAL Stage 4 - Insightful" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                    <img src="assets/img/pal1_stage4.png" alt="PAL Stage 4" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
                   </div>
                   <div class="stage-info">
                     <div class="stage-number">Stage 4</div>
@@ -825,7 +776,7 @@
                 
                 <div class="stage-container">
                   <div class="stage-image-container" onclick="showStageDetails(1, 5)">
-                    <img src="assets/img/pal1_stage5.png" alt="PAL Stage 5 - Wise Guardian" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                    <img src="assets/img/pal1_stage5.png" alt="PAL Stage 5" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
                   </div>
                   <div class="stage-info">
                     <div class="stage-number">Stage 5</div>
@@ -843,13 +794,12 @@
         </div>
       </div>
       
-      <!-- User Persona 2 -->
+      <!-- Persona 2 -->
       <div class="section">
         <div class="persona-grid">
           
-          <!-- Persona 2: Shopping Addict -->
-          <div class="persona-card" onclick="highlightPersona(2)">
-            <div class="persona-header" style="background: #000;">
+          <div class="persona-card">
+            <div class="persona-header">
               <div class="persona-title">The Dopamine Chaser</div>
               <div class="persona-subtitle">Shopping addict constantly seeking the high</div>
             </div>
@@ -875,7 +825,7 @@
         </div>
       </div>
       
-      <!-- Evolution Timeline for Persona 2 -->
+      <!-- Evolution Timeline Persona 2 -->
       <div class="section">
         <div class="evolution-section" id="evolution2">
           <h2 style="font-size:24px;font-weight:600;margin-bottom:12px;color:#333">
@@ -887,11 +837,10 @@
           
           <div class="evolution-container">
             <div class="evolution-timeline">
-              <div class="timeline-line"></div>
               <div class="timeline-stages">
                 <div class="stage-container">
                   <div class="stage-image-container" onclick="showStageDetails(2, 1)">
-                    <img src="assets/img/pal2_stage1.png" alt="PAL Stage 1 - Chaotic Gremlin" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                    <img src="assets/img/pal2_stage1.png" alt="PAL Stage 1" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
                   </div>
                   <div class="stage-info">
                     <div class="stage-number">Stage 1</div>
@@ -901,7 +850,7 @@
                 
                 <div class="stage-container">
                   <div class="stage-image-container" onclick="showStageDetails(2, 2)">
-                    <img src="assets/img/pal2_stage2.png" alt="PAL Stage 2 - Overwhelmed" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                    <img src="assets/img/pal2_stage2.png" alt="PAL Stage 2" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
                   </div>
                   <div class="stage-info">
                     <div class="stage-number">Stage 2</div>
@@ -911,7 +860,7 @@
                 
                 <div class="stage-container">
                   <div class="stage-image-container" onclick="showStageDetails(2, 3)">
-                    <img src="assets/img/pal2_stage3.png" alt="PAL Stage 3 - Recognizing" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                    <img src="assets/img/pal2_stage3.png" alt="PAL Stage 3" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
                   </div>
                   <div class="stage-info">
                     <div class="stage-number">Stage 3</div>
@@ -921,7 +870,7 @@
                 
                 <div class="stage-container">
                   <div class="stage-image-container" onclick="showStageDetails(2, 4)">
-                    <img src="assets/img/pal2_stage4.png" alt="PAL Stage 4 - Calming" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                    <img src="assets/img/pal2_stage4.png" alt="PAL Stage 4" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
                   </div>
                   <div class="stage-info">
                     <div class="stage-number">Stage 4</div>
@@ -931,7 +880,7 @@
                 
                 <div class="stage-container">
                   <div class="stage-image-container" onclick="showStageDetails(2, 5)">
-                    <img src="assets/img/pal2_stage5.png" alt="PAL Stage 5 - Serene Light" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                    <img src="assets/img/pal2_stage5.png" alt="PAL Stage 5" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
                   </div>
                   <div class="stage-info">
                     <div class="stage-number">Stage 5</div>
@@ -967,27 +916,32 @@
   
   <script src="assets/js/app.js"></script>
   <script>
-    // Toggle flow step visibility
     function toggleFlowStep(element) {
-      // Get all flow steps
       const allSteps = document.querySelectorAll('.flow-step');
       
-      // If clicking an already active step, just toggle it off
       if (element.classList.contains('active')) {
         element.classList.remove('active');
         return;
       }
       
-      // Remove active class from all steps
       allSteps.forEach(step => step.classList.remove('active'));
-      
-      // Add active class to clicked step
       element.classList.add('active');
     }
     
-    // Stage details data
+    function toggleArchetype(card) {
+      const allCards = document.querySelectorAll('.archetype-card');
+      
+      if (card.classList.contains('expanded')) {
+        card.classList.remove('expanded');
+        return;
+      }
+      
+      allCards.forEach(c => c.classList.remove('expanded'));
+      card.classList.add('expanded');
+    }
+    
     const stageData = {
-      1: { // Uncertain Shopper
+      1: {
         1: {
           title: "Stage 1: Lost & Confused",
           description: "PAL appears as a confused young woman in her early 20s, squinting at screens and second-guessing every choice. She mirrors the user's uncertainty without judgment, saying things like 'I'm not sure either... should we look at the size chart again?'",
@@ -1014,7 +968,7 @@
           traits: ["Confident", "Loving", "Experienced", "Empowering"]
         }
       },
-      2: { // Dopamine Chaser
+      2: {
         1: {
           title: "Stage 1: Chaotic Gremlin",
           description: "PAL manifests as a frantic, overwhelmed gremlin—eyes wide, darting around, saying things like 'NEED IT! BUY NOW! WHAT'S NEXT?!' She embodies the user's dopamine-driven frenzy without shame, making the behavior visible.",
@@ -1045,10 +999,9 @@
     
     function showStageDetails(persona, stage) {
       const data = stageData[persona][stage];
-      const detailsContainer = document.getElementById(`details${persona}`);
+      const detailsContainer = document.getElementById('details' + persona);
       
-      // Update all stage containers for this persona
-      const personaSection = document.getElementById(`evolution${persona}`);
+      const personaSection = document.getElementById('evolution' + persona);
       const stageContainers = personaSection.querySelectorAll('.stage-image-container');
       stageContainers.forEach((container, index) => {
         if (index + 1 === stage) {
@@ -1058,25 +1011,16 @@
         }
       });
       
-      // Build traits HTML
       const traitsHTML = data.traits.map(trait => 
-        `<span class="trait-badge">${trait}</span>`
+        '<span class="trait-badge">' + trait + '</span>'
       ).join('');
       
-      // Update details panel (no scroll needed since it's side-by-side)
-      detailsContainer.innerHTML = `
-        <h4>${data.title}</h4>
-        <p>${data.description}</p>
-        <div class="character-traits">
-          ${traitsHTML}
-        </div>
-      `;
+      detailsContainer.innerHTML = 
+        '<h4>' + data.title + '</h4>' +
+        '<p>' + data.description + '</p>' +
+        '<div class="character-traits">' + traitsHTML + '</div>';
+      
       detailsContainer.classList.add('visible');
-    }
-    
-    function highlightPersona(personaId) {
-      // Visual feedback for persona selection
-      console.log(`Persona ${personaId} highlighted`);
     }
   </script>
 </body>
