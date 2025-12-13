@@ -21,8 +21,6 @@ Our website evolved iteratively throughout the semester, with each page correspo
    - Reorganized navigation into two clear sections: **Research** and **Prototyping**
    - Adjusted and added content for final review feedback
 
----
-
 ## AI Tools Used:
 
 ### Claude Code
