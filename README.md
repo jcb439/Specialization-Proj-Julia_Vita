@@ -7,7 +7,7 @@ A research and design project exploring conscious consumption through browser-ba
 
 ---
 
-## How We Built This Website
+## How We Built This Website:
 
 ### Development Process
 
